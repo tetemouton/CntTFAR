@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.7)  22 AUG 2023 15:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.7)  25 AUG 2023 11:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -541,7 +541,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count316
 \l__pdf_internal_box=\box68
-) (./Country_TFAR_Template.aux)
+)
+No file Country_TFAR_Template.aux.
 \openout1 = `Country_TFAR_Template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
@@ -618,18 +619,21 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 99.
 LaTeX Info: Redefining \pageref on input line 99.
 LaTeX Info: Redefining \nameref on input line 99.
-(./Country_TFAR_Template.out) (./Country_TFAR_Template.out)
 \@outlinefile=\write4
 \openout4 = `Country_TFAR_Template.out'.
 
-<P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png, id=51, 715.92468pt x 995.97093pt>
+<P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png, id=7, 715.92468pt x 995.97093pt>
 File: P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png Graphic file (type png)
 <use P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>
-Package pdftex.def Info: P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png  used on input line 109.
+Package pdftex.def Info: P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png  used on input line 110.
 (pdftex.def)             Requested size: 597.53827pt x 831.27565pt.
 [1
 
-{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <p:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>] [2] (./Tables/table1.tex
+{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <p:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>] [2]
+
+LaTeX Warning: Reference `tab1' on page 3 undefined on input line 148.
+
+(./Tables/table1.tex
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8.
 (c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -664,186 +668,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--11
 []|\T1/lmr/m/n/9 Maximum Sus-tain-able Yield
  []
 
-) [3
+)
+
+LaTeX Warning: Reference `fig1' on page 3 undefined on input line 158.
+
+
+LaTeX Warning: Reference `tab2' on page 3 undefined on input line 166.
+
+[3
 
 ]
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png, id=81, 666.49pt x 714.67pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png  used on input line 169.
-(pdftex.def)             Requested size: 369.89616pt x 396.63564pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 170.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 170.
-(./Tables/table2.tex [4 <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png>]) [5]
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png, id=103, 1156.32pt x 794.97pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png  used on input line 223.
-(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png, id=104, 913.4125pt x 452.69125pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png  used on input line 224.
-(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 223--225
-[][]
- []
-
-[6
-
- <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png> <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png>] [7
-
-]
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png, id=122, 1156.32pt x 794.97pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png  used on input line 270.
-(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png, id=123, 913.4125pt x 452.69125pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png  used on input line 271.
-(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 270--272
-[][]
- []
-
-[8
-
- <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png> <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png>] [9
-
-]
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png, id=140, 1156.32pt x 794.97pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png  used on input line 322.
-(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png, id=141, 913.4125pt x 452.69125pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png  used on input line 323.
-(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--324
-[][]
- []
-
-[10
-
- <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png> <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png>]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 369.
-[11
-
-]
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png, id=163, 1156.32pt x 614.295pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png  used on input line 380.
-(pdftex.def)             Requested size: 441.01178pt x 234.28749pt.
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png, id=164, 913.4125pt x 452.69125pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png  used on input line 381.
-(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 380--382
-[][]
- []
-
-[12
-
- <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png> <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png>]
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png, id=173, 666.49pt x 738.76pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png  used on input line 413.
-(pdftex.def)             Requested size: 327.21349pt x 362.69446pt.
-<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png, id=174, 666.49pt x 738.76pt>
-File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png Graphic file (type png)
-<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png>
-Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png  used on input line 414.
-(pdftex.def)             Requested size: 327.21349pt x 362.69446pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 413--415
-[][]
- []
+LaTeX Warning: File `Fig16-majuro.ellipses.png' not found on input line 170.
 
 
-LaTeX Warning: Float too large for page by 83.15308pt on input line 416.
+! Package pdftex.def Error: File `Fig16-majuro.ellipses.png' not found: using draft setting.
 
-[13
-
-] [14 <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png> <p:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png>] (./Tables/table3.tex
-Underfull \hbox (badness 2310) in paragraph at lines 10--10
-[]|\T1/lmr/m/n/9 No over-fish-ing, not over-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-[]|\T1/lmr/m/n/9 Striped mar-lin
- []
-
-
-Underfull \hbox (badness 1270) in paragraph at lines 11--11
-[]|\T1/lmr/m/n/9 Reduce over-all catch of this stock,
- []
-
-
-Underfull \hbox (badness 1264) in paragraph at lines 11--11
-[]|\T1/lmr/m/n/9 Davies \T1/lmr/m/it/9 et al\T1/lmr/m/n/9 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--12
-[]|\T1/lmr/m/n/9 Takeuchi \T1/lmr/m/it/9 et
- []
-
-
-Underfull \hbox (badness 2310) in paragraph at lines 13--13
-[]|\T1/lmr/m/n/9 No over-fish-ing, not over-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-[]|\T1/lmr/m/n/9 Rice \T1/lmr/m/it/9 et al\T1/lmr/m/n/9 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--14
-[]|\T1/lmr/m/n/9 Rice and
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\T1/lmr/m/n/9 Rice \T1/lmr/m/it/9 et al\T1/lmr/m/n/9 .
- []
-
-) [15
-
-] [16
-
-] (./Country_TFAR_Template.aux)
-Package rerunfilecheck Info: File `Country_TFAR_Template.out' has not changed.
-(rerunfilecheck)             Checksum: D25373D81EB707F43572746DF0067ADB;1317.
- ) 
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 ...s [width=13cm]{Fig16-majuro.ellipses.png}
+                                                   
 Here is how much of TeX's memory you used:
- 22539 strings out of 480238
- 429076 string characters out of 5894354
- 676604 words of memory out of 5000000
- 40001 multiletter control sequences out of 15000+600000
- 521761 words of font info for 68 fonts, out of 8000000 for 9000
+ 22377 strings out of 480238
+ 424423 string characters out of 5894354
+ 673949 words of memory out of 5000000
+ 39906 multiletter control sequences out of 15000+600000
+ 496485 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,9n,80p,942b,477s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri9.pfb>
-Output written on Country_TFAR_Template.pdf (16 pages, 9395559 bytes).
-PDF statistics:
- 273 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 84i,9n,80p,526b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
 
+!  ==> Fatal error occurred, no output PDF file produced!
