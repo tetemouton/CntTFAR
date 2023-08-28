@@ -51,7 +51,7 @@ library(FLR4MFCL)
     sub_dat <- filter(dep_yr, fcl_reg == "focal")
     
     windows(3000,2000)
-      pl <- ggplot(dep_yr, aes(x = year, y = data)) + geom_line(size = 1) +
+      pl <- ggplot(dep_yr, aes(x = year, y = data)) + geom_line(linewidth = 1) +
                    geom_rect(data = sub_dat, fill = alpha("springgreen4", 0.005), xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) + facet_wrap(~ region, ncol = 3) +
                    scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("sb/sbf=0") + geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
                    theme_clean()
