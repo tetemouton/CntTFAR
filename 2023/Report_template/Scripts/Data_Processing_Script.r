@@ -6,7 +6,7 @@ library(FLR4MFCL)
 
 
   yr1 <- 2014
-  yr2 <- 2019
+  yr2 <- 2022
   
   cnt_vec <- c("CK","FJ","NC","TO")
   
@@ -17,14 +17,14 @@ library(FLR4MFCL)
                       "TO" = c(2,3))
 
 
-  base_pth <- "P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/"
+  base_pth <- "C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/"
   
   
   
-  alb_rep <- read.MFCLRep("C:/MFCL_Plots/SKJ2022/MorePlots/T2G10.8/plot-09.par.rep")
-  bet_rep <- read.MFCLRep("C:/MFCL_Plots/SKJ2022/MorePlots/T2G10.8/plot-09.par.rep")
-  skj_rep <- read.MFCLRep("C:/MFCL_Plots/SKJ2022/MorePlots/T2G10.8/plot-09.par.rep")
-  yft_rep <- read.MFCLRep("C:/MFCL_Plots/SKJ2022/MorePlots/T2G10.8/plot-09.par.rep")
+  alb_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/ALB/plot-09.par.rep")
+  bet_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/BET/plot-09.par.rep")
+  skj_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/SKJ/plot-09.par.rep")
+  yft_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/YFT/plot-09.par.rep")
   
   
   
