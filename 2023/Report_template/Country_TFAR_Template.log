@@ -1,12 +1,21 @@
+<<<<<<< Updated upstream
 This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.1.25)  28 AUG 2023 09:05
+=======
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.1.25)  22 AUG 2023 15:58
+>>>>>>> Stashed changes
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./Country_TFAR_Template.tex
 (Country_TFAR_Template.tex
 LaTeX2e <2021-11-15> patch level 1
+<<<<<<< Updated upstream
 L3 programming layer <2021-11-22>
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+=======
+L3 programming layer <2021-11-22> (C:\Users\marinow\AppData\Local\Programs\MiKT
+eX\tex/latex/base\article.cls
+>>>>>>> Stashed changes
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
@@ -22,25 +31,39 @@ File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+>>>>>>> Stashed changes
 Package: amsmath 2021/10/15 v2.17l AMS math features
 \@mathmargin=\skip49
 
 For additional information on amsmath, use the `?' option.
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen139
+<<<<<<< Updated upstream
 ))
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen140
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+=======
+)) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen140
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
+>>>>>>> Stashed changes
 Package: amsopn 2021/08/26 v2.02 operator names
 )
 \inf@bad=\count191
@@ -80,8 +103,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.st
+y
+>>>>>>> Stashed changes
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
@@ -125,6 +153,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
@@ -146,13 +175,33 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+2.
+(C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+>>>>>>> Stashed changes
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.s
 ty
 Package: microtype 2021/12/10 v3.0b Micro-typographical refinements (RS)
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks23
@@ -184,8 +233,13 @@ Package microtype Info: Loading configuration file microtype.cfg.
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.c
 fg
 File: microtype.cfg 2021/12/10 v3.0b microtype main configuration file (RS)
+<<<<<<< Updated upstream
 ))
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.sty
+=======
+)) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.st
+y
+>>>>>>> Stashed changes
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.s
@@ -198,8 +252,12 @@ Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/kvsetkeys\kvsetkeys
 .sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+<<<<<<< Updated upstream
 )))
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+=======
+))) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+>>>>>>> Stashed changes
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
 
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cf
@@ -262,7 +320,10 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \cslhangindent=\skip53
 \csllabelwidth=\skip54
 \cslentryspacingunit=\skip55
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count275
@@ -275,8 +336,12 @@ LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count277
 \calc@Cskip=\skip58
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+>>>>>>> Stashed changes
 Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \LTleft=\skip59
 \LTright=\skip60
@@ -294,6 +359,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \c@LT@tables=\count281
 \c@LT@chunks=\count282
 \LT@p@ftn=\toks26
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/graphics\lscape.sty
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
@@ -301,6 +367,12 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
 Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
 Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
 \captionmargin=\dimen162
@@ -573,8 +645,13 @@ sty
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys
 .sty
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfke
+<<<<<<< Updated upstream
 ys.code.tex))
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+=======
+ys.code.tex)) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/pgf/mat
+h\pgfmath.sty
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.co
 de.tex))
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffo
@@ -672,21 +749,32 @@ Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape
 .sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+>>>>>>> Stashed changes
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmac
 ro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+>>>>>>> Stashed changes
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen279
 \Hy@linkcounter=\count306
 \Hy@pagecounter=\count307
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -705,7 +793,10 @@ ty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count308
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -720,14 +811,20 @@ Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
 \c@Hy@tempcnt=\count309
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4804.
 \XeTeXLinkMargin=\dimen280
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
@@ -758,7 +855,10 @@ package with kernel methods
 \c@Hfootnote=\count313
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
 File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
 
@@ -796,8 +896,12 @@ dftex.def
 File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count317
 \l__pdf_internal_box=\box69
+<<<<<<< Updated upstream
 )
 No file Country_TFAR_Template.aux.
+=======
+) (Country_TFAR_Template.aux)
+>>>>>>> Stashed changes
 \openout1 = `Country_TFAR_Template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 99.
@@ -923,12 +1027,17 @@ hics/CT_TFAR_Title_Template_CTexple.jpg.png Graphic file (type png)
 ics/CT_TFAR_Title_Template_CTexple.jpg.png>
 Package pdftex.def Info: P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/R
 eport_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png  used on input l
+<<<<<<< Updated upstream
 ine 110.
+=======
+ine 109.
+>>>>>>> Stashed changes
 (pdftex.def)             Requested size: 597.53827pt x 831.27565pt.
  [1
 
 {C:/Users/marinow/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <P:/OFPSAM/
 Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Tit
+<<<<<<< Updated upstream
 le_Template_CTexple.jpg.png>] [2]
 
 LaTeX Warning: Reference `tab1' on page 3 undefined on input line 148.
@@ -937,24 +1046,38 @@ LaTeX Warning: Reference `tab1' on page 3 undefined on input line 148.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
 .
 
+=======
+le_Template_CTexple.jpg.png>] [2] (Tables/table1.tex
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
+.
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
 .
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
 8.
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
 8.
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -965,9 +1088,15 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 8.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cf
+g
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
@@ -975,6 +1104,7 @@ File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+<<<<<<< Updated upstream
 )
 (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
@@ -988,6 +1118,44 @@ LaTeX Warning: Reference `tab2' on page 3 undefined on input line 166.
 [3
 
 ]
+=======
+) (C:\Users\marinow\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cf
+g
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)) [3
+
+]
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png, id=39, 666.49pt x 71
+4.67pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png Graphic file (ty
+pe png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.p
+ng  used on input line 169.
+(pdftex.def)             Requested size: 369.89616pt x 396.63564pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 170.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 170.
+(Tables/table2.tex [4 <P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig16-majuro.ellipses.png
+>]) [5]
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png, id=62, 1156.32pt x 794.97p
+t>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png Graphic file (type png
+)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png  us
+ed on input line 223.
+(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png, id=63, 913.4125pt 
+x 452.69125pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png Graphic file (
+type png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08a-skj_catchbygearE
+.png  used on input line 224.
+(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
+>>>>>>> Stashed changes
 
 LaTeX Warning: File `Fig16-majuro.ellipses.png' not found on input line 170.
 
@@ -1065,6 +1233,7 @@ If that doesn't work, type  X <return>  to quit.
 
 [6
 
+<<<<<<< Updated upstream
 ]
 
 LaTeX Warning: Reference `fig3' on page 7 undefined on input line 236.
@@ -1084,6 +1253,28 @@ LaTeX Warning: Reference `fig1' on page 7 undefined on input line 248.
 [7
 
 ]
+=======
+ <P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig08b-skj_mapE.png> <P:/OFPSAM/TFAR/T_FAR_202
+2/figs/Fig08a-skj_catchbygearE.png>] [7
+
+]
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png, id=82, 1156.32pt x 794.97p
+t>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png Graphic file (type png
+)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png  us
+ed on input line 270.
+(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png, id=83, 913.4125pt 
+x 452.69125pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png Graphic file (
+type png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10a-yft_catchbygearE
+.png  used on input line 271.
+(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
+>>>>>>> Stashed changes
 
 LaTeX Warning: File `Fig10b-yft_mapE.png' not found on input line 271.
 
@@ -1118,6 +1309,7 @@ If that doesn't work, type  X <return>  to quit.
 
 [8
 
+<<<<<<< Updated upstream
 ]
 
 LaTeX Warning: Reference `fig4' on page 9 undefined on input line 282.
@@ -1137,6 +1329,28 @@ LaTeX Warning: Reference `fig1' on page 9 undefined on input line 294.
 [9
 
 ]
+=======
+ <P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig10b-yft_mapE.png> <P:/OFPSAM/TFAR/T_FAR_202
+2/figs/Fig10a-yft_catchbygearE.png>] [9
+
+]
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png, id=101, 1156.32pt x 794.97
+pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png Graphic file (type png
+)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png  us
+ed on input line 322.
+(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png, id=102, 913.4125pt
+ x 452.69125pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png Graphic file (
+type png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12a-bet_catchbygearE
+.png  used on input line 323.
+(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
+>>>>>>> Stashed changes
 
 LaTeX Warning: File `Fig12b-bet_mapE.png' not found on input line 324.
 
@@ -1171,6 +1385,7 @@ If that doesn't work, type  X <return>  to quit.
 
 [10
 
+<<<<<<< Updated upstream
 ]
 
 LaTeX Warning: Reference `fig5' on page 11 undefined on input line 337.
@@ -1187,11 +1402,34 @@ LaTeX Warning: Reference `fig5' on page 11 undefined on input line 345.
 
 LaTeX Warning: Reference `fig1' on page 11 undefined on input line 350.
 
+=======
+ <P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig12b-bet_mapE.png> <P:/OFPSAM/TFAR/T_FAR_202
+2/figs/Fig12a-bet_catchbygearE.png>]
+>>>>>>> Stashed changes
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 370.
 [11
 
 ]
+<<<<<<< Updated upstream
+=======
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png, id=124, 1156.32pt x 614.29
+5pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png Graphic file (type png
+)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png  us
+ed on input line 380.
+(pdftex.def)             Requested size: 441.01178pt x 234.28749pt.
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png, id=125, 913.4125pt
+ x 452.69125pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png Graphic file (
+type png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14a-alb_catchbygearE
+.png  used on input line 381.
+(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
+>>>>>>> Stashed changes
 
 LaTeX Warning: File `Fig14b-alb_mapE.png' not found on input line 380.
 
@@ -1226,7 +1464,28 @@ If that doesn't work, type  X <return>  to quit.
 
 [12
 
+<<<<<<< Updated upstream
 ]
+=======
+ <P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig14b-alb_mapE.png> <P:/OFPSAM/TFAR/T_FAR_202
+2/figs/Fig14a-alb_catchbygearE.png>]
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png, id=134, 666.4
+9pt x 738.76pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png Graphic f
+ile (type png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.cross
+hairs.png  used on input line 413.
+(pdftex.def)             Requested size: 327.21349pt x 362.69446pt.
+<P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png, id=135, 66
+6.49pt x 738.76pt>
+File: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png Graphi
+c file (type png)
+<use P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png>
+Package pdftex.def Info: P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.cr
+osshairs.png  used on input line 414.
+(pdftex.def)             Requested size: 327.21349pt x 362.69446pt.
+>>>>>>> Stashed changes
 
 LaTeX Warning: Reference `tab3' on page 13 undefined on input line 390.
 
@@ -1272,7 +1531,13 @@ If that doesn't work, type  X <return>  to quit.
 
 [13
 
+<<<<<<< Updated upstream
 ] (Tables/table3.tex
+=======
+] [14 <P:/OFPSAM/TFAR/T_FAR_2022/figs/Fig23b-shark.kobe.crosshairs.png> <P:/OFP
+SAM/TFAR/T_FAR_2022/figs/Fig23a-billfish.kobe.crosshairs.png>] (Tables/table3.t
+ex
+>>>>>>> Stashed changes
 Underfull \hbox (badness 2173) in paragraph at lines 10--10
 []|\T1/lmr/m/n/9 (+20) No over-fish-ing, not over-
  []
@@ -1323,6 +1588,7 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
+<<<<<<< Updated upstream
  ) 
 Here is how much of TeX's memory you used:
  25339 strings out of 478659
@@ -1353,4 +1619,35 @@ PDF statistics:
  226 PDF objects out of 1000 (max. 8388607)
  51 named destinations out of 1000 (max. 500000)
  30826 words of extra memory for PDF output out of 35830 (max. 10000000)
+=======
+] (Country_TFAR_Template.aux) ) 
+Here is how much of TeX's memory you used:
+ 25026 strings out of 478659
+ 473139 string characters out of 2844972
+ 762497 words of memory out of 3000000
+ 42424 multiletter control sequences out of 15000+600000
+ 463800 words of font info for 157 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 84i,9n,80p,1020b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/marinow/AppData/Local/Programs/MiKTeX/
+fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/marinow/AppData/Local/Programs/MiKTeX/fo
+nts/enc/dvips/lm/lm-mathit.enc}{C:/Users/marinow/AppData/Local/Programs/MiKTeX/
+fonts/enc/dvips/lm/lm-rm.enc}<C:/Users/marinow/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/lm/lmbx10.pfb><C:/Users/marinow/AppData/Local/Programs/MiKTeX/
+fonts/type1/public/lm/lmbx12.pfb><C:/Users/marinow/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/lm/lmmi10.pfb><C:/Users/marinow/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/marinow/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/lm/lmmi7.pfb><C:/Users/marinow/AppData/Local/Programs/M
+iKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/marinow/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/marinow/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/Users/marinow/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/marinow/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/marinow/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/lm/lmri9.pfb>
+Output written on Country_TFAR_Template.pdf (16 pages, 9422917 bytes).
+PDF statistics:
+ 269 PDF objects out of 1000 (max. 8388607)
+ 52 named destinations out of 1000 (max. 500000)
+ 30881 words of extra memory for PDF output out of 35830 (max. 10000000)
+>>>>>>> Stashed changes
 
