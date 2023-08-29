@@ -17,14 +17,14 @@ library(FLR4MFCL)
                       "TO" = c(2,3))
 
 
-  base_pth <- "C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/"
+  base_pth <- "./"
   
   
   
-  alb_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/ALB/plot-09.par.rep")
-  bet_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/BET/plot-09.par.rep")
-  skj_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/SKJ/plot-09.par.rep")
-  yft_rep <- read.MFCLRep("C:/Users/marinow/OneDrive - SPC/Documents/GitHub/CntTFAR/2023/Report_template/Data/YFT/plot-09.par.rep")
+  alb_rep <- read.MFCLRep("./Data/ALB/plot-final3.par.rep")
+  bet_rep <- read.MFCLRep("./Data/BET/plot-09.par.rep")
+  skj_rep <- read.MFCLRep("./Data/SKJ/plot-09.par.rep")
+  yft_rep <- read.MFCLRep("./Data/YFT/plot-14.par.rep")
   
   
   
@@ -56,7 +56,8 @@ library(FLR4MFCL)
                    scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("sb/sbf=0") + geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
                    theme_clean()
       print(pl)
-      savePlot(paste0(base_pth, "Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
+      
+      savePlot(paste0("./", "Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
     dev.off()
     
 
@@ -102,7 +103,7 @@ library(FLR4MFCL)
     
   }
   
-  
+  savePlot(paste0("./", "Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
   
   
   
