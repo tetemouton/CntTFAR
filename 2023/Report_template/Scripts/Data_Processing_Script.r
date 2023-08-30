@@ -3,6 +3,7 @@ library(magrittr)
 library(tidyverse)
 library(ggthemes)
 library(FLR4MFCL)
+library(readr)
 
 
   yr1 <- 2014
@@ -15,6 +16,21 @@ library(FLR4MFCL)
                       "FJ" = c(3),
                       "NC" = c(4,5),
                       "TO" = c(2,3))
+  
+  alb_reg_lst <- list("CK" = c(1,2),
+                      "FJ" = c(2),
+                      "NC" = c(2,3),
+                      "TO" = c(2,3))
+  
+  yft_reg_lst <- list("CK" = c(4,6),
+                      "FJ" = c(6),
+                      "NC" = c(5),
+                      "TO" = c(6))
+  
+  bet_reg_lst <- list("CK" = c(4,5),
+                      "FJ" = c(5),
+                      "NC" = c(5),
+                      "TO" = c(5))
 
 
   base_pth <- "./"
@@ -30,9 +46,9 @@ library(FLR4MFCL)
   
   cnt <- cnt_vec[3]
   
-  
-  
-  
+  plot_regional_depletion <- function(rep = alb_rep, reg_lst = alb_reg_lst, cnt = "CK", spp = "alb")
+  plot_regional_depletion <- function(rep = bet_rep, reg_lst = bet_reg_lst, cnt = "CK", spp = "bet")
+  plot_regional_depletion <- function(rep = yft_rep, reg_lst = yft_reg_lst, cnt = "CK", spp = "yft")
   plot_regional_depletion <- function(rep = skj_rep, reg_lst = skj_reg_lst, cnt = "CK", spp = "skj"){
     
     cnt_reg <- reg_lst[[cnt]]
@@ -57,7 +73,7 @@ library(FLR4MFCL)
                    theme_clean()
       print(pl)
       
-      savePlot(paste0("./", "Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
+      savePlot(paste0("Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
     dev.off()
     
 
@@ -65,8 +81,9 @@ library(FLR4MFCL)
   
     
     map(cnt_vec, plot_regional_depletion, rep = skj_rep, reg_lst = skj_reg_lst, spp = "skj")
-    
-
+    map(cnt_vec, plot_regional_depletion, rep = bet_rep, reg_lst = bet_reg_lst, spp = "bet")
+    map(cnt_vec, plot_regional_depletion, rep = yft_rep, reg_lst = yft_reg_lst, spp = "yft")
+    map(cnt_vec, plot_regional_depletion, rep = alb_rep, reg_lst = alb_reg_lst, spp = "alb")
   
   
   load(file = paste0(base_pth, "Data/yb_ocean_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and ocean ID
@@ -84,13 +101,11 @@ library(FLR4MFCL)
 
   
  
-  
-  
   all_tab_eez <- yb_ez_dat %>% filter(eez == cnt, between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
                                summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
   
 
-  all_tab_flg_tmp <- yb_dat %>% filter(flag == cnt, between(yy, yr1, yr2))
+  all_tab_flg_tmp <- yb_dat %>% filter(flag == "CK", between(yy, yr1, yr2))
   
   if(dim(all_tab_flg_tmp)[1] > 0){
     
@@ -103,7 +118,7 @@ library(FLR4MFCL)
     
   }
   
-  savePlot(paste0("./", "Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
+ write_csv(all_tab_flg_tmp, path = (paste0("Figures/", cnt, "/", "all_tab_flg.csv"))) 
   
   
   
