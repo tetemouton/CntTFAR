@@ -44,11 +44,9 @@ library(readr)
   
   
   
-  cnt <- cnt_vec[3]
+  #cnt <- cnt_vec[3]
   
-  plot_regional_depletion <- function(rep = alb_rep, reg_lst = alb_reg_lst, cnt = "CK", spp = "alb")
-  plot_regional_depletion <- function(rep = bet_rep, reg_lst = bet_reg_lst, cnt = "CK", spp = "bet")
-  plot_regional_depletion <- function(rep = yft_rep, reg_lst = yft_reg_lst, cnt = "CK", spp = "yft")
+
   plot_regional_depletion <- function(rep = skj_rep, reg_lst = skj_reg_lst, cnt = "CK", spp = "skj"){
     
     cnt_reg <- reg_lst[[cnt]]
@@ -101,11 +99,15 @@ library(readr)
 
   
  
-  all_tab_eez <- yb_ez_dat %>% filter(eez == cnt, between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
+  make_catch_table <- function(cnt = "CK"){
+    
+    #for(i in 1:length(cnt_vec)){
+  
+  all_tab_eez <- yb_ez_dat %>% filter(eez == cnt_vec[i], between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
                                summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
   
 
-  all_tab_flg_tmp <- yb_dat %>% filter(flag == "CK", between(yy, yr1, yr2))
+  all_tab_flg_tmp <- yb_dat %>% filter(flag == cnt, between(yy, yr1, yr2))
   
   if(dim(all_tab_flg_tmp)[1] > 0){
     
@@ -119,10 +121,10 @@ library(readr)
   }
   
  write_csv(all_tab_flg_tmp, path = (paste0("Figures/", cnt, "/", "all_tab_flg.csv"))) 
+ }
   
   
-  
-  
+  tmp <- map(cnt_vec, make_catch_table)
   
   
   

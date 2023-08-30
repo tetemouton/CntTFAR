@@ -74,19 +74,19 @@ Albacore, bigeye, yellowfin and skipjack tuna are targeted by fisheries operatin
 
 This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Brouwer2019_a]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). These terms are described in \autoref{tab1}. 
 
-\input{./Tables/table1.tex}
+<!-- \input{./Tables/table1.tex} -->
 
 # Summary of tuna stock status
 The most recent assessments indicate that overfishing is not occurring on albacore, bigeye, skipjack and yellowfin tuna, and these stocks are not in an overfished state (\autoref{fig1}). However, catch of each of these species have increased significantly over the past 2 to 3 decades, with corresponding reductions in stock biomass relative to the biomass that would be in the water if no fishing was occurring. The following sections provide more detail regarding the status of these stocks, implications for your national fisheries and briefly reviews assessments of other relevant species. Specific details regarding catch and stock status of each species in the WCPFC and your EEZ are presented in \autoref{tab2}.
 
-\begin{figure}[!ht]
-  \centering
- \includegraphics [width=13cm]{Fig16-majuro.ellipses.png} 
-  \caption {Majuro plot comparing the stock status of the key target tuna species caught in the WCPFC Convention Area. Where current fishing mortality rate exceeds the fishing mortality rate at MSY (F/F$_{MSY}$ > 1) then overfishing is occurring. Where the current spawning biomass is less than 0.2 of spawning biomass without fishing, then the stock is overfished (SB/SB$_{F=0}$ <0.2). The large points represent the median estimated stock status in terms of fishing mortality and biomass depletion in the terminal year of the most recent assessment for each species. The error bars indicate stock status uncertainty from all models run in the grid. The blue and green dashed lines indicate the WCPFC interim target reference points for skipjack and albacore tuna, respectively.\label{fig1}}  
-\end{figure}
+<!-- \begin{figure}[!ht] -->
+<!--   \centering -->
+<!--  \includegraphics [width=13cm]{Fig16-majuro.ellipses.png}  -->
+<!--   \caption {Majuro plot comparing the stock status of the key target tuna species caught in the WCPFC Convention Area. Where current fishing mortality rate exceeds the fishing mortality rate at MSY (F/F$_{MSY}$ > 1) then overfishing is occurring. Where the current spawning biomass is less than 0.2 of spawning biomass without fishing, then the stock is overfished (SB/SB$_{F=0}$ <0.2). The large points represent the median estimated stock status in terms of fishing mortality and biomass depletion in the terminal year of the most recent assessment for each species. The error bars indicate stock status uncertainty from all models run in the grid. The blue and green dashed lines indicate the WCPFC interim target reference points for skipjack and albacore tuna, respectively.\label{fig1}}   -->
+<!-- \end{figure} -->
 
 
-\input{./Tables/table2.tex}
+<!-- \input{./Tables/table2.tex} -->
 
 
 # Skipjack tuna
@@ -98,12 +98,12 @@ Annual catch of skipjack in `r cnt_lng` has averaged **tabl2**t between **minyea
 
 \clearpage
 
-\begin{figure}[!ht]
- \includegraphics [width=15.5cm]{Fig08b-skj_mapE.png}
- \includegraphics [width=15cm]{Fig08a-skj_catchbygearE.png}
-  \caption {Distribution of total .\label{fig2}}
-\end{figure}
-\clearpage
+<!-- \begin{figure}[!ht] -->
+<!--  \includegraphics [width=15.5cm]{Fig08b-skj_mapE.png} -->
+<!--  \includegraphics [width=15cm]{Fig08a-skj_catchbygearE.png} -->
+<!--   \caption {Distribution of total .\label{fig2}} -->
+<!-- \end{figure} -->
+<!-- \clearpage -->
 
 # Yellowfin tuna
 The most recent yellowfin tuna assessment was conducted in 2017  **TremblayBoyer2017**.  The yellowfin tuna assessment used a nine region model, with `r cnt_lng` situated in **yftreg** (\autoref{fig3} - top). Between **minyear** and **maxyear** yellowfin catch averaged **tabl2**t in the WCPFC-CA (\autoref{fig3} - middle). An average of **tabl2**t (**tabl2**\% of WCPFC-CA catch) comes from **yftreg**. It is estimated that yellowfin spawning biomass in the WCPFC-CA and **yftreg**, have declined by **tabl2**\% and **tabl2**\% respectively  (\autoref{tab2}). The greatest impact on the stock is from the fisheries of the Philippines and Indonesia, along with the FAD directed purse-seine fishery in the WCPO and from the FAD directed purse-seine fishery in **yftreg** (\autoref{fig3} - bottom). 
@@ -114,12 +114,12 @@ Annual catch of yellowfin in `r cnt_lng` have averaged **tabl2**t between **miny
 
 \clearpage
 
-\begin{figure}[!ht]
- \includegraphics [width=15.5cm]{Fig10b-yft_mapE.png}
- \includegraphics [width=15cm]{Fig10a-yft_catchbygearE.png}
-  \caption {Distribution of total .\label{fig3}}
-\end{figure}
-\clearpage
+<!-- \begin{figure}[!ht] -->
+<!--  \includegraphics [width=15.5cm]{Fig10b-yft_mapE.png} -->
+<!--  \includegraphics [width=15cm]{Fig10a-yft_catchbygearE.png} -->
+<!--   \caption {Distribution of total .\label{fig3}} -->
+<!-- \end{figure} -->
+<!-- \clearpage -->
 
 # Bigeye tuna
 The most recent bigeye tuna assessment was conducted in 2020 (**cite**). The bigeye assessment used a nine region model, your EEZ is situated in **betreg** (\autoref{fig4} - top). Between **minyear** and **maxyear** bigeye catch averaged **tabl2**t in the WCPFC-CA (\autoref{fig4} - middle).  An average of **tabl2**t (**tabl2**\% of WCPFC-CA catch) comes from **betreg**. It is estimated that bigeye spawning biomass in the WCPFC-CA and **betreg**, have declined by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impact on spawning biomass is from the associated - FAD - purse seine fisheries in the WCPO and from the longline fishery in **betreg** (\autoref{fig4} - bottom).
@@ -132,12 +132,12 @@ Bigeye tuna is one of two species targeted in the longline fishery operating in 
 
 \clearpage
 
-\begin{figure}[!ht]
- \includegraphics [width=15.5cm]{Fig12b-bet_mapE.png}
- \includegraphics [width=15cm]{Fig12a-bet_catchbygearE.png}
-   \caption {Distribution of total .\label{fig4}}
-\end{figure}
-\clearpage
+<!-- \begin{figure}[!ht] -->
+<!--  \includegraphics [width=15.5cm]{Fig12b-bet_mapE.png} -->
+<!--  \includegraphics [width=15cm]{Fig12a-bet_catchbygearE.png} -->
+<!--    \caption {Distribution of total .\label{fig4}} -->
+<!-- \end{figure} -->
+<!-- \clearpage -->
 
 
 # South Pacific albacore tuna
@@ -150,26 +150,26 @@ Annual catch of albacore in `r cnt_lng` has averaged **tabl2**t between **minyea
 
 \clearpage
 
-\begin{figure}[!ht]
- \includegraphics [width=15.5cm]{Fig14b-alb_mapE.png}
- \includegraphics [width=15cm]{Fig14a-alb_catchbygearE.png}
-  \caption {Distribution of total South Pacific albacore catch by fishing method 2009-2018 (Red, pole-and-line; Blue, purse-seine; Green, longline; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region encompassing your EEZ (bottom - right).\label{fig5}}
-\end{figure}
-\clearpage
+<!-- \begin{figure}[!ht] -->
+<!--  \includegraphics [width=15.5cm]{Fig14b-alb_mapE.png} -->
+<!--  \includegraphics [width=15cm]{Fig14a-alb_catchbygearE.png} -->
+<!--   \caption {Distribution of total South Pacific albacore catch by fishing method 2009-2018 (Red, pole-and-line; Blue, purse-seine; Green, longline; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region encompassing your EEZ (bottom - right).\label{fig5}} -->
+<!-- \end{figure} -->
+<!-- \clearpage -->
 
 
 # Other species
 Stock assessments are available for some other species which may interact with the fisheries in `r cnt_lng` (\autoref{tab3}). These include three shark and three billfish species (\autoref{fig6}). Both north and south Pacific swordfish and blue marlin are not overfished and no overfishing was taking place. The SC, has recommended that there should be no increase in fishing mortality for blue marlin and swordfish. The southwest Pacific striped marlin assessment results indicate that the stock is fully exploited, is not experiencing overfishing, but may be overfished (\autoref{tab3}) **WCPFC2012** **WCPFC2013b**. For the sharks that have been assessed to date, blue sharks in the north Pacific are not considered to be overfished and no overfishing is taking place; silky sharks are overfished and overfishing is taking place; and for oceanic whitetip sharks the stock is overfished and overfishing is occuring **WCPFC2012,WCPFC2013,WCPFC2014**. It should also be noted that due to concerns expressed by the Scientific Committee regarding the steep declines in biomass of silky and oceanic whitetip shark, the Commission has adopted CMMs for these species prohibiting their retention, transshipment, storage or landing **WCPFC2011a, WCPFC2013b**. In addition, in an attempt to reduce incidental catch of these species CMM2014-05 prohibits the use of either wire trace branchlines or shark lines on longline sets **this has now changed?**.  
 
-\begin{figure}[!ht]
- \includegraphics [width=11.5cm]{Fig23b-shark.kobe.crosshairs.png} 
- \includegraphics [width=11.5cm]{Fig23a-billfish.kobe.crosshairs.png} 
-  \caption {Kobe plots comparing the stock status of the key bycatch species caught in the WCPFC Convention Area. Where current fishing mortality rate exceeds the fishing mortality rate at MSY (F/F$_{MSY}$ > 1) then overfishing is occurring. Where the current spawning biomass is less than the spawning biomass that would produce MSY, then the stock is overfished (SB/SB$_{MSY}$ <1). \label{fig6}}  
-\end{figure}
-\clearpage
+<!-- \begin{figure}[!ht] -->
+<!--  \includegraphics [width=11.5cm]{Fig23b-shark.kobe.crosshairs.png}  -->
+<!--  \includegraphics [width=11.5cm]{Fig23a-billfish.kobe.crosshairs.png}  -->
+<!--   \caption {Kobe plots comparing the stock status of the key bycatch species caught in the WCPFC Convention Area. Where current fishing mortality rate exceeds the fishing mortality rate at MSY (F/F$_{MSY}$ > 1) then overfishing is occurring. Where the current spawning biomass is less than the spawning biomass that would produce MSY, then the stock is overfished (SB/SB$_{MSY}$ <1). \label{fig6}}   -->
+<!-- \end{figure} -->
+<!-- \clearpage -->
 
 
-\input{./Tables/table3.tex}
+<!-- \input{./Tables/table3.tex} -->
 
 
 <!-- \input{./Tables/table1_FR.tex} -->
