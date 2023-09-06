@@ -48,7 +48,7 @@ load("./Data/Output_Summary_Data.RData")
 
 endyear <- 2022
 
-update_date <- "10 November 2022"  # Date of final data extraction
+update_date <- "6 September 2023"  # Date of final data extraction
 
 cnt_lng <- "the Solomon Islands"
 cnt_lngalt <- "Solomon Islands"
@@ -72,7 +72,7 @@ Tuna stock assessments provide important information regarding the status of reg
 
 Albacore, bigeye, yellowfin and skipjack tuna are targeted by fisheries operating in `r cnt_lng`. The SPC has assessed these stocks in the WCPFC-CA using a modeling tool called MULTIFAN-CL, which is reliant on accurate and comprehensive catch, effort, size and other fisheries data collected by all fishing nations. The assessments provide information on stock status at the WCPFC-CA scale and broad model Regions within that. SPC is working to develop models that can provide similar information at the EEZ scale. However, given that tuna are migratory and may pass through many EEZ's in their lifetime, it will never be feasible to assess and/or manage these species within individual EEZ's in isolation from what is happening in surrounding waters. However, most countries also need to know what the status of the resource is in their immediate vicinity. Therefore we provide here some information for the broad model region that surrounds your EEZ so that you can assess your country's impact on the stock and the state of the stock in your waters. 
 
-This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Brouwer2019_a]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). These terms are described in \autoref{tab1}. 
+This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Hare2022]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). These terms are described in \autoref{tab1}. 
 
 <!-- \input{./Tables/table1.tex} -->
 
