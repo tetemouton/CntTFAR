@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.7)  11 SEP 2023 15:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.7)  11 SEP 2023 16:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -622,14 +622,14 @@ LaTeX Info: Redefining \nameref on input line 99.
 \@outlinefile=\write4
 \openout4 = `Country_TFAR_Template.out'.
 
-<P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png, id=51, 715.92468pt x 995.97093pt>
-File: P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png Graphic file (type png)
-<use P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>
-Package pdftex.def Info: P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png  used on input line 110.
+<./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png, id=51, 715.92468pt x 995.97093pt>
+File: ./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png Graphic file (type png)
+<use ./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>
+Package pdftex.def Info: ./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png  used on input line 110.
 (pdftex.def)             Requested size: 597.53827pt x 831.27565pt.
 [1
 
-{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <p:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template/Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>] [2]
+{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>] [2]
 
 LaTeX Warning: Reference `tab1' on page 3 undefined on input line 148.
 
@@ -810,14 +810,14 @@ Package rerunfilecheck Info: File `Country_TFAR_Template.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  22501 strings out of 480238
- 427751 string characters out of 5894354
- 674320 words of memory out of 5000000
+ 427014 string characters out of 5894354
+ 675398 words of memory out of 5000000
  39982 multiletter control sequences out of 15000+600000
  510487 words of font info for 61 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  84i,8n,80p,952b,408s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb>
-Output written on Country_TFAR_Template.pdf (15 pages, 9336925 bytes).
+Output written on Country_TFAR_Template.pdf (15 pages, 9338034 bytes).
 PDF statistics:
  238 PDF objects out of 1000 (max. 8388607)
  182 compressed objects within 2 object streams

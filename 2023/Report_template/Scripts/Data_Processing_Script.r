@@ -35,17 +35,13 @@ library(readr)
 
   base_pth <- "./"
   
-  
-  
   alb_rep <- read.MFCLRep("./Data/ALB/plot-final3.par.rep")
   bet_rep <- read.MFCLRep("./Data/BET/plot-09.par.rep")
   skj_rep <- read.MFCLRep("./Data/SKJ/plot-09.par.rep")
   yft_rep <- read.MFCLRep("./Data/YFT/plot-14.par.rep")
   
   
-  
   #cnt <- cnt_vec[3]
-  
 
   plot_regional_depletion <- function(rep = skj_rep, reg_lst = skj_reg_lst, cnt = "CK", spp = "skj"){
     
@@ -74,7 +70,6 @@ library(readr)
       savePlot(paste0("Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
     dev.off()
     
-
     }
   
     
@@ -125,6 +120,27 @@ library(readr)
   
   
   tmp <- map(cnt_vec, make_catch_table)
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

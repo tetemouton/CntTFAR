@@ -23,7 +23,7 @@ library(knitr)
 
 
 \AddToHook{shipout/firstpage}{%
-    \put (-1in,-10.5in){\includegraphics[width=\paperwidth,height=\paperheight]{\BaseDir/Graphics/CT_TFAR_Title_Template_CTexple.jpg}}%
+    \put (-1in,-10.5in){\includegraphics[width=\paperwidth,height=\paperheight]{./Graphics/CT_TFAR_Title_Template_CTexple.jpg}}%
 }
 
 \hspace{1cm}
@@ -99,7 +99,7 @@ Annual catch of skipjack in `r cnt_lng` has averaged **tabl2**t between `r endye
 \begin{figure}[!ht]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig08b-skj_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig08a-skj_catchbygearE.png}
-  \caption {Distribution of total .\label{fig2}}
+  \caption {Distribution of total South Pacific albacore catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of skipjack in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right). \label{fig2}}
 \end{figure}
 \clearpage
 
@@ -115,7 +115,7 @@ Annual catch of yellowfin in `r cnt_lng` have averaged **tabl2**t between **miny
 \begin{figure}[!ht]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig10b-yft_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig10a-yft_catchbygearE.png}
-  \caption {Distribution of total .\label{fig3}}
+  \caption {Distribution of total yellowfin catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right). \label{fig3}}
 \end{figure}
 \clearpage
 
@@ -133,7 +133,7 @@ Bigeye tuna is one of two species targeted in the longline fishery operating in 
 \begin{figure}[!ht]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig12b-bet_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig12a-bet_catchbygearE.png}
-   \caption {Distribution of total .\label{fig4}}
+   \caption {Distribution of total bigeye catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right).\label{fig4}}
 \end{figure}
 \clearpage
 
