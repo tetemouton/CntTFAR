@@ -159,48 +159,48 @@ library(readr)
     
     
     
-    
-  load(file = paste0(base_pth, "Data/yb_ocean_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and ocean ID
-  load(file = paste0(base_pth, "Data/yb_eez_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and EEZ
-  
-  
-  
-  trp_tab <- yb_dat %>% filter(ocean == "WX", between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt)) %>%
-                        summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT))
-
-
-  trp_tab_gr <- yb_dat %>% filter(ocean == "WX", between(yy, yr1, yr2)) %>% mutate(gear = ifelse(gear %in% c("L","P","S"), gear, "Other"), gear = factor(gear, levels = c("L","S","P","Other"))) %>%
-                           group_by(yy, gear) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt)) %>%
-                           group_by(gear) %>% summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT)) %>% arrange(gear)
-
-  
- 
-  make_catch_table <- function(cnt = "CK"){
-    
-    #for(i in 1:length(cnt_vec)){
-  
-  all_tab_eez <- yb_ez_dat %>% filter(eez == cnt_vec[i], between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
-                               summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
-  
-
-  all_tab_flg_tmp <- yb_dat %>% filter(flag == cnt, between(yy, yr1, yr2))
-  
-  if(dim(all_tab_flg_tmp)[1] > 0){
-    
-    all_tab_flg <- all_tab_flg_tmp %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
-                                       summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
-    
-  } else{
-    
-    all_tab_flg <- data.frame(BET = 0, SKJ = 0, YFT = 0, ALB = 0)
-    
-  }
-  
- write_csv(all_tab_flg_tmp, path = (paste0("Figures/", cnt, "/", "all_tab_flg.csv"))) 
- }
-  
-  
-  tmp <- map(cnt_vec, make_catch_table)
+# archiving the below for now as think superseeded by the new function above    
+ #  load(file = paste0(base_pth, "Data/yb_ocean_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and ocean ID
+ #  load(file = paste0(base_pth, "Data/yb_eez_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and EEZ
+ #  
+ #  
+ #  
+ #  trp_tab <- yb_dat %>% filter(ocean == "WX", between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt)) %>%
+ #                        summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT))
+ # 
+ # 
+ #  trp_tab_gr <- yb_dat %>% filter(ocean == "WX", between(yy, yr1, yr2)) %>% mutate(gear = ifelse(gear %in% c("L","P","S"), gear, "Other"), gear = factor(gear, levels = c("L","S","P","Other"))) %>%
+ #                           group_by(yy, gear) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt)) %>%
+ #                           group_by(gear) %>% summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT)) %>% arrange(gear)
+ # 
+ #  
+ # 
+ #  make_catch_table <- function(cnt = "CK"){
+ #    
+ #    #for(i in 1:length(cnt_vec)){
+ #  
+ #  all_tab_eez <- yb_ez_dat %>% filter(eez == cnt_vec[i], between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
+ #                               summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
+ #  
+ # 
+ #  all_tab_flg_tmp <- yb_dat %>% filter(flag == cnt, between(yy, yr1, yr2))
+ #  
+ #  if(dim(all_tab_flg_tmp)[1] > 0){
+ #    
+ #    all_tab_flg <- all_tab_flg_tmp %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
+ #                                       summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
+ #    
+ #  } else{
+ #    
+ #    all_tab_flg <- data.frame(BET = 0, SKJ = 0, YFT = 0, ALB = 0)
+ #    
+ #  }
+ #  
+ # write_csv(all_tab_flg_tmp, path = (paste0("Figures/", cnt, "/", "all_tab_flg.csv"))) 
+ # }
+ #  
+ #  
+ #  tmp <- map(cnt_vec, make_catch_table)
   
   
   
