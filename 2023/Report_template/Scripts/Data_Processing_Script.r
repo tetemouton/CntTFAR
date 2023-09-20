@@ -126,11 +126,7 @@ library(readr)
                              group_by(yy) %>% summarise(ALB = sum(sum_alb_c), BET = sum(sum_bet_c), SKJ = sum(sum_skj_c), YFT = sum(sum_yft_c)) %>%
                              summarise(ALB = mean(ALB), BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT))
       
-      
-      
-      
-      
-      
+
       full_df <- rbind(reg_df,
                        c(paste('Catch in', cnt, 'EEZ'), round(ez_stat[1,])),
                        c(paste('Catch by', cnt, 'flagged in WCPFC-CA'), round(flg_stat[1,])),

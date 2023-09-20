@@ -18,8 +18,8 @@ library(knitr)
 
 <!-- MUST CHANGE THESE FOLLOWING PATHS WHEN CREATING NEW YEARS REPORTS -->
 
-\newcommand*{\BaseDir}{P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template}
-\newcommand*{\FigDir}{P:/OFPSAM/TFAR/T_FAR_2022/figs/}
+<!-- \newcommand*{\BaseDir}{P:/OFPSAM/Cty_status_reports/ISNRs/Country_TFAR/2023/Report_template} -->
+<!-- \newcommand*{\FigDir}{P:/OFPSAM/TFAR/T_FAR_2022/figs/} -->
 
 
 \AddToHook{shipout/firstpage}{%
