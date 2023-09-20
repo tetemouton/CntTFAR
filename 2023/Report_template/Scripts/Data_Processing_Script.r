@@ -137,6 +137,8 @@ library(readr)
       df_write <-apply(full_df, 2, as.character)
       write.csv(df_write, file = (paste0("Figures/", cnt, "/", "catch_summary_table.csv")), row.names = FALSE) 
       
+      # xtable(df_write, elthethethe)
+      
     }
     
     
@@ -146,7 +148,7 @@ library(readr)
     
     
     
-    
+  #  save(paste0("Figures/", cnt, "/", "dlhehte.RData"))
     
     
     

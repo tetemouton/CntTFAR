@@ -54,9 +54,11 @@ cnt_lng <- "the Solomon Islands"
 cnt_lngalt <- "Solomon Islands"
 cnt_sht <- "SB"
 
+#output <- load(fldhhrthr.RData)
+
 #____________________________
 
-
+skjcatch <- 100
 
   
 ```
@@ -88,7 +90,7 @@ The most recent assessments indicate that overfishing is not occurring on albaco
 <!-- \input{./Tables/table2.tex} -->
 
 # Skipjack tuna
-The most recent skipjack tuna assessment was conducted in 2019 [@Vincent2019_a]. The skipjack assessment used an eight region model, which was a change from the five region model previously used in previous assessment; your EEZ is situated in **skjreg** (\autoref{fig2} - top). Between `r endyear-9` and `r endyear` skipjack catch averaged **tabl2**t in the WCPFC-CA (\autoref{fig2} - middle). An average of **tabl2**t (**tabl2**\% of WCPFC-CA catch) comes from **skjreg**. It is estimated that skipjack spawning biomass in the WCPFC-CA and **skjreg**, have been reduced through fishing by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impacts on spawning biomass in the WCPO are equally from the FAD-associated and free school purse seine fisheries, while the FAD-associated purse seine fishery has the greatest impact in **skjreg** (\autoref{fig2} - bottom).
+The most recent skipjack tuna assessment was conducted in 2019 [@Vincent2019_a]. The skipjack assessment used an eight region model, which was a change from the five region model previously used in previous assessment; your EEZ is situated in **skjreg** (\autoref{fig2} - top). Between `r endyear-9` and `r endyear` skipjack catch averaged  `r skjcatch`t in the WCPFC-CA (\autoref{fig2} - middle). An average of **tabl2**t (**tabl2**\% of WCPFC-CA catch) comes from **skjreg**. It is estimated that skipjack spawning biomass in the WCPFC-CA and **skjreg**, have been reduced through fishing by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impacts on spawning biomass in the WCPO are equally from the FAD-associated and free school purse seine fisheries, while the FAD-associated purse seine fishery has the greatest impact in **skjreg** (\autoref{fig2} - bottom).
 
 The SC15 of the WCPFC concluded that overfishing is not occurring on the skipjack stock and the stock is not overfished (\autoref{fig1}). The spawning biomass level is below the interim Target Reference Point of 50\% ($SB/SB_{F=0}$ = 0.5), though well above the Limit Reference Point of 20\%, unfished spawning biomass. Previously, the SC12 noted that fishing is having a significant impact on stock size, especially in the western equatorial region and can be expected to negatively affect catch rates. The stock distribution is also influenced by changes in oceanographic conditions associated with El Ni\~{n}o and La Ni\~{n}a events, which impact on catch rates and stock size. Additional purse-seine effort will yield only modest gains in long-term skipjack catch and may result in a corresponding increase in fishing mortality for bigeye and yellowfin tunas **WCPFC2019**.
 
