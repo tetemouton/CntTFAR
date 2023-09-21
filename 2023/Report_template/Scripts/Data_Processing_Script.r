@@ -9,28 +9,92 @@ library(readr)
   #yr1 <- 2014
   lst_yr <- 2022
   
-  cnt_vec <- c("CK","FJ","NC","TO")
+  cnt_vec <- c("AS","CK","FJ","FM","GU","KI","MH","NC","NR","NU","PF","PG","PW","SB","TK","TO","TV","WF","WS","VU")
+  # Exclude Guam?
   
+  skj_reg_lst <- list("AS" = c(8),
+                      "CK" = c(8),
+                      "FJ" = c(8),
+                      "FM" = c(3,4,5,6,7),
+                      "GU" = c(3,4),
+                      "KI" = c(7,8),
+                      "MH" = c(4,7,8),
+                      "NC" = c(6,7),
+                      "NR" = c(7),
+                      "NU" = c(8),
+                      "PF" = c(8),
+                      "PG" = c(6,7), # I ignored the tiny bit in R5 as no skj in there basically
+                      "PW" = c(3,5),
+                      "SB" = c(6,7,8),
+                      "TK" = c(8),
+                      "TO" = c(8),
+                      "TV" = c(8),
+                      "WF" = c(8),
+                      "WS" = c(8),
+                      "VU" = c(7,8))
   
-  skj_reg_lst <- list("CK" = c(1,2),
-                      "FJ" = c(3),
-                      "NC" = c(4,5),
-                      "TO" = c(2,3))
-  
-  alb_reg_lst <- list("CK" = c(1,2),
-                      "FJ" = c(2),
+  alb_reg_lst <- list("AS" = c(2),
+                      "CK" = c(1,2),
+                      "FJ" = c(2), # Ignored the minute slivers in 1 and 3
+                      "FM" = c(NA), # Ignored FM sliver below equator as they are not typically included in SPA management
+                      "GU" = c(NA),
+                      "KI" = c(1,2),
+                      "MH" = c(NA),
                       "NC" = c(2,3),
-                      "TO" = c(2,3))
+                      "NR" = c(NA), # Ignored NR sliver below equator as they are not typically included in SPA management
+                      "NU" = c(2),
+                      "PF" = c(1,2,3,4),
+                      "PG" = c(1,2),
+                      "PW" = c(NA),
+                      "SB" = c(1,2),
+                      "TK" = c(1,2),
+                      "TO" = c(2,3),
+                      "TV" = c(1,2),
+                      "WF" = c(2),
+                      "WS" = c(2),
+                      "VU" = c(2))
   
-  yft_reg_lst <- list("CK" = c(4,6),
-                      "FJ" = c(6),
+  yft_reg_lst <- list("AS" = c(5), # Ignored the minute sliver in 4
+                      "CK" = c(4,5),
+                      "FJ" = c(5), # Ignored the minute sliver in 4
+                      "FM" = c(1,2,3,4),
+                      "GU" = c(1),
+                      "KI" = c(4,5),
+                      "MH" = c(1,4),
                       "NC" = c(5),
-                      "TO" = c(6))
+                      "NR" = c(4),
+                      "NU" = c(5),
+                      "PF" = c(5),
+                      "PG" = c(3,4,5),
+                      "PW" = c(2),
+                      "SB" = c(3,4,5),
+                      "TK" = c(4,5),
+                      "TO" = c(5),
+                      "TV" = c(4,5),
+                      "WF" = c(5), # Ignored the minute sliver in 4
+                      "WS" = c(5),
+                      "VU" = c(5))
   
-  bet_reg_lst <- list("CK" = c(4,5),
-                      "FJ" = c(5),
-                      "NC" = c(5),
-                      "TO" = c(5))
+  bet_reg_lst <- list("AS" = c(6), # Ignored the minute sliver in 4
+                      "CK" = c(4,6),
+                      "FJ" = c(6), # Ignored the minute sliver in 4
+                      "FM" = c(1,3,7,8),
+                      "GU" = c(1),
+                      "KI" = c(3,4,6),
+                      "MH" = c(1,2,3,4),
+                      "NC" = c(5,6),
+                      "NR" = c(3),
+                      "NU" = c(6),
+                      "PF" = c(6),
+                      "PG" = c(3,5,8),
+                      "PW" = c(7),
+                      "SB" = c(3,4,5,8),
+                      "TK" = c(4,6),
+                      "TO" = c(6),
+                      "TV" = c(4,6),
+                      "WF" = c(6), # Ignored the minute sliver in 4
+                      "WS" = c(6),
+                      "VU" = c(5,6))
 
 
   base_pth <- "./"
