@@ -155,6 +155,79 @@ library(readr)
     yb_dat <- read.csv(file = "./Data/Ann_Cat_Oceans_YB_ACE.csv", header = TRUE)
     
     
+    # Convert 5x5 coordinates into number and add 2.5 to put in cell centre for assignment to assessment regions
+    wcpfc_dat %<>% mutate(lat = as.numeric(str_sub(lat_short,end = -2)), lon = as.numeric(str_sub(lon_short,end = -2)),
+                          lat_hem = str_sub(lat_short,start = -1), lon_hem = str_sub(lon_short,start = -1),
+                          lat = ifelse(lat_hem == "S", -lat, lat) + 2.5, lon = ifelse(lon_hem == "W", 360 - lon, lon) + 2.5)
+    
+    
+    wcpfc_dat %<>% mutate(reg_yft = NA,
+                          reg_yft = ifelse(lat > 20 & lat < 50 & Lon > 120 & Lon < 210, 1, reg_yft),
+                          reg_yft = ifelse(lat > 10 & lat < 20 & Lon > 140 & Lon < 210, 1, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < 20 & Lon > 110 & Lon < 140, 2, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < 0 & Lon > 140 & Lon < 155, 3, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < -5 & Lon > 155 & Lon < 160, 3, reg_yft),
+                          reg_yft = ifelse(lat > 0 & lat < 10 & Lon > 140 & Lon < 210, 4, reg_yft),
+                          reg_yft = ifelse(lat > -5 & lat < 0 & Lon > 155 & Lon < 210, 4, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < -5 & Lon > 160 & Lon < 210, 4, reg_yft),
+                          reg_yft = ifelse(lat > -40 & lat < -10 & Lon > 140 & Lon < 210, 5, reg_yft))
+    
+    
+    wcpfc_dat %<>% mutate(reg_bet = NA,
+                          reg_bet = ifelse(lat > 20 & lat < 50 & Lon > 120 & Lon < 170, 1, reg_bet),
+                          reg_bet = ifelse(lat > 10 & lat < 20 & Lon > 140 & Lon < 170, 1, reg_bet),
+                          reg_bet = ifelse(lat > 10 & lat < 50 & Lon > 170 & Lon < 210, 2, reg_bet),
+                          reg_bet = ifelse(lat > 0 & lat < 10 & Lon > 140 & Lon < 170, 3, reg_bet),
+                          reg_bet = ifelse(lat > -5 & lat < 0 & Lon > 155 & Lon < 170, 3, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < -5 & Lon > 160 & Lon < 170, 3, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < 10 & Lon > 170 & Lon < 210, 4, reg_bet),
+                          reg_bet = ifelse(lat > -40 & lat < -10 & Lon > 140 & Lon < 170, 5, reg_bet), # This includes 9 but gets overwritten
+                          reg_bet = ifelse(lat > -40 & lat < -10 & Lon > 170 & Lon < 210, 6, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < 20 & Lon > 110 & Lon < 140, 7, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < 0 & Lon > 140 & Lon < 155, 8, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < -5 & Lon > 155 & Lon < 160, 8, reg_bet),
+                          reg_bet = ifelse(lat > -20 & lat < -15 & Lon > 140 & Lon < 150, 9, reg_bet))
+    
+    wcpfc_dat %<>% mutate(reg_skj = NA,
+                          reg_skj = ifelse(lat > 30 & lat < 50 & Lon > 120 & Lon < 140, 1, reg_skj),
+                          reg_skj = ifelse(lat > 30 & lat < 35 & Lon > 140 & Lon < 145, 1, reg_skj),
+                          reg_skj = ifelse(lat > 35 & lat < 50 & Lon > 140 & Lon < 145, 2, reg_skj),
+                          reg_skj = ifelse(lat > 30 & lat < 50 & Lon > 145 & Lon < 210, 2, reg_skj),
+                          reg_skj = ifelse(lat > 20 & lat < 30 & Lon > 120 & Lon < 130, 3, reg_skj),
+                          reg_skj = ifelse(lat > 10 & lat < 30 & Lon > 130 & Lon < 145, 3, reg_skj),
+                          reg_skj = ifelse(lat > 10 & lat < 30 & Lon > 145 & Lon < 210, 4, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 20 & Lon > 110 & Lon < 130, 5, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 10 & Lon > 130 & Lon < 140, 5, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < -5 & Lon > 155 & Lon < 160, 6, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 0 & Lon > 140 & Lon < 155, 6, reg_skj),
+                          reg_skj = ifelse(lat > 0 & lat < 10 & Lon > 140 & Lon < 170, 7, reg_skj),
+                          reg_skj = ifelse(lat > -5 & lat < 0 & Lon > 155 & Lon < 160, 7, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 0 & Lon > 160 & Lon < 170, 7, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 10 & Lon > 170 & Lon < 210, 8, reg_skj))
+    
+    
+    
+    
+    
+    wcpfc.sf <- c("POLYGON((140 -20,140 -50,230 -50,230 -5,210 -5,210 0,140 0,140 -20))") %>% 
+      st_as_sfc(crs=st_crs(eez)) %>% 
+      st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+    
+    epo.sf <- c("POLYGON((230 -50,230 -5,210 -5,210 0,290 0,290 -50,230 -50))") %>% 
+      st_as_sfc(crs=st_crs(eez)) %>% 
+      st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+    
+    r2.sf <- c("POLYGON((230 -25,230 -10,140 -10,140 -25,230 -25))") %>% 
+      st_as_sfc(crs=st_crs(eez)) %>% 
+      st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+    
+    overlap.sf <- c("POLYGON((210 -50,230 -50,230 -5,210 -5,210 -50))") 
+    
+    
+    
+    
+    
+    # Assign yearbook data to ocean areas, particularly to separate SPA south Pacific from WCPFC-CA ("WX")
     wc_tab <- yb_dat %>% filter(ocean_id == "WX", between(yy, lst_yr - 4, lst_yr)) %>% mutate(gear = ifelse(!gr_id %in% c("L","P","S"), "Other", gr_id)) %>%
                          group_by(yy, gear) %>% summarise(ALB = sum(alb_c), BET = sum(bet_c), SKJ = sum(skj_c), YFT = sum(yft_c)) %>%
                          group_by(gear) %>% summarise(ALB = mean(ALB), BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT))
