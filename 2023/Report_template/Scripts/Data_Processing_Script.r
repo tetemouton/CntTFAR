@@ -150,7 +150,8 @@ library(readr)
     
     wcpfc_dat <- read.csv(file = "./Data/Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv", header = TRUE)
     
-    ez_dat <- read.csv(file = "./Data/Ann_Cat_EEZ_ACE.csv", header = TRUE)
+    ez_dat <- read.csv(file = "./Data/Ann_Cat_EEZ_ACE.csv", header = TRUE) %>%
+                       mutate(ez_id = recode(ez_id, NF = "AU", GL = "KI", LN = "KI", PX = "KI", MA = "NC"))
     
     yb_dat <- read.csv(file = "./Data/Ann_Cat_Oceans_YB_ACE.csv", header = TRUE)
     
@@ -162,69 +163,56 @@ library(readr)
     
     
     wcpfc_dat %<>% mutate(reg_yft = NA,
-                          reg_yft = ifelse(lat > 20 & lat < 50 & Lon > 120 & Lon < 210, 1, reg_yft),
-                          reg_yft = ifelse(lat > 10 & lat < 20 & Lon > 140 & Lon < 210, 1, reg_yft),
-                          reg_yft = ifelse(lat > -10 & lat < 20 & Lon > 110 & Lon < 140, 2, reg_yft),
-                          reg_yft = ifelse(lat > -10 & lat < 0 & Lon > 140 & Lon < 155, 3, reg_yft),
-                          reg_yft = ifelse(lat > -10 & lat < -5 & Lon > 155 & Lon < 160, 3, reg_yft),
-                          reg_yft = ifelse(lat > 0 & lat < 10 & Lon > 140 & Lon < 210, 4, reg_yft),
-                          reg_yft = ifelse(lat > -5 & lat < 0 & Lon > 155 & Lon < 210, 4, reg_yft),
-                          reg_yft = ifelse(lat > -10 & lat < -5 & Lon > 160 & Lon < 210, 4, reg_yft),
-                          reg_yft = ifelse(lat > -40 & lat < -10 & Lon > 140 & Lon < 210, 5, reg_yft))
+                          reg_yft = ifelse(lat > 20 & lat < 50 & lon > 120 & lon < 210, 1, reg_yft),
+                          reg_yft = ifelse(lat > 10 & lat < 20 & lon > 140 & lon < 210, 1, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < 20 & lon > 110 & lon < 140, 2, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < 0 & lon > 140 & lon < 155, 3, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < -5 & lon > 155 & lon < 160, 3, reg_yft),
+                          reg_yft = ifelse(lat > 0 & lat < 10 & lon > 140 & lon < 210, 4, reg_yft),
+                          reg_yft = ifelse(lat > -5 & lat < 0 & lon > 155 & lon < 210, 4, reg_yft),
+                          reg_yft = ifelse(lat > -10 & lat < -5 & lon > 160 & lon < 210, 4, reg_yft),
+                          reg_yft = ifelse(lat > -40 & lat < -10 & lon > 140 & lon < 210, 5, reg_yft))
     
     
     wcpfc_dat %<>% mutate(reg_bet = NA,
-                          reg_bet = ifelse(lat > 20 & lat < 50 & Lon > 120 & Lon < 170, 1, reg_bet),
-                          reg_bet = ifelse(lat > 10 & lat < 20 & Lon > 140 & Lon < 170, 1, reg_bet),
-                          reg_bet = ifelse(lat > 10 & lat < 50 & Lon > 170 & Lon < 210, 2, reg_bet),
-                          reg_bet = ifelse(lat > 0 & lat < 10 & Lon > 140 & Lon < 170, 3, reg_bet),
-                          reg_bet = ifelse(lat > -5 & lat < 0 & Lon > 155 & Lon < 170, 3, reg_bet),
-                          reg_bet = ifelse(lat > -10 & lat < -5 & Lon > 160 & Lon < 170, 3, reg_bet),
-                          reg_bet = ifelse(lat > -10 & lat < 10 & Lon > 170 & Lon < 210, 4, reg_bet),
-                          reg_bet = ifelse(lat > -40 & lat < -10 & Lon > 140 & Lon < 170, 5, reg_bet), # This includes 9 but gets overwritten
-                          reg_bet = ifelse(lat > -40 & lat < -10 & Lon > 170 & Lon < 210, 6, reg_bet),
-                          reg_bet = ifelse(lat > -10 & lat < 20 & Lon > 110 & Lon < 140, 7, reg_bet),
-                          reg_bet = ifelse(lat > -10 & lat < 0 & Lon > 140 & Lon < 155, 8, reg_bet),
-                          reg_bet = ifelse(lat > -10 & lat < -5 & Lon > 155 & Lon < 160, 8, reg_bet),
-                          reg_bet = ifelse(lat > -20 & lat < -15 & Lon > 140 & Lon < 150, 9, reg_bet))
+                          reg_bet = ifelse(lat > 20 & lat < 50 & lon > 120 & lon < 170, 1, reg_bet),
+                          reg_bet = ifelse(lat > 10 & lat < 20 & lon > 140 & lon < 170, 1, reg_bet),
+                          reg_bet = ifelse(lat > 10 & lat < 50 & lon > 170 & lon < 210, 2, reg_bet),
+                          reg_bet = ifelse(lat > 0 & lat < 10 & lon > 140 & lon < 170, 3, reg_bet),
+                          reg_bet = ifelse(lat > -5 & lat < 0 & lon > 155 & lon < 170, 3, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < -5 & lon > 160 & lon < 170, 3, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < 10 & lon > 170 & lon < 210, 4, reg_bet),
+                          reg_bet = ifelse(lat > -40 & lat < -10 & lon > 140 & lon < 170, 5, reg_bet), # This includes 9 but gets overwritten
+                          reg_bet = ifelse(lat > -40 & lat < -10 & lon > 170 & lon < 210, 6, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < 20 & lon > 110 & lon < 140, 7, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < 0 & lon > 140 & lon < 155, 8, reg_bet),
+                          reg_bet = ifelse(lat > -10 & lat < -5 & lon > 155 & lon < 160, 8, reg_bet),
+                          reg_bet = ifelse(lat > -20 & lat < -15 & lon > 140 & lon < 150, 9, reg_bet))
     
     wcpfc_dat %<>% mutate(reg_skj = NA,
-                          reg_skj = ifelse(lat > 30 & lat < 50 & Lon > 120 & Lon < 140, 1, reg_skj),
-                          reg_skj = ifelse(lat > 30 & lat < 35 & Lon > 140 & Lon < 145, 1, reg_skj),
-                          reg_skj = ifelse(lat > 35 & lat < 50 & Lon > 140 & Lon < 145, 2, reg_skj),
-                          reg_skj = ifelse(lat > 30 & lat < 50 & Lon > 145 & Lon < 210, 2, reg_skj),
-                          reg_skj = ifelse(lat > 20 & lat < 30 & Lon > 120 & Lon < 130, 3, reg_skj),
-                          reg_skj = ifelse(lat > 10 & lat < 30 & Lon > 130 & Lon < 145, 3, reg_skj),
-                          reg_skj = ifelse(lat > 10 & lat < 30 & Lon > 145 & Lon < 210, 4, reg_skj),
-                          reg_skj = ifelse(lat > -20 & lat < 20 & Lon > 110 & Lon < 130, 5, reg_skj),
-                          reg_skj = ifelse(lat > -20 & lat < 10 & Lon > 130 & Lon < 140, 5, reg_skj),
-                          reg_skj = ifelse(lat > -20 & lat < -5 & Lon > 155 & Lon < 160, 6, reg_skj),
-                          reg_skj = ifelse(lat > -20 & lat < 0 & Lon > 140 & Lon < 155, 6, reg_skj),
-                          reg_skj = ifelse(lat > 0 & lat < 10 & Lon > 140 & Lon < 170, 7, reg_skj),
-                          reg_skj = ifelse(lat > -5 & lat < 0 & Lon > 155 & Lon < 160, 7, reg_skj),
-                          reg_skj = ifelse(lat > -20 & lat < 0 & Lon > 160 & Lon < 170, 7, reg_skj),
-                          reg_skj = ifelse(lat > -20 & lat < 10 & Lon > 170 & Lon < 210, 8, reg_skj))
+                          reg_skj = ifelse(lat > 30 & lat < 50 & lon > 120 & lon < 140, 1, reg_skj),
+                          reg_skj = ifelse(lat > 30 & lat < 35 & lon > 140 & lon < 145, 1, reg_skj),
+                          reg_skj = ifelse(lat > 35 & lat < 50 & lon > 140 & lon < 145, 2, reg_skj),
+                          reg_skj = ifelse(lat > 30 & lat < 50 & lon > 145 & lon < 210, 2, reg_skj),
+                          reg_skj = ifelse(lat > 20 & lat < 30 & lon > 120 & lon < 130, 3, reg_skj),
+                          reg_skj = ifelse(lat > 10 & lat < 30 & lon > 130 & lon < 145, 3, reg_skj),
+                          reg_skj = ifelse(lat > 10 & lat < 30 & lon > 145 & lon < 210, 4, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 20 & lon > 110 & lon < 130, 5, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 10 & lon > 130 & lon < 140, 5, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < -5 & lon > 155 & lon < 160, 6, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 0 & lon > 140 & lon < 155, 6, reg_skj),
+                          reg_skj = ifelse(lat > 0 & lat < 10 & lon > 140 & lon < 170, 7, reg_skj),
+                          reg_skj = ifelse(lat > -5 & lat < 0 & lon > 155 & lon < 160, 7, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 0 & lon > 160 & lon < 170, 7, reg_skj),
+                          reg_skj = ifelse(lat > -20 & lat < 10 & lon > 170 & lon < 210, 8, reg_skj))
     
-    
-    
-    
-    
-    wcpfc.sf <- c("POLYGON((140 -20,140 -50,230 -50,230 -5,210 -5,210 0,140 0,140 -20))") %>% 
-      st_as_sfc(crs=st_crs(eez)) %>% 
-      st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
-    
-    epo.sf <- c("POLYGON((230 -50,230 -5,210 -5,210 0,290 0,290 -50,230 -50))") %>% 
-      st_as_sfc(crs=st_crs(eez)) %>% 
-      st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
-    
-    r2.sf <- c("POLYGON((230 -25,230 -10,140 -10,140 -25,230 -25))") %>% 
-      st_as_sfc(crs=st_crs(eez)) %>% 
-      st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
-    
-    overlap.sf <- c("POLYGON((210 -50,230 -50,230 -5,210 -5,210 -50))") 
-    
-    
-    
+    wcpfc_dat %<>% mutate(reg_alb = NA,
+                          reg_alb = ifelse(lat > -10 & lat < 0 & lon > 140 & lon < 210, 1, reg_alb),
+                          reg_alb = ifelse(lat > -10 & lat < 0 & lon > 210 & lon < 230, 1, reg_alb),
+                          reg_alb = ifelse(lat > -25 & lat < -10 & lon > 210 & lon < 230, 2, reg_alb),
+                          reg_alb = ifelse(lat > -50 & lat < -25 & lon > 210 & lon < 230, 3, reg_alb),
+                          reg_alb = ifelse(lat > -5 & lat < 0 & lon > 215 & lon < 230, 4, reg_alb),
+                          reg_alb = ifelse(lat > -50 & lat < 0 & lon > 230 & lon < 290, 4, reg_alb))
     
     
     # Assign yearbook data to ocean areas, particularly to separate SPA south Pacific from WCPFC-CA ("WX")
@@ -248,11 +236,17 @@ library(readr)
                     c('WCPFC-CA Other catch', round(sx_tab[sx_tab$gear == "Other", "ALB"]), round(wc_tab[wc_tab$gear == "Other", c("BET","SKJ","YFT")]))
                     )
     
+    # Need to note in table footnote that this is just Sth Pacific Albacore
     
+    colnames(reg_df) <- c("Summary description","Albacore","Bigeye","Skipjack","Yellowfin")
     
     
     get_cnt_catches <- function(cnt = "CK"){
       
+      alb_reg <- alb_reg_lst[[cnt]]
+      bet_reg <- bet_reg_lst[[cnt]]
+      skj_reg <- skj_reg_lst[[cnt]]
+      yft_reg <- yft_reg_lst[[cnt]]
       
       
       ez_stat <- ez_dat %>% filter(ez_id == cnt, between(yy, lst_yr - 4, lst_yr)) %>%
@@ -263,9 +257,32 @@ library(readr)
                              group_by(yy) %>% summarise(ALB = sum(sum_alb_c), BET = sum(sum_bet_c), SKJ = sum(sum_skj_c), YFT = sum(sum_yft_c)) %>%
                              summarise(ALB = mean(ALB), BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT))
       
+      
+      reg_dat_alb <- wcpfc_dat %>% filter(reg_alb %in% alb_reg, between(yy, lst_yr - 4, lst_yr)) %>%
+                                   group_by(yy) %>% summarise(ALB = sum(sum_alb_c)) %>% summarise(ALB = round(mean(ALB))) # Not sure we need the 2 summarise functions?
+      
+      reg_dat_bet <- wcpfc_dat %>% filter(reg_bet %in% bet_reg, between(yy, lst_yr - 4, lst_yr)) %>%
+                                   group_by(yy) %>% summarise(BET = sum(sum_bet_c)) %>% summarise(BET = round(mean(BET)))
 
+      reg_dat_skj <- wcpfc_dat %>% filter(reg_skj %in% skj_reg, between(yy, lst_yr - 4, lst_yr)) %>%
+                                   group_by(yy) %>% summarise(SKJ = sum(sum_skj_c)) %>% summarise(SKJ = round(mean(SKJ)))
+      
+      reg_dat_yft <- wcpfc_dat %>% filter(reg_yft %in% yft_reg, between(yy, lst_yr - 4, lst_yr)) %>%
+                                   group_by(yy) %>% summarise(YFT = sum(sum_yft_c)) %>% summarise(YFT = round(mean(YFT)))
+      
+      
+      
+      
+      
       full_df <- rbind(reg_df,
+                       c(paste('Catch in', cnt, 'model regions'), reg_dat_alb, reg_dat_bet, reg_dat_skj, reg_dat_yft),
+                       c(paste('Percent of WCPFC-CA catch in', cnt, 'model regions'),
+                         round(reg_dat_alb/reg_df[1, 2]*100, 1),
+                         round(reg_dat_bet/reg_df[1, 3]*100, 1),
+                         round(reg_dat_skj/reg_df[1, 4]*100, 1),
+                         round(reg_dat_yft/reg_df[1, 5]*100, 1)),
                        c(paste('Catch in', cnt, 'EEZ'), round(ez_stat[1,])),
+                       c(paste('Percent of WCPFC-CA catch taken in', cnt, 'EEZ'), round(ez_stat[1,]/reg_df[1, 2:5]*100, 1)),
                        c(paste('Catch by', cnt, 'flagged in WCPFC-CA'), round(flg_stat[1,])),
                        c(paste('Percent of WCPFC-CA catch by', cnt, 'flagged vessels'), round(flg_stat[1,]/reg_df[1, 2:5]*100, 1))
       )
