@@ -4,6 +4,7 @@ library(tidyverse)
 library(ggthemes)
 library(FLR4MFCL)
 library(readr)
+library(xtable)
 
 
   #yr1 <- 2014
@@ -271,10 +272,9 @@ library(readr)
                                    group_by(yy) %>% summarise(YFT = sum(sum_yft_c)) %>% summarise(YFT = round(mean(YFT)))
       
       
-      
-      
-      
       full_df <- rbind(reg_df,
+                       c("","","","",""),
+                       c("","","","",""),
                        c(paste('Catch in', cnt, 'model regions'), reg_dat_alb, reg_dat_bet, reg_dat_skj, reg_dat_yft),
                        c(paste('Percent of WCPFC-CA catch in', cnt, 'model regions'),
                          round(reg_dat_alb/reg_df[1, 2]*100, 1),
@@ -291,12 +291,17 @@ library(readr)
       df_write <-apply(full_df, 2, as.character)
       write.csv(df_write, file = (paste0("Figures/", cnt, "/", "catch_summary_table.csv")), row.names = FALSE) 
       
-      # xtable(df_write, elthethethe)
+      t1 <- xtable(df_write, caption = paste("Key stock and fishery catch statistics for the WCPFC convention area, including the recent period of", lst_yr - 4, "--", lst_yr, "in the", cnt, "EEZ"), label = "cat_sum_tab", align = c("l","l",rep("r",dim(df_write)[2]-1)))#,
+                   #digits = rep(0,dim(eez.dat.L.sth.NoAW)[2]+1))
+      
+      print(t1, type = "latex", include.rownames = FALSE, tabular.environment = "longtable", caption.placement = "top",
+            floating = FALSE, sanitize.text.function = identity, sanitize.colnames.function = NULL, format.args = list(big.mark = ","),
+            hline.after = c(-1,0,dim(df_write)[1]-7), file = paste0("Figures/", cnt, "/", "catch_summary_table.tex"))
       
     }
     
     
-    map(cnt_vec, get_cnt_catches)
+    tmp <- map(cnt_vec, get_cnt_catches)
     
     
     
