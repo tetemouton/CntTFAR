@@ -76,6 +76,11 @@ Albacore, bigeye, yellowfin and skipjack tuna are targeted by fisheries operatin
 
 This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Hare2023_a]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). These terms are described in \autoref{tab1}. 
 
+
+\input{./Tables/terms_explanation_table.tex}
+
+\newpage
+
 \input{./Figures/SB/catch_summary_table.tex}
 
 # Summary of tuna stock status
