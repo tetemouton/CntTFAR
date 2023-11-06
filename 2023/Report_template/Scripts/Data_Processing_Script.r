@@ -6,6 +6,7 @@ library(FLR4MFCL)
 library(readr)
 library(xtable)
 
+  rep_dat <- list()
 
   #yr1 <- 2014
   lst_yr <- 2022
@@ -34,6 +35,8 @@ library(xtable)
                       "WS" = c(8),
                       "VU" = c(7,8))
   
+  rep_dat$skj_reg_lst <- skj_reg_lst
+  
   alb_reg_lst <- list("AS" = c(2),
                       "CK" = c(1,2),
                       "FJ" = c(2), # Ignored the minute slivers in 1 and 3
@@ -54,6 +57,8 @@ library(xtable)
                       "WF" = c(2),
                       "WS" = c(2),
                       "VU" = c(2))
+  
+  rep_dat$alb_reg_lst <- alb_reg_lst
   
   yft_reg_lst <- list("AS" = c(5), # Ignored the minute sliver in 4
                       "CK" = c(4,5),
@@ -76,6 +81,8 @@ library(xtable)
                       "WS" = c(5),
                       "VU" = c(5))
   
+  rep_dat$yft_reg_lst <- yft_reg_lst
+  
   bet_reg_lst <- list("AS" = c(6), # Ignored the minute sliver in 4
                       "CK" = c(4,6),
                       "FJ" = c(6), # Ignored the minute sliver in 4
@@ -96,6 +103,8 @@ library(xtable)
                       "WF" = c(6), # Ignored the minute sliver in 4
                       "WS" = c(6),
                       "VU" = c(5,6))
+  
+  rep_dat$bet_reg_lst <- bet_reg_lst
 
 
   base_pth <- "./"
@@ -283,6 +292,7 @@ library(xtable)
                          round(reg_dat_yft/reg_df[1, 5]*100, 1)),
                        c(paste('Catch in', cnt, 'EEZ'), round(ez_stat[1,])),
                        c(paste('Percent of WCPFC-CA catch taken in', cnt, 'EEZ'), round(ez_stat[1,]/reg_df[1, 2:5]*100, 1)),
+                       c(paste('Percent of Catch in', cnt, 'model regions taken in', cnt, 'EEZ'), round(ez_stat[1,]/c(reg_dat_alb, reg_dat_bet, reg_dat_skj, reg_dat_yft)*100, 1)),
                        c(paste('Catch by', cnt, 'flagged in WCPFC-CA'), round(flg_stat[1,])),
                        c(paste('Percent of WCPFC-CA catch by', cnt, 'flagged vessels'), round(flg_stat[1,]/reg_df[1, 2:5]*100, 1))
       )
@@ -297,17 +307,17 @@ library(xtable)
       print(t1, type = "latex", include.rownames = FALSE, tabular.environment = "longtable", caption.placement = "top",
             floating = FALSE, sanitize.text.function = identity, sanitize.colnames.function = NULL, format.args = list(big.mark = ","),
             hline.after = c(-1,0,dim(df_write)[1]-7), file = paste0("Figures/", cnt, "/", "catch_summary_table.tex"))
-      
+
     }
     
     
-    tmp <- map(cnt_vec, get_cnt_catches)
+    cnt_run <- map(cnt_vec, get_cnt_catches)
     
     
     
     
     
-  #  save(paste0("Figures/", cnt, "/", "dlhehte.RData"))
+  save.image(paste0("Data/Output_Summary_Data.Rdata"))
     
     
     
