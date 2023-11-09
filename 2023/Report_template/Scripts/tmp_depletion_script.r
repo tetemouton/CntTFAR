@@ -1,34 +1,43 @@
 library(FLR4MFCL)
 
-
-
-
-# ALBACORE 2021
+# Albacore 2021
 
 rundir <- "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/" 
 
 gridruns <- list.files(path=rundir, pattern="S", full.names=F, ignore.case=TRUE)
 
-counter=0
+counter = 0
 
 for (i in gridruns){
-  counter=counter+1
-  rawrep <- paste0(rundir,i, "/plot-final3.par.rep")
+  
+  counter = counter+1
+  
+  rawrep <- paste0(rundir, i, "/plot-final3.par.rep")
   
   #  readrep <- read.rep(rawrep)
   # dep1<-rowSums(readrep$AdultBiomass)/rowSums(readrep$AdultBiomass.nofish)
   readrep <- read.MFCLRep(rawrep)
-  #use seasonMeans to get annual values as opposed to quarterly values
-  dep1<-qts(areaSums(adultBiomass(readrep)))/qts(areaSums(adultBiomass_nofish(readrep)))
+  
+  # Use seasonMeans to get annual values as opposed to quarterly values
+  dep1 <- qts(areaSums(adultBiomass(readrep)))/qts(areaSums(adultBiomass_nofish(readrep)))
+  yearSums()
+  seasonSums()
+  seasonMeans()
+  
+  
+  dep2 <- qts(adultBiomass(readrep))/qts(adultBiomass_nofish(readrep))
+  head(as.data.frame(dep2))
+  
+  
   if (counter==1) {
-    #alb.dep<-as.data.frame(cbind(readrep$yrs,dep1,i))
+    # alb.dep<-as.data.frame(cbind(readrep$yrs,dep1,i))
     v1<-as.vector(dimnames(dep1)[2])
     alb.dep<-as.data.frame(cbind(as.numeric(v1$year),dep1,i))
     
   } else {
     alb.dep<-rbind(alb.dep,as.data.frame(cbind(as.numeric(v1$year),dep1,i)))
   }
-} #end i
+} # end i
 colnames(alb.dep)<-c("yr","Depl","Model")
 alb.dep$yr<-as.numeric(as.character(alb.dep$yr))
 alb.dep$Depl<-as.numeric(as.character(alb.dep$Depl))
