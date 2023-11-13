@@ -1,4 +1,6 @@
 library(FLR4MFCL)
+library(tidyverse)
+library(data.table)
 
 # Albacore 2021
 
@@ -6,43 +8,70 @@ rundir <- "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/"
 
 gridruns <- list.files(path=rundir, pattern="S", full.names=F, ignore.case=TRUE)
 
-counter = 0
 
-for (i in gridruns){
   
-  counter = counter+1
+   extract_depletion <- function(mod_folder = "S1M1D1R1G1", scl = "full",
+                                 rundir = "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/",
+                                 finalpar = "plot-final3.par.rep"){
+     
+     rawrep <- paste0(rundir, mod_folder, "/", finalpar)
+     
+     readrep <- read.MFCLRep(rawrep)
+     
+     if(scl == "full"){
+       
+       dep_yr <- as.data.frame(seasonMeans(areaSums(adultBiomass(readrep)))/seasonMeans(areaSums(adultBiomass_nofish(readrep))))
+       
+     } else{
+       
+       dep_yr <- as.data.frame(seasonMeans(adultBiomass(readrep))/seasonMeans(adultBiomass_nofish(readrep)))
+       
+     }
+     
+     dep_yr <- mutate(dep_yr, mod = mod_folder)
+     
+     return(dep_yr)
+   }
   
-  rawrep <- paste0(rundir, i, "/plot-final3.par.rep")
-  
-  #  readrep <- read.rep(rawrep)
-  # dep1<-rowSums(readrep$AdultBiomass)/rowSums(readrep$AdultBiomass.nofish)
-  readrep <- read.MFCLRep(rawrep)
-  
-  # Use seasonMeans to get annual values as opposed to quarterly values
-  dep1 <- qts(areaSums(adultBiomass(readrep)))/qts(areaSums(adultBiomass_nofish(readrep)))
-  yearSums()
-  seasonSums()
-  seasonMeans()
-  
-  
-  dep2 <- qts(adultBiomass(readrep))/qts(adultBiomass_nofish(readrep))
-  head(as.data.frame(dep2))
-  
-  
-  if (counter==1) {
-    # alb.dep<-as.data.frame(cbind(readrep$yrs,dep1,i))
-    v1<-as.vector(dimnames(dep1)[2])
-    alb.dep<-as.data.frame(cbind(as.numeric(v1$year),dep1,i))
+   
+   
+   full_dep <- map(gridruns, extract_depletion, scl = "full",
+                   rundir = "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/",
+                   finalpar = "plot-final3.par.rep")
+   
+   full_dep_df <- rbindlist(full_dep)
+   
+   full_dat <- full_dep_df %>% group_by(year) %>% summarise(dep = median(data))
+   
+   
+   windows(4000,3000)
+     ggplot(full_dat, aes(x = year, y = dep)) + geom_line(linewidth = 2)
+   
+   
+   reg_dep <- map(gridruns, extract_depletion, scl = "regional",
+                   rundir = "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/",
+                   finalpar = "plot-final3.par.rep")
+   
+   reg_dep_df <- rbindlist(reg_dep)
+
+   
+   
     
-  } else {
-    alb.dep<-rbind(alb.dep,as.data.frame(cbind(as.numeric(v1$year),dep1,i)))
-  }
-} # end i
-colnames(alb.dep)<-c("yr","Depl","Model")
-alb.dep$yr<-as.numeric(as.character(alb.dep$yr))
-alb.dep$Depl<-as.numeric(as.character(alb.dep$Depl))
-alb.dep$Model<-as.character(alb.dep$Model)
-write.csv(alb.dep,paste0(savdir,"data/alb/ALBDepletionTable.csv"))
+    
+    
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 
 #######################
 ###BIGEYE 2023
