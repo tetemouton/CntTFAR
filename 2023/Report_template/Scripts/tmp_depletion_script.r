@@ -1,6 +1,7 @@
 library(FLR4MFCL)
 library(tidyverse)
 library(data.table)
+library(ggthemes)
 
 # Albacore 2021
 
@@ -53,12 +54,24 @@ gridruns <- list.files(path=rundir, pattern="S", full.names=F, ignore.case=TRUE)
                    finalpar = "plot-final3.par.rep")
    
    reg_dep_df <- rbindlist(reg_dep)
+   
+   reg_dat <- reg_dep_df %>% group_by(year, area) %>%
+                             summarise(med_dep = median(data), LL_dep = quantile(data, .1), UL_dep = quantile(data, .9))
 
+   reg_dat$fcl_reg <- ifelse(as.numeric(reg_dat$area) %in% cnt_reg, "focal", "other")
+   
+   sub_dat <- filter(reg_dat, fcl_reg == "focal")
    
    
+   windows(4000,3000)
+   ggplot(reg_dat, aes(x = year, y = med_dep)) +
+          geom_rect(data = sub_dat, fill = alpha("springgreen4", 0.005), xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+          facet_wrap(~ area, ncol = 2) + geom_ribbon(aes(ymin = LL_dep, ymax = UL_dep), fill = "dodgerblue", alpha=0.6) +
+          geom_line(linewidth = 2) +
+          scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("sb/sbf=0") + geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
+          theme_clean()
     
-    
-    
+
    
    
    

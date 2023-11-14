@@ -5,6 +5,8 @@ library(ggthemes)
 library(FLR4MFCL)
 library(readr)
 library(xtable)
+library(data.table)
+
 
   rep_dat <- list()
 
@@ -115,7 +117,150 @@ library(xtable)
   yft_rep <- read.MFCLRep("./Data/YFT/plot-14.par.rep")
   
   
-  #cnt <- cnt_vec[3]
+
+  
+  extract_depletion <- function(mod_folder = "S1M1D1R1G1", scl = "full",
+                                rundir = "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/",
+                                finalpar = "plot-final3.par.rep"){
+    
+    rawrep <- paste0(rundir, mod_folder, "/", finalpar)
+    
+    readrep <- read.MFCLRep(rawrep)
+    
+    if(scl == "full"){
+      
+      dep_yr <- as.data.frame(seasonMeans(areaSums(adultBiomass(readrep)))/seasonMeans(areaSums(adultBiomass_nofish(readrep))))
+      
+    } else{
+      
+      dep_yr <- as.data.frame(seasonMeans(adultBiomass(readrep))/seasonMeans(adultBiomass_nofish(readrep)))
+      
+    }
+    
+    dep_yr <- mutate(dep_yr, mod = mod_folder)
+    
+    return(dep_yr)
+  }
+  
+  
+  # Process albacore grid runs to extract depletion at full and region level
+  tmpdir <- "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/"
+  
+  full_dep_alb <- map(list.files(path = tmpdir, pattern = "S", full.names = FALSE, ignore.case = TRUE),  extract_depletion, scl = "full",
+                      rundir = tmpdir, finalpar = "plot-final3.par.rep")
+  
+  reg_dep_alb <- map(list.files(path = tmpdir, pattern = "S", full.names = FALSE, ignore.case = TRUE), extract_depletion, scl = "regional",
+                     rundir = tmpdir, finalpar = "plot-final3.par.rep")
+  
+  # Process bigeye grid runs to extract depletion at full and region level
+  tmpdir <- "//penguin/assessments/bet/2023/model_runs/grid/full/"
+  
+  full_dep_bet <- map(list.files(path = tmpdir, pattern = "_", full.names = FALSE, ignore.case = TRUE)[4:57], extract_depletion, scl = "full",
+                      rundir = tmpdir, finalpar = "plot-final.par.rep")
+  
+  reg_dep_bet <- map(list.files(path = tmpdir, pattern = "_", full.names = FALSE, ignore.case = TRUE)[4:57], extract_depletion, scl = "regional",
+                     rundir = tmpdir, finalpar = "plot-final.par.rep")
+  
+  # Process skipjack grid runs to extract depletion at full and region level
+  tmpdir <- "//penguin/assessments/skj/2022/Assessment/Model_runs/Grid2022/SKJ_3_18July/"
+  tmpfiles <- list.files(path = tmpdir, pattern = "T", full.names = FALSE, ignore.case = TRUE)
+  
+  full_dep_skj <- map(tmpfiles[tmpfiles != "T2G10.8.zip"], extract_depletion, scl = "full",
+                      rundir = tmpdir, finalpar = "plot-09.par.rep")
+  
+  reg_dep_skj <- map(tmpfiles[tmpfiles != "T2G10.8.zip"], extract_depletion, scl = "regional",
+                     rundir = tmpdir, finalpar = "plot-09.par.rep")
+  
+  
+  
+  # Process yellowfin grid runs to extract depletion at full and region level
+  tmpdir <- "//penguin/assessments/yft/2023/model_runs/grid/full/"
+    
+  full_dep_yft <- map(list.files(path = tmpdir, pattern = "_", full.names = FALSE, ignore.case = TRUE)[2:55], extract_depletion, scl = "full",
+                      rundir = tmpdir, finalpar = "plot-final.par.rep")
+  
+  reg_dep_yft <- map(list.files(path = tmpdir, pattern = "_", full.names = FALSE, ignore.case = TRUE)[2:55], extract_depletion, scl = "regional",
+                     rundir = tmpdir, finalpar = "plot-final.par.rep")
+
+  
+  
+
+  plot_depletion <- function(full_dat = full_dep_alb, reg_dat = reg_dep_alb,
+                             reg_lst = alb_reg_lst, cnt = "CK", spp = "alb", ncol_set = 2){
+      
+    cnt_reg <- reg_lst[[cnt]]
+      
+    full_dt <- rbindlist(full_dat)
+      
+    full_pl <- full_dt %>% group_by(year) %>% summarise(dep = median(data), LL_dep = quantile(data, .1), UL_dep = quantile(data, .9))
+      
+    windows(4000,3000)
+      pl <- ggplot(full_pl, aes(x = year, y = dep)) +
+                   geom_ribbon(aes(ymin = LL_dep, ymax = UL_dep), fill = "dodgerblue", alpha=0.6) +
+                   geom_line(linewidth = 2) +
+                   scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("Depletion (sb/sbf=0)") +
+                   geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
+                   theme_clean()
+      print(pl)
+      savePlot(paste0("Figures/", cnt, "/full_depletion_", spp, ".png"), type="png")
+  dev.off()
+
+      
+  reg_dt <- rbindlist(reg_dat)
+      
+  reg_pl <- reg_dt %>% group_by(year, area) %>%
+                       summarise(med_dep = median(data), LL_dep = quantile(data, .1), UL_dep = quantile(data, .9))
+      
+  reg_pl$fcl_reg <- ifelse(as.numeric(reg_pl$area) %in% cnt_reg, "focal", "other")
+      
+  sub_dat <- filter(reg_pl, fcl_reg == "focal")
+      
+      
+  windows(4000,3000)
+    pl <- ggplot(reg_pl, aes(x = year, y = med_dep)) +
+                 geom_rect(data = sub_dat, fill = alpha("springgreen4", 0.005), xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+                 facet_wrap(~ area, ncol = ncol_set) + geom_ribbon(aes(ymin = LL_dep, ymax = UL_dep), fill = "dodgerblue", alpha=0.6) +
+                 geom_line(linewidth = 1.5) +
+                 scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("Depletion (sb/sbf=0)") + geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
+                 theme_clean()
+    print(pl)
+    savePlot(paste0("Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
+  dev.off()
+      
+  }
+  
+  
+  map(cnt_vec, plot_depletion, full_dat = full_dep_alb, reg_dat = reg_dep_alb, reg_lst = alb_reg_lst, spp = "alb", ncol_set = 2)
+  map(cnt_vec, plot_depletion, full_dat = full_dep_bet, reg_dat = reg_dep_bet, reg_lst = bet_reg_lst, spp = "bet", ncol_set = 3)
+  map(cnt_vec, plot_depletion, full_dat = full_dep_skj, reg_dat = reg_dep_skj, reg_lst = skj_reg_lst, spp = "skj", ncol_set = 3)
+  map(cnt_vec, plot_depletion, full_dat = full_dep_yft, reg_dat = reg_dep_yft, reg_lst = yft_reg_lst, spp = "yft", ncol_set = 2)
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
   plot_regional_depletion <- function(rep = skj_rep, reg_lst = skj_reg_lst, cnt = "CK", spp = "skj"){
     
