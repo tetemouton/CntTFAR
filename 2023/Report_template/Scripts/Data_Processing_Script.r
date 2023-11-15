@@ -194,13 +194,13 @@ library(data.table)
       
     full_pl <- full_dt %>% group_by(year) %>% summarise(dep = median(data), LL_dep = quantile(data, .1), UL_dep = quantile(data, .9))
       
-    windows(4000,3000)
-      pl <- ggplot(full_pl, aes(x = year, y = dep)) +
-                   geom_ribbon(aes(ymin = LL_dep, ymax = UL_dep), fill = "dodgerblue", alpha=0.6) +
-                   geom_line(linewidth = 2) +
-                   scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("Depletion (sb/sbf=0)") +
-                   geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
-                   theme_clean()
+  windows(4000,3000)
+    pl <- ggplot(full_pl, aes(x = year, y = dep)) +
+                 geom_ribbon(aes(ymin = LL_dep, ymax = UL_dep), fill = "dodgerblue", alpha=0.6) +
+                 geom_line(linewidth = 2) +
+                 scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("Depletion (sb/sbf=0)") +
+                 geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
+                 theme_bw()
       print(pl)
       savePlot(paste0("Figures/", cnt, "/full_depletion_", spp, ".png"), type="png")
   dev.off()
@@ -213,16 +213,16 @@ library(data.table)
       
   reg_pl$fcl_reg <- ifelse(as.numeric(reg_pl$area) %in% cnt_reg, "focal", "other")
       
-  sub_dat <- filter(reg_pl, fcl_reg == "focal")
+  sub_dat <- filter(reg_pl, fcl_reg == "focal") %>% group_by(area) %>% filter(row_number() == 1)
       
       
   windows(4000,3000)
     pl <- ggplot(reg_pl, aes(x = year, y = med_dep)) +
-                 geom_rect(data = sub_dat, fill = alpha("springgreen4", 0.005), xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
+                 geom_rect(data = sub_dat, fill = alpha("palegreen", 0.3), xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) +
                  facet_wrap(~ area, ncol = ncol_set) + geom_ribbon(aes(ymin = LL_dep, ymax = UL_dep), fill = "dodgerblue", alpha=0.6) +
                  geom_line(linewidth = 1.5) +
                  scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("Depletion (sb/sbf=0)") + geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
-                 theme_clean()
+                 theme_bw()
     print(pl)
     savePlot(paste0("Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
   dev.off()
@@ -236,72 +236,8 @@ library(data.table)
   map(cnt_vec, plot_depletion, full_dat = full_dep_yft, reg_dat = reg_dep_yft, reg_lst = yft_reg_lst, spp = "yft", ncol_set = 2)
 
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-  plot_regional_depletion <- function(rep = skj_rep, reg_lst = skj_reg_lst, cnt = "CK", spp = "skj"){
-    
-    cnt_reg <- reg_lst[[cnt]]
-    
-    sb <- rep@adultBiomass
-    sbf0 <- rep@adultBiomass_nofish
-    dep <- sb/sbf0
-    
-    dep_yr <- as.data.frame(dep) %>% mutate(qtr = as.numeric(season)/4 - .125, yrqtr = year + qtr, region = paste("Region", area)) %>%
-              group_by(year, area, region) %>% summarise(data = mean(data))
-    
-    
-    dep_yr$fcl_reg <- ifelse(as.numeric(dep_yr$area) %in% cnt_reg, "focal", "other")
-    
-    
-    sub_dat <- filter(dep_yr, fcl_reg == "focal")
-    
-    windows(3000,2000)
-      pl <- ggplot(dep_yr, aes(x = year, y = data)) + geom_line(linewidth = 1) +
-                   geom_rect(data = sub_dat, fill = alpha("springgreen4", 0.005), xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf) + facet_wrap(~ region, ncol = 3) +
-                   scale_y_continuous(breaks = seq(0, 1, .2), limits = c(0, 1)) + xlab("") + ylab("sb/sbf=0") + geom_hline(yintercept = 0.2, colour = alpha("red", 0.7), linetype = 2) +
-                   theme_clean()
-      print(pl)
-      
-      savePlot(paste0("Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
-    dev.off()
-    
-    }
-  
-    
-    map(cnt_vec, plot_regional_depletion, rep = skj_rep, reg_lst = skj_reg_lst, spp = "skj")
-    map(cnt_vec, plot_regional_depletion, rep = bet_rep, reg_lst = bet_reg_lst, spp = "bet")
-    map(cnt_vec, plot_regional_depletion, rep = yft_rep, reg_lst = yft_reg_lst, spp = "yft")
-    map(cnt_vec, plot_regional_depletion, rep = alb_rep, reg_lst = alb_reg_lst, spp = "alb")
-  
-  
-    
 #_______________________________________________________________________________    
 # Process the catch statistics to create a table of catches for the eez vs region    
-    
     
     wcpfc_dat <- read.csv(file = "./Data/Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv", header = TRUE)
     
@@ -391,11 +327,23 @@ library(data.table)
                     c('WCPFC-CA Other catch', round(sx_tab[sx_tab$gear == "Other", "ALB"]), round(wc_tab[wc_tab$gear == "Other", c("BET","SKJ","YFT")]))
                     )
     
+    # Annoying and repetitive but trying this to format the numbers for the xtable
+    reg_df_comma <- rbind(c('WCPFC-CA catch',  prettyNum(round(sum(sx_tab$ALB)), big.mark=","), prettyNum(round(wc_tot[, c("BET","SKJ","YFT")]), big.mark=",")),
+                          c('5-year WCPFC-CA catch trend', 'Stable','Decreasing','Stable','Increasing'),
+                          c('WCPFC-CA Longline catch', prettyNum(round(sx_tab[sx_tab$gear == "L", "ALB"]), big.mark=","), prettyNum(round(wc_tab[wc_tab$gear == "L", c("BET","SKJ","YFT")]), big.mark=",")),
+                          c('WCPFC-CA Purse seine catch', prettyNum(round(sx_tab[sx_tab$gear == "S", "ALB"]), big.mark=","), prettyNum(round(wc_tab[wc_tab$gear == "S", c("BET","SKJ","YFT")]), big.mark=",")),
+                          c('WCPFC-CA Pole and line catch', prettyNum(round(sx_tab[sx_tab$gear == "P", "ALB"]), big.mark=","), prettyNum(round(wc_tab[wc_tab$gear == "P", c("BET","SKJ","YFT")]), big.mark=",")),
+                          c('WCPFC-CA Other catch', prettyNum(round(sx_tab[sx_tab$gear == "Other", "ALB"]), big.mark=","), prettyNum(round(wc_tab[wc_tab$gear == "Other", c("BET","SKJ","YFT")]), big.mark=","))
+                          )
+    
+    
     # Need to note in table footnote that this is just Sth Pacific Albacore
     
     colnames(reg_df) <- c("Summary description","Albacore","Bigeye","Skipjack","Yellowfin")
+    colnames(reg_df_comma) <- c("Summary description","Albacore","Bigeye","Skipjack","Yellowfin")
     
     
+    # Function to produce the catch table for each country
     get_cnt_catches <- function(cnt = "CK"){
       
       alb_reg <- alb_reg_lst[[cnt]]
@@ -440,14 +388,35 @@ library(data.table)
                        c(paste('Percent of Catch in', cnt, 'model regions taken in', cnt, 'EEZ'), round(ez_stat[1,]/c(reg_dat_alb, reg_dat_bet, reg_dat_skj, reg_dat_yft)*100, 1)),
                        c(paste('Catch by', cnt, 'flagged in WCPFC-CA'), round(flg_stat[1,])),
                        c(paste('Percent of WCPFC-CA catch by', cnt, 'flagged vessels'), round(flg_stat[1,]/reg_df[1, 2:5]*100, 1))
-      )
+                       )
       
       
       df_write <-apply(full_df, 2, as.character)
       write.csv(df_write, file = (paste0("Figures/", cnt, "/", "catch_summary_table.csv")), row.names = FALSE) 
       
-      t1 <- xtable(df_write, caption = paste("Key stock and fishery catch statistics for the WCPFC convention area, including the recent period of", lst_yr - 4, "--", lst_yr, "in the", cnt, "EEZ"), label = "cat_sum_tab", align = c("l","l",rep("r",dim(df_write)[2]-1)))#,
-                   #digits = rep(0,dim(eez.dat.L.sth.NoAW)[2]+1))
+      # Annoying and repetitive but trying this to format the numbers for the xtable
+      full_df_comma <- rbind(reg_df_comma,
+                       #c("","","","",""),
+                       #c("","","","",""),
+                       c(paste('Catch in', cnt, 'model regions'), prettyNum(reg_dat_alb, big.mark=","),
+                               prettyNum(reg_dat_bet, big.mark=","), prettyNum(reg_dat_skj, big.mark=","), prettyNum(reg_dat_yft, big.mark=",")),
+                       c(paste('Percent of WCPFC-CA catch in', cnt, 'model regions'),
+                         prettyNum(round(reg_dat_alb/reg_df[1, 2]*100, 1), big.mark=","),
+                         prettyNum(round(reg_dat_bet/reg_df[1, 3]*100, 1), big.mark=","),
+                         prettyNum(round(reg_dat_skj/reg_df[1, 4]*100, 1), big.mark=","),
+                         prettyNum(round(reg_dat_yft/reg_df[1, 5]*100, 1), big.mark=",")),
+                       c(paste('Catch in', cnt, 'EEZ'), prettyNum(round(ez_stat[1,]), big.mark=",")),
+                       c(paste('Percent of WCPFC-CA catch taken in', cnt, 'EEZ'), prettyNum(round(ez_stat[1,]/reg_df[1, 2:5]*100, 1), big.mark=",")),
+                       c(paste('Percent of Catch in', cnt, 'model regions taken in', cnt, 'EEZ'), prettyNum(round(ez_stat[1,]/c(reg_dat_alb, reg_dat_bet, reg_dat_skj, reg_dat_yft)*100, 1), big.mark=",")),
+                       c(paste('Catch by', cnt, 'flagged in WCPFC-CA'), prettyNum(round(flg_stat[1,]), big.mark=",")),
+                       c(paste('Percent of WCPFC-CA catch by', cnt, 'flagged vessels'), prettyNum(round(flg_stat[1,]/reg_df[1, 2:5]*100, 1), big.mark=","))
+                       )
+      
+      df_write_comma <-apply(full_df_comma, 2, as.character)
+      
+      t1 <- xtable(df_write_comma, caption = paste("Key stock and fishery catch statistics for the WCPFC convention area, including the recent period of",
+                                             format.args = list(big.mark = ","),
+                                             lst_yr - 4, "--", lst_yr, "in the", cnt, "EEZ"), label = "cat_sum_tab", align = c("l","l",rep("c",dim(df_write)[2]-1)))
       
       print(t1, type = "latex", include.rownames = FALSE, tabular.environment = "longtable", caption.placement = "top",
             floating = FALSE, sanitize.text.function = identity, sanitize.colnames.function = NULL, format.args = list(big.mark = ","),
@@ -458,85 +427,12 @@ library(data.table)
     
     cnt_run <- map(cnt_vec, get_cnt_catches)
     
-    
-    
-    
-    
+  # Output the summary data for dynamic use in the reports
   save.image(paste0("Data/Output_Summary_Data.Rdata"))
     
     
     
-    
-    
-    
-    
-    
-# archiving the below for now as think superseeded by the new function above    
- #  load(file = paste0(base_pth, "Data/yb_ocean_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and ocean ID
- #  load(file = paste0(base_pth, "Data/yb_eez_gear_dat.RData"), verbose = TRUE)   # Read-in yearbook annual estimates for each species by gear and EEZ
- #  
- #  
- #  
- #  trp_tab <- yb_dat %>% filter(ocean == "WX", between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt)) %>%
- #                        summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT))
- # 
- # 
- #  trp_tab_gr <- yb_dat %>% filter(ocean == "WX", between(yy, yr1, yr2)) %>% mutate(gear = ifelse(gear %in% c("L","P","S"), gear, "Other"), gear = factor(gear, levels = c("L","S","P","Other"))) %>%
- #                           group_by(yy, gear) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt)) %>%
- #                           group_by(gear) %>% summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT)) %>% arrange(gear)
- # 
- #  
- # 
- #  make_catch_table <- function(cnt = "CK"){
- #    
- #    #for(i in 1:length(cnt_vec)){
- #  
- #  all_tab_eez <- yb_ez_dat %>% filter(eez == cnt_vec[i], between(yy, yr1, yr2)) %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
- #                               summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
- #  
- # 
- #  all_tab_flg_tmp <- yb_dat %>% filter(flag == cnt, between(yy, yr1, yr2))
- #  
- #  if(dim(all_tab_flg_tmp)[1] > 0){
- #    
- #    all_tab_flg <- all_tab_flg_tmp %>% group_by(yy) %>% summarise(BET = sum(bet_mt), SKJ = sum(skj_mt), YFT = sum(yft_mt), ALB = sum(alb_mt)) %>%
- #                                       summarise(BET = mean(BET), SKJ = mean(SKJ), YFT = mean(YFT), ALB = mean(ALB))
- #    
- #  } else{
- #    
- #    all_tab_flg <- data.frame(BET = 0, SKJ = 0, YFT = 0, ALB = 0)
- #    
- #  }
- #  
- # write_csv(all_tab_flg_tmp, path = (paste0("Figures/", cnt, "/", "all_tab_flg.csv"))) 
- # }
- #  
- #  
- #  tmp <- map(cnt_vec, make_catch_table)
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
   
   
    

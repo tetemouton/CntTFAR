@@ -36,6 +36,9 @@ bibliography: ofp-sam-biblio.bib
 
 \newpage
 
+\newcommand{\cntpth}{./Figures/SB/}
+
+
 ```{r prelims, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE, results='hide', fig.keep='all'}
 library(tidyverse)
 library(magrittr)
@@ -77,23 +80,29 @@ Tuna stock assessments provide important information regarding the status of reg
 
 Albacore, bigeye, yellowfin and skipjack tuna are targeted by fisheries operating in `r cnt_lng`. The SPC has assessed these stocks in the WCPFC-CA using a modeling tool called MULTIFAN-CL, which is reliant on accurate and comprehensive catch, effort, size and other fisheries data collected by all fishing nations. The assessments provide information on stock status at the WCPFC-CA scale and broad model Regions within that. SPC is working to develop models that can provide similar information at the EEZ scale. However, given that tuna are migratory and may pass through many EEZ's in their lifetime, it will never be feasible to assess and/or manage these species within individual EEZ's in isolation from what is happening in surrounding waters. However, most countries also need to know what the status of the resource is in their immediate vicinity. Therefore we provide here some information for the broad model region that surrounds your EEZ so that you can assess your country's impact on the stock and the state of the stock in your waters. 
 
-This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Hare2023_a]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). These terms are described in \autoref{tab1}. 
+This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Hare2023_a]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). The most important of these terms are described in \autoref{expl_table}. 
 
-
-\input{./Tables/terms_explanation_table.tex}
+# Summary of tuna stock status
+The most recent assessments indicate that overfishing is not occurring on albacore, bigeye, skipjack and yellowfin tuna, and these stocks are not in an overfished state (\autoref{fig1}). However, catch of each of these species have increased significantly over the past 2 to 3 decades, with corresponding reductions in stock biomass relative to the biomass that would be in the water if no fishing was occurring. The following sections provide more detail regarding the status of these stocks, implications for your national fisheries and briefly reviews assessments of other relevant species. Specific details regarding catch and stock status of each species in the WCPFC and your EEZ are presented in \autoref{cat_sum_tab}.
 
 \newpage
 
-\input{./Figures/SB/catch_summary_table.tex}
+\renewcommand{\arraystretch}{1.5}
+ 
+\input{./Tables/terms_explanation_table.tex}
 
-# Summary of tuna stock status
-The most recent assessments indicate that overfishing is not occurring on albacore, bigeye, skipjack and yellowfin tuna, and these stocks are not in an overfished state (\autoref{fig1}). However, catch of each of these species have increased significantly over the past 2 to 3 decades, with corresponding reductions in stock biomass relative to the biomass that would be in the water if no fishing was occurring. The following sections provide more detail regarding the status of these stocks, implications for your national fisheries and briefly reviews assessments of other relevant species. Specific details regarding catch and stock status of each species in the WCPFC and your EEZ are presented in \autoref{tab2}.
+\vspace{1cm}
+
+\input{\cntpth catch_summary_table.tex}
+
+\newpage
 
 \begin{figure}[!ht]
   \centering
  \includegraphics [width=13cm]{./Figures/Regional/Fig16-majuro.ellipses.png}
   \caption [test short caption]{Majuro plot comparing the stock status of the key target tuna species caught in the WCPFC Convention Area. Where current fishing mortality rate exceeds the fishing mortality rate at MSY (F/F$_{MSY}$ > 1) then overfishing is occurring. Where the current spawning biomass is less than 0.2 of spawning biomass without fishing, then the stock is overfished (SB/SB$_{F=0}$ <0.2). The large points represent the median estimated stock status in terms of fishing mortality and biomass depletion in the terminal year of the most recent assessment for each species. The error bars indicate stock status uncertainty from all models run in the grid. The blue and green dashed lines indicate the WCPFC interim target reference points for skipjack and albacore tuna, respectively.\label{fig1}}
 \end{figure}
+
 
 <!-- \input{./Tables/table2.tex} -->
 
@@ -170,13 +179,49 @@ Annual catch of albacore in `r cnt_lng` has averaged `r prettyNum(cat_table$Alba
 # Other species
 Stock assessments are available for some other species which may interact with the fisheries in `r cnt_lng` (\autoref{tab3}). These include three shark and three billfish species (\autoref{fig6}). Both north and south Pacific swordfish and blue marlin are not overfished and no overfishing was taking place. The SC, has recommended that there should be no increase in fishing mortality for blue marlin and swordfish. The southwest Pacific striped marlin assessment results indicate that the stock is fully exploited, is not experiencing overfishing, but may be overfished (\autoref{tab3}) [@Ducharme2019_a]. For the sharks that have been assessed to date, blue sharks in the north Pacific are not considered to be overfished and no overfishing is taking place; silky sharks are overfished and overfishing is taking place; and for oceanic whitetip sharks the stock is overfished and overfishing is occuring **WCPFC2012,WCPFC2013,WCPFC2014**. It should also be noted that due to concerns expressed by the Scientific Committee regarding the steep declines in biomass of silky and oceanic whitetip shark, the Commission has adopted CMMs for these species prohibiting their retention, transshipment, storage or landing **WCPFC2011a, WCPFC2013b**. In addition, in an attempt to reduce incidental catch of these species CMM2014-05 prohibits the use of either wire trace branchlines or shark lines on longline sets **this has now changed?**.  
 
+\newpage
+
 \begin{figure}[!ht]
- \includegraphics [width=11.5cm]{./Figures/Regional/Fig23b-shark.kobe.crosshairs.png}
- \includegraphics [width=11.5cm]{./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png}
+ \includegraphics [width=11cm]{./Figures/Regional/Fig23b-shark.kobe.crosshairs.png} \\
+ \includegraphics [width=11cm]{./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png}
   \caption [test short caption]{Kobe plots comparing the stock status of the key bycatch species caught in the WCPFC Convention Area. Where current fishing mortality rate exceeds the fishing mortality rate at MSY (F/F$_{MSY}$ > 1) then overfishing is occurring. Where the current spawning biomass is less than the spawning biomass that would produce MSY, then the stock is overfished (SB/SB$_{MSY}$ <1). \label{fig6}}
 \end{figure}
-\clearpage
 
+
+
+ \newpage
+
+\begin{figure}[!ht]
+ \includegraphics [width=15cm]{\cntpth full_depletion_alb.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_alb.png}
+  \caption [Depletion history for albacore at region level]{Depletion of albacore at region scale. \label{tmp1}}
+\end{figure}
+
+ \newpage
+
+\begin{figure}[!ht]
+ \includegraphics [width=15cm]{\cntpth full_depletion_bet.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_bet.png}
+  \caption [Depletion history for bigeye at region level]{Depletion of bigeye at region scale. \label{tmp2}}
+\end{figure}
+
+ \newpage
+
+\begin{figure}[!ht]
+ \includegraphics [width=15cm]{\cntpth full_depletion_skj.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_skj.png}
+  \caption [Depletion history for skipjack at region level]{Depletion of skipjack at region scale. \label{tmp3}}
+\end{figure}
+
+ \newpage
+
+\begin{figure}[!ht]
+ \includegraphics [width=15cm]{\cntpth full_depletion_yft.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_yft.png}
+  \caption [Depletion history for yellowfin at region level]{Depletion of yellowfin at region scale. \label{tmp4}}
+\end{figure}
+
+ \newpage
 
 \input{./Tables/table3.tex}
 
@@ -187,6 +232,7 @@ Stock assessments are available for some other species which may interact with t
 
 <!-- ## Acknowledgments -->
 <!-- The authors would like to thank the WCPFC secretariat for data provision. -->
+\newpage
 
 # References
 
