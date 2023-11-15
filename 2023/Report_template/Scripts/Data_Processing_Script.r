@@ -183,8 +183,6 @@ library(data.table)
                      rundir = tmpdir, finalpar = "plot-final.par.rep")
 
   
-  
-
   plot_depletion <- function(full_dat = full_dep_alb, reg_dat = reg_dep_alb,
                              reg_lst = alb_reg_lst, cnt = "CK", spp = "alb", ncol_set = 2){
       
@@ -205,6 +203,7 @@ library(data.table)
       savePlot(paste0("Figures/", cnt, "/full_depletion_", spp, ".png"), type="png")
   dev.off()
 
+  write.csv(full_pl, file = (paste0("Figures/", cnt, "/", "depletion_table_overall_", spp, ".csv")), row.names = FALSE) 
       
   reg_dt <- rbindlist(reg_dat)
       
@@ -226,7 +225,9 @@ library(data.table)
     print(pl)
     savePlot(paste0("Figures/", cnt, "/regional_depletion_", spp, ".png"), type="png")
   dev.off()
-      
+  
+  write.csv(reg_pl, file = (paste0("Figures/", cnt, "/", "depletion_table_regional_", spp, ".csv")), row.names = FALSE)
+  
   }
   
   

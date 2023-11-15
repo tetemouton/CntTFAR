@@ -49,18 +49,21 @@ load("./Data/Output_Summary_Data.RData")
 #____________________________
 # Preliminaries that need to be set
 
-endyear <- 2022
+  endyear <- 2022
 
-update_date <- "6 September 2023"  # Date of final data extraction
+  update_date <- "6 September 2023"  # Date of final data extraction
 
-cnt_lng <- "the Solomon Islands"
-cnt_lngalt <- "Solomon Islands"
-cnt_sht <- "SB"
+  cnt_lng <- "the Solomon Islands"
+  cnt_lngalt <- "Solomon Islands"
+  cnt_sht <- "SB"
 
-#output <- load(fldhhrthr.RData)
+  #output <- load(fldhhrthr.RData)
 
 
-cat_table <- read.csv(paste0("./Figures/", cnt_sht, "/catch_summary_table.csv"))
+  cat_table <- read.csv(paste0("./Figures/", cnt_sht, "/catch_summary_table.csv"))
+
+
+  tmp <- read.csv(paste0("./Figures/", cnt_sht, "/catch_summary_table.csv"))
 
 #____________________________
 
