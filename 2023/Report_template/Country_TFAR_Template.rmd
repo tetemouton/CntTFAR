@@ -59,12 +59,22 @@ load("./Data/Output_Summary_Data.RData")
 
   #output <- load(fldhhrthr.RData)
 
-
   cat_table <- read.csv(paste0("./Figures/", cnt_sht, "/catch_summary_table.csv"))
 
-
-  tmp <- read.csv(paste0("./Figures/", cnt_sht, "/catch_summary_table.csv"))
-
+  alb_dep <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_overall_alb.csv"))
+  bet_dep <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_overall_bet.csv"))
+  skj_dep <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_overall_skj.csv"))
+  yft_dep <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_overall_yft.csv"))
+ 
+  alb_dep_reg <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_regional_alb.csv"))
+  bet_dep_reg <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_regional_bet.csv"))
+  skj_dep_reg <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_regional_skj.csv"))
+  yft_dep_reg <- read.csv(paste0("./Figures/", cnt_sht, "/depletion_table_regional_yft.csv"))
+  
+  
+  
+  
+  
 #____________________________
 
 skjcatch <- 100
@@ -86,7 +96,7 @@ Albacore, bigeye, yellowfin and skipjack tuna are targeted by fisheries operatin
 This report should be used in conjunction with the Tuna Fisheries Assessment Report published annually by the SPC [@Hare2023_a]. Tuna stock assessment results are described using a number of technical terms, and refer to a number of key indicators of stock status (reference points). The most important of these terms are described in \autoref{expl_table}. 
 
 # Summary of tuna stock status
-The most recent assessments indicate that overfishing is not occurring on albacore, bigeye, skipjack and yellowfin tuna, and these stocks are not in an overfished state (\autoref{fig1}). However, catch of each of these species have increased significantly over the past 2 to 3 decades, with corresponding reductions in stock biomass relative to the biomass that would be in the water if no fishing was occurring. The following sections provide more detail regarding the status of these stocks, implications for your national fisheries and briefly reviews assessments of other relevant species. Specific details regarding catch and stock status of each species in the WCPFC and your EEZ are presented in \autoref{cat_sum_tab}.
+The most recent assessments indicate that overfishing is not occurring on albacore, bigeye, skipjack and yellowfin tuna, and these stocks are not in an overfished state (\autoref{fig1}). However, catch of each of these species have increased significantly over the past 2 to 3 decades, with corresponding reductions in stock biomass relative to the biomass that would be in the water if no fishing was occurring. The following sections provide more detail regarding the status of these stocks, implications for your national fisheries and briefly reviews assessments of other relevant species. Specific details regarding catch and stock status of each species in the WCPFC and your EEZ are presented in \autoref{cat_sum_tab}, to demonstrate how fishing in your EEZ and fishing by your flagged or chartered vessels in your EEZ or elsewhere compare to fishing in the wider region.
 
 \newpage
 
@@ -180,7 +190,11 @@ Annual catch of albacore in `r cnt_lng` has averaged `r prettyNum(cat_table$Alba
 
 
 # Other species
-Stock assessments are available for some other species which may interact with the fisheries in `r cnt_lng` (\autoref{tab3}). These include three shark and three billfish species (\autoref{fig6}). Both north and south Pacific swordfish and blue marlin are not overfished and no overfishing was taking place. The SC, has recommended that there should be no increase in fishing mortality for blue marlin and swordfish. The southwest Pacific striped marlin assessment results indicate that the stock is fully exploited, is not experiencing overfishing, but may be overfished (\autoref{tab3}) [@Ducharme2019_a]. For the sharks that have been assessed to date, blue sharks in the north Pacific are not considered to be overfished and no overfishing is taking place; silky sharks are overfished and overfishing is taking place; and for oceanic whitetip sharks the stock is overfished and overfishing is occuring **WCPFC2012,WCPFC2013,WCPFC2014**. It should also be noted that due to concerns expressed by the Scientific Committee regarding the steep declines in biomass of silky and oceanic whitetip shark, the Commission has adopted CMMs for these species prohibiting their retention, transshipment, storage or landing **WCPFC2011a, WCPFC2013b**. In addition, in an attempt to reduce incidental catch of these species CMM2014-05 prohibits the use of either wire trace branchlines or shark lines on longline sets **this has now changed?**.  
+Stock assessments are available for some other species which may interact with the fisheries in `r cnt_lng` (\autoref{bycattab}). These include five shark and five billfish species or stocks (\autoref{fig6}).
+
+Both north and south Pacific swordfish and blue marlin are not overfished and no overfishing was taking place. The SC, has recommended that there should be no increase in fishing mortality for blue marlin and swordfish. The southwest Pacific striped marlin assessment results indicate that the stock status is very uncertain and the presence of overfishing and/or the stock being overfished cannot be ruled out (\autoref{bycattab}) [@Ducharme2019_a].
+
+For the sharks that have been assessed to date, blue sharks in the north Pacific are not considered to be overfished and no overfishing is taking place; blue sharks in the south Pacific, and north Pacific shortfin mako have a very similar status, that is, they are most likely not overfished and overfishing is most likely not taking place; silky sharks are possibly overfished and overfishing is most likely taking place; and for oceanic whitetip sharks the stock is overfished and overfishing is occuring **WCPFC2012,WCPFC2013,WCPFC2014**. It should also be noted that due to concerns expressed by the Scientific Committee regarding the steep declines in biomass of silky and oceanic whitetip shark, the Commission has adopted CMMs for these species prohibiting their retention, transshipment, storage or landing **WCPFC2011a, WCPFC2013b**. In addition, in an attempt to reduce incidental catch of these species CMM2014-05 prohibits the use of either wire trace branchlines or shark lines on longline sets **this has now changed?**.  
 
 \newpage
 
@@ -226,7 +240,7 @@ Stock assessments are available for some other species which may interact with t
 
  \newpage
 
-\input{./Tables/table3.tex}
+\input{./Tables/bycatch_assessments_table.tex}
 
 
 <!-- \input{./Tables/table1_FR.tex} -->
