@@ -415,9 +415,9 @@ library(data.table)
       
       df_write_comma <-apply(full_df_comma, 2, as.character)
       
-      t1 <- xtable(df_write_comma, caption = paste("Key stock and fishery catch statistics for the WCPFC convention area, including the recent period of",
-                                             format.args = list(big.mark = ","),
-                                             lst_yr - 4, "--", lst_yr, "in the", cnt, "EEZ"), label = "cat_sum_tab", align = c("l","l",rep("c",dim(df_write)[2]-1)))
+      t1 <- xtable(df_write_comma, caption = paste("Key stock and fishery catch statistics for the WCPFC convention area for the recent period of",
+                                             lst_yr - 4, "--", lst_yr, "including catches in the", cnt, "EEZ, and by", cnt, "flagged or chartered vessels, if they exist"),
+                   label = "cat_sum_tab", align = c("l","l",rep("c",dim(df_write)[2]-1)))
       
       print(t1, type = "latex", include.rownames = FALSE, tabular.environment = "longtable", caption.placement = "top",
             floating = FALSE, sanitize.text.function = identity, sanitize.colnames.function = NULL, format.args = list(big.mark = ","),

@@ -86,7 +86,7 @@ skjcatch <- 100
 # Executive summary
 Text
 
-\clearpage
+
 
 # Introduction
 Tuna stock assessments provide important information regarding the status of regional tuna stocks and the future predicted impacts of fishing on them. This information can help `r cnt_lng` and other WCPFC members decide how best to collectively manage these stocks.
@@ -121,20 +121,30 @@ The most recent assessments indicate that overfishing is not occurring on albaco
 
 # Skipjack tuna
 <!-- rep_dat[["skj_reg_lst"]][["AS"]] -->
-The most recent skipjack tuna assessment was conducted in 2022 [@Jordan2022_a]. The skipjack assessment used an eight region model, which was a change from the five region model previously used in previous assessment; your EEZ is situated in region(s) `r skj_reg_lst[[cnt_sht]]` (\autoref{fig2} - top). Between `r endyear-9` and `r endyear` skipjack catch averaged  `r prettyNum(cat_table$Skipjack[1], big.mark = ",")` mt in the WCPFC-CA (\autoref{fig2} - middle). An average of `r prettyNum(cat_table$Skipjack[9], big.mark = ",")` mt (`r prettyNum(cat_table$Skipjack[10], big.mark = ",")` \% of WCPFC-CA catch) comes from region(s) `r skj_reg_lst[[cnt_sht]]`. It is estimated that skipjack spawning biomass in the WCPFC-CA and region(s) `r skj_reg_lst[[cnt_sht]]`, have been reduced through fishing by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impacts on spawning biomass in the WCPO are equally from the FAD-associated and free school purse seine fisheries, while the FAD-associated purse seine fishery has the greatest impact in region(s) `r skj_reg_lst[[cnt_sht]]` (\autoref{fig2} - bottom).
+The most recent skipjack tuna assessment was conducted in 2022 [@Jordan2022_a]. The skipjack assessment used an eight region model, which was a change from the five region model used in the previous assessment; your EEZ is situated in region(s) `r skj_reg_lst[[cnt_sht]]` (\autoref{fig2} - top). Between `r endyear-9` and `r endyear` skipjack catch averaged  `r prettyNum(cat_table$Skipjack[1], big.mark = ",")` mt in the WCPFC-CA (\autoref{fig2} - middle). An average of `r prettyNum(cat_table$Skipjack[9], big.mark = ",")` mt (`r prettyNum(cat_table$Skipjack[10], big.mark = ",")` \% of WCPFC-CA catch) comes from region(s) `r skj_reg_lst[[cnt_sht]]`.
 
-The SC18 of the WCPFC concluded that overfishing is not occurring on the skipjack stock and the stock is not overfished (\autoref{fig1}). The spawning biomass level is below the interim Target Reference Point of 50\% ($SB/SB_{F=0}$ = 0.5), though well above the Limit Reference Point of 20\%, unfished spawning biomass. Previously, the SC12 noted that fishing is having a significant impact on stock size, especially in the western equatorial region and can be expected to negatively affect catch rates. The stock distribution is also influenced by changes in oceanographic conditions associated with El Niño and La Niña events, which impact on catch rates and stock size. Additional purse-seine effort will yield only modest gains in long-term skipjack catch and may result in a corresponding increase in fishing mortality for bigeye and yellowfin tunas [@WCPFC2022_a].
+It is estimated that skipjack spawning biomass in the WCPFC-CA and region(s) `r skj_reg_lst[[cnt_sht]]`, have been reduced through fishing by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impacts on spawning biomass in the WCPO are equally from the FAD-associated and free school purse seine fisheries, while the FAD-associated purse seine fishery has the greatest impact in the equatorial regions (\autoref{fig2} - bottom).
+
+The SC18 of the WCPFC concluded that overfishing is not occurring on the skipjack stock and the stock is not overfished ([@WCPFC2022_a]; \autoref{fig1}). The spawning biomass level is below the interim Target Reference Point of 50\% ($SB/SB_{F=0}$ = 0.5), though well above the Limit Reference Point of 20\%, unfished spawning biomass. Previously, the SC12 noted that fishing is having a significant impact on stock size, especially in the western equatorial region and can be expected to negatively affect catch rates. The stock distribution is also influenced by changes in oceanographic conditions associated with El Niño and La Niña events, which impact on catch rates and stock size. Additional purse-seine effort will yield only modest gains in long-term skipjack catch and may result in a corresponding increase in fishing mortality for bigeye and yellowfin tunas [@WCPFC2022_a].
 
 Annual catch of skipjack in `r cnt_lng` has averaged `r prettyNum(cat_table$Skipjack[11], big.mark = ",")` mt between `r endyear-9` and `r endyear`, representing `r prettyNum(cat_table$Skipjack[12], big.mark = ",")` \% of the skipjack catch in the WCPFC-CA and `r prettyNum(cat_table$Skipjack[13], big.mark = ",")` \% of the catch in region(s) `r skj_reg_lst[[cnt_sht]]`. Together, skipjack catch by the `r cnt_lngalt` fleet (including chartered vessels) both inside and outside the `r cnt_lng` EEZ have caught an average of `r prettyNum(cat_table$Skipjack[14], big.mark = ",")` mt, which is `r prettyNum(cat_table$Skipjack[15], big.mark = ",")` \% of the WCPFC skipjack catch. Regional catch of skipjack tuna, including those within or by `r cnt_lng`, are considered sustainable at recent average levels. However, `r cnt_lng` should note that the FAD component of the regional purse seine fishery (the main fishery for skipjack tuna) catches juvenile bigeye and yellowfin tuna, and that fishery is contributing to the impact on these stocks.
 
-\clearpage
+\newpage
 
-\begin{figure}[!ht]
+\begin{figure}[h]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig08b-skj_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig08a-skj_catchbygearE.png}
   \caption [test short caption]{Distribution of total South Pacific albacore catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of skipjack in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right). \label{fig2}}
 \end{figure}
-\clearpage
+
+\begin{figure}[h]
+ \includegraphics [width=15cm]{\cntpth full_depletion_skj.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_skj.png}
+  \caption [Depletion history for skipjack at region level]{Depletion of skipjack at region scale. \label{tmp3}}
+\end{figure}
+
+ \newpage
+
 
 # Yellowfin tuna
 The most recent yellowfin tuna assessment was conducted in 2023  [@Magnusson2023_a].  The yellowfin tuna assessment used a nine region model, with `r cnt_lng` situated in region(s) `r yft_reg_lst[[cnt_sht]]` (\autoref{fig3} - top). Between `r endyear-9` and `r endyear` yellowfin catch averaged `r prettyNum(cat_table$Yellowfin[1], big.mark = ",")` mt in the WCPFC-CA (\autoref{fig3} - middle). An average of `r prettyNum(cat_table$Yellowfin[9], big.mark = ",")` mt (`r prettyNum(cat_table$Yellowfin[10], big.mark = ",")` \% of WCPFC-CA catch) comes from region(s) `r yft_reg_lst[[cnt_sht]]`. It is estimated that yellowfin spawning biomass in the WCPFC-CA and region(s) `r yft_reg_lst[[cnt_sht]]`, have declined by **tabl2** \% and **tabl2** \% respectively  (\autoref{tab2}). The greatest impact on the stock is from the fisheries of the Philippines and Indonesia, along with the FAD directed purse-seine fishery in the WCPO and from the FAD directed purse-seine fishery in region(s) `r yft_reg_lst[[cnt_sht]]` (\autoref{fig3} - bottom). 
@@ -143,14 +153,22 @@ The SC19 [@WCPFC2023_a] concluded that overfishing is not occurring on the yello
 
 The annual catch of yellowfin in `r cnt_lng` have averaged `r prettyNum(cat_table$Yellowfin[11], big.mark = ",")` mt between `r endyear-9` and `r endyear`, representing `r prettyNum(cat_table$Yellowfin[12], big.mark = ",")` \% of WCPFC-CA and `r prettyNum(cat_table$Yellowfin[13], big.mark = ",")` \% of region(s) `r yft_reg_lst[[cnt_sht]]` yellowfin catch. Together, yellowfin catch by the `r cnt_lngalt` fleet (including chartered vessels) both inside and outside the `r cnt_lng` EEZ have caught an average of `r prettyNum(cat_table$Yellowfin[14], big.mark = ",")` mt, which is `r prettyNum(cat_table$Yellowfin[15], big.mark = ",")` \% of the WCPFC skipjack catch. As such, the `r cnt_lng` fishery does not contribute significantly to overall regional impacts on the stock. The yellowfin stock in region(s) `r yft_reg_lst[[cnt_sht]]` has low levels of depletion in Region 6 but higher in Region 4 and overall `r cnt_lng` catch is a small percentage of the catch in these two regions. 
 
-\clearpage
+\newpage
 
-\begin{figure}[!ht]
+\begin{figure}[h]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig10b-yft_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig10a-yft_catchbygearE.png}
   \caption [test short caption]{Distribution of total yellowfin catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right). \label{fig3}}
 \end{figure}
-\clearpage
+
+
+\begin{figure}[h]
+ \includegraphics [width=15cm]{\cntpth full_depletion_yft.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_yft.png}
+  \caption [Depletion history for yellowfin at region level]{Depletion of yellowfin at region scale. \label{tmp4}}
+\end{figure}
+
+\newpage
 
 # Bigeye tuna
 The most recent bigeye tuna assessment was conducted in 2023 [@Day2023_a]. The bigeye assessment used a nine region model, your EEZ is situated in region(s) `r bet_reg_lst[[cnt_sht]]` (\autoref{fig4} - top). Between `r endyear-9` and `r endyear` bigeye catch averaged `r prettyNum(cat_table$Bigeye[1], big.mark = ",")` mt in the WCPFC-CA (\autoref{fig4} - middle).  An average of `r prettyNum(cat_table$Bigeye[9], big.mark = ",")` mt (`r prettyNum(cat_table$Bigeye[10], big.mark = ",")` \% of WCPFC-CA catch) comes from region(s) `r bet_reg_lst[[cnt_sht]]`. It is estimated that bigeye spawning biomass in the WCPFC-CA and region(s) `r bet_reg_lst[[cnt_sht]]`, have declined by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impact on spawning biomass is from the associated - FAD - purse seine fisheries in the WCPO and from the longline fishery in region(s) `r bet_reg_lst[[cnt_sht]]` (\autoref{fig4} - bottom).
@@ -161,15 +179,21 @@ Annual catch of bigeye in `r cnt_lng` have averaged `r prettyNum(cat_table$Bigey
 
 Bigeye tuna is one of several species targeted in the longline fishery operating in `r cnt_lng` and is also taken in the purse seine fishery in the equatorial area. The viability of the local and regional purse seine fishery is not dependent on bigeye tuna abundance. However, the prospects for long-term viability (and/or further expansion) of a longline fishery for bigeye in `r cnt_lng` will be dependant, in part, on trends in both national and regional fishing mortality on the bigeye stock (and economic and other factors not discussed here).
 
-\clearpage
+\newpage
 
-\begin{figure}[!ht]
+\begin{figure}[h]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig12b-bet_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig12a-bet_catchbygearE.png}
    \caption [test short caption]{Distribution of total bigeye catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right).\label{fig4}}
 \end{figure}
-\clearpage
 
+\begin{figure}[h]
+ \includegraphics [width=15cm]{\cntpth full_depletion_bet.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_bet.png}
+  \caption [Depletion history for bigeye at region level]{Depletion of bigeye at region scale. \label{tmp2}}
+\end{figure}
+
+\newpage
 
 # South Pacific albacore tuna
 The most recent south Pacific albacore (hereafter, simply "albacore") assessment was conducted in 2021 [@Jordan2021_a].  The albacore assessment used a five region model for the entire stock, including the EPO, your EEZ is situated in region(s) `r alb_reg_lst[[cnt_sht]]` (\autoref{fig5} - top). Between `r endyear-9` and `r endyear` albacore catch averaged `r prettyNum(cat_table$Albacore[1], big.mark = ",")` mt in the WCPFC-CA (\autoref{fig5} - middle).  An average of `r prettyNum(cat_table$Albacore[9], big.mark = ",")` mt (`r prettyNum(cat_table$Albacore[10], big.mark = ",")` \% of WCPFC-CA catch) comes from region(s) `r alb_reg_lst[[cnt_sht]]`. It is estimated that albacore spawning biomass in the south Pacific and region(s) `r alb_reg_lst[[cnt_sht]]`, have declined by **tabl2**\% and **tabl2**\% respectively (\autoref{tab2}). The greatest impact on spawning biomass is from the sub-tropical longline fisheries both in the WCPO and in region(s) `r alb_reg_lst[[cnt_sht]]` (\autoref{fig5} - bottom).  
@@ -179,22 +203,28 @@ The WCPFC SC17 concluded that South Pacific albacore spawning stock is currently
 Annual catch of albacore in `r cnt_lng` has averaged `r prettyNum(cat_table$Albacore[11], big.mark = ",")` mt between `r endyear-9` and `r endyear`, representing `r prettyNum(cat_table$Albacore[12], big.mark = ",")` \% of WCPFC-CA and `r prettyNum(cat_table$Albacore[13], big.mark = ",")` \% of region(s) `r alb_reg_lst[[cnt_sht]]` albacore catch. Together, albacore catch by the `r cnt_lngalt` fleet (including chartered vessels) both inside and outside the `r cnt_lng` EEZ have caught an average of `r prettyNum(cat_table$Albacore[14], big.mark = ",")` mt, which is `r prettyNum(cat_table$Albacore[15], big.mark = ",")` \% of the WCPFC albacore catch. Regional catch of albacore tuna, including those within or by `r cnt_lngalt` vessels fishing outside your EEZ, are considered sustainable at recent average levels. But it should be noted that, projections\footnote{Estimates of risk using deterministic projections are likely to be underestimated as they do not include future uncertainties such as fluctuations in recruitment.} estimate that there is a moderate chance of the overall stock falling below the LRP by in future years at recent (status quo) catch and effort levels [@Hare2023_a]. While the stock remains in a biologically healthy state, the prospects for any future albacore targeted fishery in `r cnt_lng` will depend on local abundance, catch rates and economics. 
 
 
-\clearpage
+\newpage
 
-\begin{figure}[!ht]
+\begin{figure}[h]
  \includegraphics [width=15.5cm]{./Figures/Regional/Fig14b-alb_mapE.png}
  \includegraphics [width=15cm]{./Figures/Regional/Fig14a-alb_catchbygearE.png}
   \caption [test short caption]{Distribution of total South Pacific albacore catch by fishing method `r endyear-9`--`r endyear` (Red, pole-and-line; Blue, purse-seine; Green, longline; Orange, troll; Yellow, other) (top).  Annual catch of South Pacific albacore in the WCPO by fishing method (middle). Percentage impact on spawning biomass due to fishing in the WCPO (bottom - left) and the model Region/s encompassing your EEZ (bottom - right).\label{fig5}}
 \end{figure}
-\clearpage
 
+\begin{figure}[h]
+ \includegraphics [width=15cm]{\cntpth full_depletion_alb.png}
+ \includegraphics [width=17cm]{\cntpth regional_depletion_alb.png}
+  \caption [Depletion history for albacore at region level]{Depletion of albacore at region scale. \label{tmp1}}
+\end{figure}
+
+\newpage
 
 # Other species
 Stock assessments are available for some other species which may interact with the fisheries in `r cnt_lng` (\autoref{bycattab}). These include five shark and five billfish species or stocks (\autoref{fig6}).
 
-Both north and south Pacific swordfish and blue marlin are not overfished and no overfishing was taking place. The SC, has recommended that there should be no increase in fishing mortality for blue marlin and swordfish. The southwest Pacific striped marlin assessment results indicate that the stock status is very uncertain and the presence of overfishing and/or the stock being overfished cannot be ruled out (\autoref{bycattab}) [@Ducharme2019_a].
+Both north and south Pacific swordfish and blue marlin are not overfished and no overfishing was taking place [@Ducharme2021_a; @ISC2021_a]. The SC, has recommended that there should be no increase in fishing mortality for blue marlin and swordfish. The southwest Pacific striped marlin assessment results indicate that the stock status is very uncertain and the presence of overfishing and/or the stock being overfished cannot be ruled out (\autoref{bycattab}) [@Ducharme2019_a].
 
-For the sharks that have been assessed to date, blue sharks in the north Pacific are not considered to be overfished and no overfishing is taking place; blue sharks in the south Pacific, and north Pacific shortfin mako have a very similar status, that is, they are most likely not overfished and overfishing is most likely not taking place; silky sharks are possibly overfished and overfishing is most likely taking place; and for oceanic whitetip sharks the stock is overfished and overfishing is occuring **WCPFC2012,WCPFC2013,WCPFC2014**. It should also be noted that due to concerns expressed by the Scientific Committee regarding the steep declines in biomass of silky and oceanic whitetip shark, the Commission has adopted CMMs for these species prohibiting their retention, transshipment, storage or landing **WCPFC2011a, WCPFC2013b**. In addition, in an attempt to reduce incidental catch of these species CMM2014-05 prohibits the use of either wire trace branchlines or shark lines on longline sets **this has now changed?**.  
+For the sharks that have been assessed to date, blue sharks in the north Pacific are not considered to be overfished and no overfishing is taking place; blue sharks in the south Pacific, and north Pacific shortfin mako have a very similar status, that is, they are most likely not overfished and overfishing is most likely not taking place; silky sharks are possibly overfished and overfishing is most likely taking place; and for oceanic whitetip sharks the stock is overfished and overfishing is occuring (\autoref{bycattab}). It should also be noted that due to concerns expressed by the Scientific Committee regarding the steep declines in biomass of silky and oceanic whitetip shark, the Commission has adopted CMMs for these species prohibiting their retention, transshipment, storage or landing [@Brouwer2023_a]. In addition, in an attempt to reduce incidental catch of these species CMM2014-05 prohibits the use of either wire trace branchlines or shark lines on longline sets **this has now changed?** [@Brouwer2023_a].  
 
 \newpage
 
@@ -206,37 +236,6 @@ For the sharks that have been assessed to date, blue sharks in the north Pacific
 
 
 
- \newpage
-
-\begin{figure}[!ht]
- \includegraphics [width=15cm]{\cntpth full_depletion_alb.png}
- \includegraphics [width=17cm]{\cntpth regional_depletion_alb.png}
-  \caption [Depletion history for albacore at region level]{Depletion of albacore at region scale. \label{tmp1}}
-\end{figure}
-
- \newpage
-
-\begin{figure}[!ht]
- \includegraphics [width=15cm]{\cntpth full_depletion_bet.png}
- \includegraphics [width=17cm]{\cntpth regional_depletion_bet.png}
-  \caption [Depletion history for bigeye at region level]{Depletion of bigeye at region scale. \label{tmp2}}
-\end{figure}
-
- \newpage
-
-\begin{figure}[!ht]
- \includegraphics [width=15cm]{\cntpth full_depletion_skj.png}
- \includegraphics [width=17cm]{\cntpth regional_depletion_skj.png}
-  \caption [Depletion history for skipjack at region level]{Depletion of skipjack at region scale. \label{tmp3}}
-\end{figure}
-
- \newpage
-
-\begin{figure}[!ht]
- \includegraphics [width=15cm]{\cntpth full_depletion_yft.png}
- \includegraphics [width=17cm]{\cntpth regional_depletion_yft.png}
-  \caption [Depletion history for yellowfin at region level]{Depletion of yellowfin at region scale. \label{tmp4}}
-\end{figure}
 
  \newpage
 
@@ -254,15 +253,6 @@ For the sharks that have been assessed to date, blue sharks in the north Pacific
 # References
 
 <div id="refs"></div>
-
-\vspace*{\fill}
-\clearpage
-# Tables {-}
-
-
-# Figures
-
-
 
 
 
