@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.7)  17 NOV 2023 15:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.7)  1 FEB 2024 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -622,7 +622,7 @@ LaTeX Info: Redefining \nameref on input line 99.
 \@outlinefile=\write4
 \openout4 = `Country_TFAR_Template.out'.
 
-<./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png, id=43, 715.92468pt x 995.97093pt>
+<./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png, id=47, 715.92468pt x 995.97093pt>
 File: ./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png Graphic file (type png)
 <use ./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png>
 Package pdftex.def Info: ./Graphics/CT_TFAR_Title_Template_CTexple.jpg.png  used on input line 107.
@@ -682,222 +682,272 @@ Overfull \hbox (18.11598pt too wide) in alignment at lines 3--24
  []
 
 ) [4]
-<./Figures/Regional/Fig16-majuro.ellipses.png, id=114, 666.49pt x 714.67pt>
-File: ./Figures/Regional/Fig16-majuro.ellipses.png Graphic file (type png)
-<use ./Figures/Regional/Fig16-majuro.ellipses.png>
-Package pdftex.def Info: ./Figures/Regional/Fig16-majuro.ellipses.png  used on input line 192.
+<./Figures/Regional/Majuro.ellipses.png, id=130, 666.49pt x 714.67pt>
+File: ./Figures/Regional/Majuro.ellipses.png Graphic file (type png)
+<use ./Figures/Regional/Majuro.ellipses.png>
+Package pdftex.def Info: ./Figures/Regional/Majuro.ellipses.png  used on input line 192.
 (pdftex.def)             Requested size: 369.89616pt x 396.63564pt.
 
-LaTeX Warning: Reference `tab2' on page 5 undefined on input line 209.
+LaTeX Warning: Reference `fig2' on page 5 undefined on input line 203.
 
-[5 <./Figures/Regional/Fig16-majuro.ellipses.png>] [6]
-<./Figures/Regional/Fig08b-skj_mapE.png, id=132, 1156.32pt x 794.97pt>
-File: ./Figures/Regional/Fig08b-skj_mapE.png Graphic file (type png)
-<use ./Figures/Regional/Fig08b-skj_mapE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig08b-skj_mapE.png  used on input line 245.
-(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
-<./Figures/Regional/Fig08a-skj_catchbygearE.png, id=133, 1148.29pt x 570.13pt>
-File: ./Figures/Regional/Fig08a-skj_catchbygearE.png Graphic file (type png)
-<use ./Figures/Regional/Fig08a-skj_catchbygearE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig08a-skj_catchbygearE.png  used on input line 246.
-(pdftex.def)             Requested size: 426.78801pt x 211.90173pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--247
+LaTeX Warning: Reference `fig2' on page 5 undefined on input line 204.
+
+
+LaTeX Warning: Reference `tab2' on page 5 undefined on input line 210.
+
+
+LaTeX Warning: Reference `fig2' on page 5 undefined on input line 213.
+
+[5 <./Figures/Regional/Majuro.ellipses.png>] [6]
+<./Figures/Regional/SKJ_Regional_Recent_Catch_Map.png, id=142, 1023.825pt x 728.7225pt>
+File: ./Figures/Regional/SKJ_Regional_Recent_Catch_Map.png Graphic file (type png)
+<use ./Figures/Regional/SKJ_Regional_Recent_Catch_Map.png>
+Package pdftex.def Info: ./Figures/Regional/SKJ_Regional_Recent_Catch_Map.png  used on input line 246.
+(pdftex.def)             Requested size: 441.01729pt x 313.90053pt.
+<./Figures/Regional/SKJ_Catch_ByGear_WholeArea_Within_Assessment.png, id=143, 1281.78876pt x 728.7225pt>
+File: ./Figures/Regional/SKJ_Catch_ByGear_WholeArea_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/SKJ_Catch_ByGear_WholeArea_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/SKJ_Catch_ByGear_WholeArea_Within_Assessment.png  used on input line 247.
+(pdftex.def)             Requested size: 426.78595pt x 242.63632pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 246--248
 [][]
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./Figures/SB/full_depletion_skj.png, id=134, 974.64125pt x 728.7225pt>
+<./Figures/Regional/SKJ_Catch_ByGear_ByRegion_Within_Assessment.png, id=144, 1098.1025pt x 728.7225pt>
+File: ./Figures/Regional/SKJ_Catch_ByGear_ByRegion_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/SKJ_Catch_ByGear_ByRegion_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/SKJ_Catch_ByGear_ByRegion_Within_Assessment.png  used on input line 252.
+(pdftex.def)             Requested size: 426.78375pt x 283.22212pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./Figures/SB/full_depletion_skj.png, id=145, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/full_depletion_skj.png Graphic file (type png)
 <use ./Figures/SB/full_depletion_skj.png>
-Package pdftex.def Info: ./Figures/SB/full_depletion_skj.png  used on input line 251.
+Package pdftex.def Info: ./Figures/SB/full_depletion_skj.png  used on input line 257.
 (pdftex.def)             Requested size: 426.79117pt x 319.10442pt.
-<./Figures/SB/regional_depletion_skj.png, id=135, 974.64125pt x 728.7225pt>
+<./Figures/SB/regional_depletion_skj.png, id=146, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/regional_depletion_skj.png Graphic file (type png)
 <use ./Figures/SB/regional_depletion_skj.png>
-Package pdftex.def Info: ./Figures/SB/regional_depletion_skj.png  used on input line 252.
+Package pdftex.def Info: ./Figures/SB/regional_depletion_skj.png  used on input line 258.
 (pdftex.def)             Requested size: 483.6907pt x 361.64722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--253
+Underfull \hbox (badness 10000) in paragraph at lines 257--259
 [][]
  []
 
 
-Overfull \hbox (28.4466pt too wide) in paragraph at lines 251--253
+Overfull \hbox (28.4466pt too wide) in paragraph at lines 257--259
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 2.5158pt on input line 254.
+LaTeX Warning: Float too large for page by 2.5158pt on input line 260.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `tab2' on page 7 undefined on input line 269.
+LaTeX Warning: Reference `fig3' on page 7 undefined on input line 270.
+
+
+LaTeX Warning: Reference `fig3' on page 7 undefined on input line 271.
+
+
+LaTeX Warning: Reference `tab2' on page 7 undefined on input line 277.
+
+
+LaTeX Warning: Reference `fig3' on page 7 undefined on input line 280.
 
 [7]
-<./Figures/Regional/Fig10b-yft_mapE.png, id=146, 1156.32pt x 794.97pt>
-File: ./Figures/Regional/Fig10b-yft_mapE.png Graphic file (type png)
-<use ./Figures/Regional/Fig10b-yft_mapE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig10b-yft_mapE.png  used on input line 298.
-(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
-<./Figures/Regional/Fig10a-yft_catchbygearE.png, id=147, 913.4125pt x 452.69125pt>
-File: ./Figures/Regional/Fig10a-yft_catchbygearE.png Graphic file (type png)
-<use ./Figures/Regional/Fig10a-yft_catchbygearE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig10a-yft_catchbygearE.png  used on input line 299.
-(pdftex.def)             Requested size: 426.78125pt x 211.51465pt.
+<./Figures/Regional/YFT_Regional_Recent_Catch_Map_5Reg.png, id=154, 1023.825pt x 728.7225pt>
+File: ./Figures/Regional/YFT_Regional_Recent_Catch_Map_5Reg.png Graphic file (type png)
+<use ./Figures/Regional/YFT_Regional_Recent_Catch_Map_5Reg.png>
+Package pdftex.def Info: ./Figures/Regional/YFT_Regional_Recent_Catch_Map_5Reg.png  used on input line 306.
+(pdftex.def)             Requested size: 441.01729pt x 313.90053pt.
+<./Figures/Regional/YFT_Catch_ByGear_WholeArea_Within_Assessment.png, id=155, 1281.78876pt x 728.7225pt>
+File: ./Figures/Regional/YFT_Catch_ByGear_WholeArea_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/YFT_Catch_ByGear_WholeArea_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/YFT_Catch_ByGear_WholeArea_Within_Assessment.png  used on input line 307.
+(pdftex.def)             Requested size: 426.78595pt x 242.63632pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 298--300
+Underfull \hbox (badness 10000) in paragraph at lines 306--308
 [][]
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./Figures/SB/full_depletion_yft.png, id=148, 974.64125pt x 728.7225pt>
+<./Figures/Regional/YFT_Catch_ByGear_ByRegion_Within_Assessment_5Reg.png, id=156, 1098.1025pt x 728.7225pt>
+File: ./Figures/Regional/YFT_Catch_ByGear_ByRegion_Within_Assessment_5Reg.png Graphic file (type png)
+<use ./Figures/Regional/YFT_Catch_ByGear_ByRegion_Within_Assessment_5Reg.png>
+Package pdftex.def Info: ./Figures/Regional/YFT_Catch_ByGear_ByRegion_Within_Assessment_5Reg.png  used on input line 312.
+(pdftex.def)             Requested size: 426.78375pt x 283.22212pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./Figures/SB/full_depletion_yft.png, id=157, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/full_depletion_yft.png Graphic file (type png)
 <use ./Figures/SB/full_depletion_yft.png>
-Package pdftex.def Info: ./Figures/SB/full_depletion_yft.png  used on input line 304.
+Package pdftex.def Info: ./Figures/SB/full_depletion_yft.png  used on input line 317.
 (pdftex.def)             Requested size: 426.79117pt x 319.10442pt.
-<./Figures/SB/regional_depletion_yft.png, id=149, 974.64125pt x 728.7225pt>
+<./Figures/SB/regional_depletion_yft.png, id=158, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/regional_depletion_yft.png Graphic file (type png)
 <use ./Figures/SB/regional_depletion_yft.png>
-Package pdftex.def Info: ./Figures/SB/regional_depletion_yft.png  used on input line 305.
+Package pdftex.def Info: ./Figures/SB/regional_depletion_yft.png  used on input line 318.
 (pdftex.def)             Requested size: 483.6907pt x 361.64722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 304--306
+Underfull \hbox (badness 10000) in paragraph at lines 317--319
 [][]
  []
 
 
-Overfull \hbox (28.4466pt too wide) in paragraph at lines 304--306
+Overfull \hbox (28.4466pt too wide) in paragraph at lines 317--319
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 2.5158pt on input line 307.
+LaTeX Warning: Float too large for page by 2.5158pt on input line 320.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `tab2' on page 8 undefined on input line 321.
+LaTeX Warning: Reference `tab2' on page 8 undefined on input line 337.
 
 [8]
-<./Figures/Regional/Fig12b-bet_mapE.png, id=160, 1156.32pt x 794.97pt>
-File: ./Figures/Regional/Fig12b-bet_mapE.png Graphic file (type png)
-<use ./Figures/Regional/Fig12b-bet_mapE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig12b-bet_mapE.png  used on input line 356.
-(pdftex.def)             Requested size: 441.01178pt x 303.19559pt.
-<./Figures/Regional/Fig12a-bet_catchbygearE.png, id=161, 1148.29pt x 570.13pt>
-File: ./Figures/Regional/Fig12a-bet_catchbygearE.png Graphic file (type png)
-<use ./Figures/Regional/Fig12a-bet_catchbygearE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig12a-bet_catchbygearE.png  used on input line 357.
-(pdftex.def)             Requested size: 426.78801pt x 211.90173pt.
+<./Figures/Regional/BET_Regional_Recent_Catch_Map.png, id=169, 1023.825pt x 728.7225pt>
+File: ./Figures/Regional/BET_Regional_Recent_Catch_Map.png Graphic file (type png)
+<use ./Figures/Regional/BET_Regional_Recent_Catch_Map.png>
+Package pdftex.def Info: ./Figures/Regional/BET_Regional_Recent_Catch_Map.png  used on input line 371.
+(pdftex.def)             Requested size: 441.01729pt x 313.90053pt.
+<./Figures/Regional/BET_Catch_ByGear_WholeArea_Within_Assessment.png, id=170, 1281.78876pt x 728.7225pt>
+File: ./Figures/Regional/BET_Catch_ByGear_WholeArea_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/BET_Catch_ByGear_WholeArea_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/BET_Catch_ByGear_WholeArea_Within_Assessment.png  used on input line 372.
+(pdftex.def)             Requested size: 426.78595pt x 242.63632pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--358
+Underfull \hbox (badness 10000) in paragraph at lines 371--373
 [][]
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./Figures/SB/full_depletion_bet.png, id=162, 974.64125pt x 728.7225pt>
+<./Figures/Regional/BET_Catch_ByGear_ByRegion_Within_Assessment.png, id=171, 1098.1025pt x 728.7225pt>
+File: ./Figures/Regional/BET_Catch_ByGear_ByRegion_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/BET_Catch_ByGear_ByRegion_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/BET_Catch_ByGear_ByRegion_Within_Assessment.png  used on input line 377.
+(pdftex.def)             Requested size: 426.78375pt x 283.22212pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./Figures/SB/full_depletion_bet.png, id=172, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/full_depletion_bet.png Graphic file (type png)
 <use ./Figures/SB/full_depletion_bet.png>
-Package pdftex.def Info: ./Figures/SB/full_depletion_bet.png  used on input line 362.
+Package pdftex.def Info: ./Figures/SB/full_depletion_bet.png  used on input line 382.
 (pdftex.def)             Requested size: 426.79117pt x 319.10442pt.
-<./Figures/SB/regional_depletion_bet.png, id=163, 974.64125pt x 728.7225pt>
+<./Figures/SB/regional_depletion_bet.png, id=173, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/regional_depletion_bet.png Graphic file (type png)
 <use ./Figures/SB/regional_depletion_bet.png>
-Package pdftex.def Info: ./Figures/SB/regional_depletion_bet.png  used on input line 363.
+Package pdftex.def Info: ./Figures/SB/regional_depletion_bet.png  used on input line 383.
 (pdftex.def)             Requested size: 483.6907pt x 361.64722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--364
+Underfull \hbox (badness 10000) in paragraph at lines 382--384
 [][]
  []
 
 
-Overfull \hbox (28.4466pt too wide) in paragraph at lines 362--364
+Overfull \hbox (28.4466pt too wide) in paragraph at lines 382--384
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 2.5158pt on input line 365.
+LaTeX Warning: Float too large for page by 2.5158pt on input line 385.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-LaTeX Warning: Reference `tab2' on page 9 undefined on input line 382.
+LaTeX Warning: Reference `tab2' on page 9 undefined on input line 404.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 409.
+(Font)              <8> on input line 431.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 409.
+(Font)              <6> on input line 431.
 [9]
-<./Figures/Regional/Fig14b-alb_mapE.png, id=178, 1156.32pt x 614.295pt>
-File: ./Figures/Regional/Fig14b-alb_mapE.png Graphic file (type png)
-<use ./Figures/Regional/Fig14b-alb_mapE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig14b-alb_mapE.png  used on input line 420.
-(pdftex.def)             Requested size: 441.01178pt x 234.28749pt.
-<./Figures/Regional/Fig14a-alb_catchbygearE.png, id=179, 1148.29pt x 570.13pt>
-File: ./Figures/Regional/Fig14a-alb_catchbygearE.png Graphic file (type png)
-<use ./Figures/Regional/Fig14a-alb_catchbygearE.png>
-Package pdftex.def Info: ./Figures/Regional/Fig14a-alb_catchbygearE.png  used on input line 421.
-(pdftex.def)             Requested size: 426.78801pt x 211.90173pt.
+<./Figures/Regional/ALB_Regional_Recent_Catch_Map.png, id=188, 1302.8675pt x 693.59125pt>
+File: ./Figures/Regional/ALB_Regional_Recent_Catch_Map.png Graphic file (type png)
+<use ./Figures/Regional/ALB_Regional_Recent_Catch_Map.png>
+Package pdftex.def Info: ./Figures/Regional/ALB_Regional_Recent_Catch_Map.png  used on input line 442.
+(pdftex.def)             Requested size: 441.02084pt x 234.78073pt.
+<./Figures/Regional/ALB_Catch_ByGear_WholeArea_Within_Assessment.png, id=189, 1281.78876pt x 728.7225pt>
+File: ./Figures/Regional/ALB_Catch_ByGear_WholeArea_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/ALB_Catch_ByGear_WholeArea_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/ALB_Catch_ByGear_WholeArea_Within_Assessment.png  used on input line 443.
+(pdftex.def)             Requested size: 426.78595pt x 242.63632pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 420--422
+Underfull \hbox (badness 10000) in paragraph at lines 442--444
 [][]
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./Figures/SB/full_depletion_alb.png, id=180, 974.64125pt x 728.7225pt>
+<./Figures/Regional/ALB_Catch_ByGear_ByRegion_Within_Assessment.png, id=190, 1098.1025pt x 728.7225pt>
+File: ./Figures/Regional/ALB_Catch_ByGear_ByRegion_Within_Assessment.png Graphic file (type png)
+<use ./Figures/Regional/ALB_Catch_ByGear_ByRegion_Within_Assessment.png>
+Package pdftex.def Info: ./Figures/Regional/ALB_Catch_ByGear_ByRegion_Within_Assessment.png  used on input line 448.
+(pdftex.def)             Requested size: 426.78375pt x 283.22212pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./Figures/SB/full_depletion_alb.png, id=191, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/full_depletion_alb.png Graphic file (type png)
 <use ./Figures/SB/full_depletion_alb.png>
-Package pdftex.def Info: ./Figures/SB/full_depletion_alb.png  used on input line 426.
+Package pdftex.def Info: ./Figures/SB/full_depletion_alb.png  used on input line 453.
 (pdftex.def)             Requested size: 426.79117pt x 319.10442pt.
-<./Figures/SB/regional_depletion_alb.png, id=181, 974.64125pt x 728.7225pt>
+<./Figures/SB/regional_depletion_alb.png, id=192, 974.64125pt x 728.7225pt>
 File: ./Figures/SB/regional_depletion_alb.png Graphic file (type png)
 <use ./Figures/SB/regional_depletion_alb.png>
-Package pdftex.def Info: ./Figures/SB/regional_depletion_alb.png  used on input line 427.
+Package pdftex.def Info: ./Figures/SB/regional_depletion_alb.png  used on input line 454.
 (pdftex.def)             Requested size: 483.6907pt x 361.64722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 426--428
+Underfull \hbox (badness 10000) in paragraph at lines 453--455
 [][]
  []
 
 
-Overfull \hbox (28.4466pt too wide) in paragraph at lines 426--428
+Overfull \hbox (28.4466pt too wide) in paragraph at lines 453--455
 [] 
  []
 
 
-LaTeX Warning: Float too large for page by 2.5158pt on input line 429.
+LaTeX Warning: Float too large for page by 2.5158pt on input line 456.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [10]
-<./Figures/Regional/Fig23b-shark.kobe.crosshairs.png, id=191, 666.49pt x 738.76pt>
-File: ./Figures/Regional/Fig23b-shark.kobe.crosshairs.png Graphic file (type png)
-<use ./Figures/Regional/Fig23b-shark.kobe.crosshairs.png>
-Package pdftex.def Info: ./Figures/Regional/Fig23b-shark.kobe.crosshairs.png  used on input line 470.
+<./Figures/Regional/Shark.kobe.crosshairs.png, id=202, 666.49pt x 738.76pt>
+File: ./Figures/Regional/Shark.kobe.crosshairs.png Graphic file (type png)
+<use ./Figures/Regional/Shark.kobe.crosshairs.png>
+Package pdftex.def Info: ./Figures/Regional/Shark.kobe.crosshairs.png  used on input line 497.
 (pdftex.def)             Requested size: 312.98593pt x 346.92415pt.
-<./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png, id=192, 666.49pt x 738.76pt>
-File: ./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png Graphic file (type png)
-<use ./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png>
-Package pdftex.def Info: ./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png  used on input line 471.
+<./Figures/Regional/Billfish.kobe.crosshairs.png, id=203, 666.49pt x 738.76pt>
+File: ./Figures/Regional/Billfish.kobe.crosshairs.png Graphic file (type png)
+<use ./Figures/Regional/Billfish.kobe.crosshairs.png>
+Package pdftex.def Info: ./Figures/Regional/Billfish.kobe.crosshairs.png  used on input line 498.
 (pdftex.def)             Requested size: 312.98593pt x 346.92415pt.
 
-LaTeX Warning: Float too large for page by 51.61246pt on input line 473.
+LaTeX Warning: Float too large for page by 51.61246pt on input line 500.
 
-(./Tables/bycatch_assessments_table.tex
+[11] (./Tables/bycatch_assessments_table.tex
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 5.
 
@@ -1050,26 +1100,26 @@ Overfull \hbox (31.54718pt too wide) in paragraph at lines 5--17
 [][] 
  []
 
-) [11] [12] [13 <./Figures/Regional/Fig08b-skj_mapE.png> <./Figures/Regional/Fig08a-skj_catchbygearE.png>] [14 <./Figures/SB/full_depletion_skj.png> <./Figures/SB/regional_depletion_skj.png>] [15 <./Figures/Regional/Fig10b-yft_mapE.png> <./Figures/Regional/Fig10a-yft_catchbygearE.png>] [16 <./Figures/SB/full_depletion_yft.png> <./Figures/SB/regional_depletion_yft.png>] [17 <./Figures/Regional/Fig12b-bet_mapE.png> <./Figures/Regional/Fig12a-bet_catchbygearE.png>] [18 <./Figures/SB/full_depletion_bet.png> <./Figures/SB/regional_depletion_bet.png>] [19 <./Figures/Regional/Fig14b-alb_mapE.png> <./Figures/Regional/Fig14a-alb_catchbygearE.png>] [20 <./Figures/SB/full_depletion_alb.png> <./Figures/SB/regional_depletion_alb.png>] [21 <./Figures/Regional/Fig23b-shark.kobe.crosshairs.png> <./Figures/Regional/Fig23a-billfish.kobe.crosshairs.png>] (./Country_TFAR_Template.aux)
+) [12] [13] [14 <./Figures/Regional/SKJ_Regional_Recent_Catch_Map.png> <./Figures/Regional/SKJ_Catch_ByGear_WholeArea_Within_Assessment.png>] [15 <./Figures/Regional/SKJ_Catch_ByGear_ByRegion_Within_Assessment.png>] [16 <./Figures/SB/full_depletion_skj.png> <./Figures/SB/regional_depletion_skj.png>] [17 <./Figures/Regional/YFT_Regional_Recent_Catch_Map_5Reg.png> <./Figures/Regional/YFT_Catch_ByGear_WholeArea_Within_Assessment.png>] [18 <./Figures/Regional/YFT_Catch_ByGear_ByRegion_Within_Assessment_5Reg.png>] [19 <./Figures/SB/full_depletion_yft.png> <./Figures/SB/regional_depletion_yft.png>] [20 <./Figures/Regional/BET_Regional_Recent_Catch_Map.png> <./Figures/Regional/BET_Catch_ByGear_WholeArea_Within_Assessment.png>] [21 <./Figures/Regional/BET_Catch_ByGear_ByRegion_Within_Assessment.png>] [22 <./Figures/SB/full_depletion_bet.png> <./Figures/SB/regional_depletion_bet.png>] [23 <./Figures/Regional/ALB_Regional_Recent_Catch_Map.png> <./Figures/Regional/ALB_Catch_ByGear_WholeArea_Within_Assessment.png>] [24 <./Figures/Regional/ALB_Catch_ByGear_ByRegion_Within_Assessment.png>] [25 <./Figures/SB/full_depletion_alb.png> <./Figures/SB/regional_depletion_alb.png>] [26 <./Figures/Regional/Shark.kobe.crosshairs.png> <./Figures/Regional/Billfish.kobe.crosshairs.png>] (./Country_TFAR_Template.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Country_TFAR_Template.out' has not changed.
-(rerunfilecheck)             Checksum: A36FFBB81A721E34352AF82B756AFADC;1162.
+(rerunfilecheck)             Checksum: 46F0188F2A1F7B04D655BD4681B58E37;1243.
  ) 
 Here is how much of TeX's memory you used:
- 22631 strings out of 480238
- 430667 string characters out of 5894354
- 683597 words of memory out of 5000000
- 40057 multiletter control sequences out of 15000+600000
+ 22678 strings out of 480238
+ 433666 string characters out of 5894354
+ 685789 words of memory out of 5000000
+ 40089 multiletter control sequences out of 15000+600000
  521761 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 84i,10n,80p,880b,381s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Country_TFAR_Template.pdf (21 pages, 9462786 bytes).
+ 84i,12n,80p,917b,381s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/Users/SamM/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
+Output written on Country_TFAR_Template.pdf (26 pages, 2994818 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 252 compressed objects within 3 object streams
- 70 named destinations out of 1000 (max. 500000)
- 185 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 375 PDF objects out of 1000 (max. 8388607)
+ 277 compressed objects within 3 object streams
+ 81 named destinations out of 1000 (max. 500000)
+ 213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

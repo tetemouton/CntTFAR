@@ -7,6 +7,7 @@ library(readr)
 library(xtable)
 library(data.table)
 
+# Note that for sharing, this assumes you have an R project established at the appropriate path so that relative (e.g. ./) paths can be used
 
   rep_dat <- list()
 
@@ -111,11 +112,10 @@ library(data.table)
 
   base_pth <- "./"
   
-  alb_rep <- read.MFCLRep("./Data/ALB/plot-final3.par.rep")
-  bet_rep <- read.MFCLRep("./Data/BET/plot-09.par.rep")
-  skj_rep <- read.MFCLRep("./Data/SKJ/plot-09.par.rep")
-  yft_rep <- read.MFCLRep("./Data/YFT/plot-14.par.rep")
-  
+  # alb_rep <- read.MFCLRep("./Data/ALB/plot-final3.par.rep")
+  # bet_rep <- read.MFCLRep("./Data/BET/plot-09.par.rep")
+  # skj_rep <- read.MFCLRep("./Data/SKJ/plot-09.par.rep")
+  # yft_rep <- read.MFCLRep("./Data/YFT/plot-14.par.rep")
   
 
   
@@ -144,7 +144,8 @@ library(data.table)
   
   
   # Process albacore grid runs to extract depletion at full and region level
-  tmpdir <- "//penguin/assessments/alb/2021/backupCCJ/ALB21_Projections/"
+  # Each of these paths to penguin/assessments will have to be modified depending on how it is mapped on your machine
+  tmpdir <- "D:/alb/2021/backupCCJ/ALB21_Projections/"
   
   full_dep_alb <- map(list.files(path = tmpdir, pattern = "S", full.names = FALSE, ignore.case = TRUE),  extract_depletion, scl = "full",
                       rundir = tmpdir, finalpar = "plot-final3.par.rep")
@@ -153,8 +154,8 @@ library(data.table)
                      rundir = tmpdir, finalpar = "plot-final3.par.rep")
   
   # Process bigeye grid runs to extract depletion at full and region level
-  tmpdir <- "//penguin/assessments/bet/2023/model_runs/grid/full/"
-  
+  tmpdir <- "D:/bet/2023/model_runs/grid/full/"
+   
   full_dep_bet <- map(list.files(path = tmpdir, pattern = "_", full.names = FALSE, ignore.case = TRUE)[4:57], extract_depletion, scl = "full",
                       rundir = tmpdir, finalpar = "plot-final.par.rep")
   
@@ -162,7 +163,8 @@ library(data.table)
                      rundir = tmpdir, finalpar = "plot-final.par.rep")
   
   # Process skipjack grid runs to extract depletion at full and region level
-  tmpdir <- "//penguin/assessments/skj/2022/Assessment/Model_runs/Grid2022/SKJ_3_18July/"
+  tmpdir <- "D:/skj/2022/Assessment/Model_runs/Grid2022/SKJ_3_18July/"
+  
   tmpfiles <- list.files(path = tmpdir, pattern = "T", full.names = FALSE, ignore.case = TRUE)
   
   full_dep_skj <- map(tmpfiles[tmpfiles != "T2G10.8.zip"], extract_depletion, scl = "full",
@@ -172,9 +174,8 @@ library(data.table)
                      rundir = tmpdir, finalpar = "plot-09.par.rep")
   
   
-  
   # Process yellowfin grid runs to extract depletion at full and region level
-  tmpdir <- "//penguin/assessments/yft/2023/model_runs/grid/full/"
+  tmpdir <- "D:/yft/2023/model_runs/grid/full/"
     
   full_dep_yft <- map(list.files(path = tmpdir, pattern = "_", full.names = FALSE, ignore.case = TRUE)[2:55], extract_depletion, scl = "full",
                       rundir = tmpdir, finalpar = "plot-final.par.rep")
@@ -432,8 +433,622 @@ library(data.table)
   save.image(paste0("Data/Output_Summary_Data.Rdata"))
     
     
-    
-
+#____________________________________________________________________________________________________________
+# The following produces the species catch maps and catch history bars for the full region and assessment sub-regions
+#____________________________________________________________________________________________________________
   
   
-   
+#____________________________________________________________________________________________________________
+  # This section has to be run in 32bit R
+  
+  library(RODBC)
+  
+  dat.pth <- "C:/GitRep/CntTFAR/2023/Report_template/Data/"
+  
+  channellog <- odbcDriverConnect("DSN=Visual FoxPro Database;UID=;PWD=;
+                                  SourceDB=\\\\corp.spc.int\\shared\\FAME\\NC_NOU\\OFP\\db1\\tuna_dbs\\Log_dbs\\DBF\\logsheet.dbc;
+                                  SourceType=DBC;Exclusive=No;BackgroundFetch=Yes;Collate=Machine;Null=Yes;Deleted=Yes;")
+  
+  
+  # All gear albacore catch by gear, flag and ocean ID by 5 x 5 from a_best
+  dat <- sqlQuery(channellog, query = "SELECT gr_id, ocean_id, flag_id, yy, lat_short, lon_short, sch_id, sum(days), sum(sets), sum(hhooks), sum(stdeff),
+                                       sum(alb_c), sum(alb_n), sum(bet_c), sum(bet_n), sum(skj_c), sum(skj_n), sum(yft_c), sum(yft_n) FROM a_best WHERE yy>=1950
+                                       GROUP BY gr_id, ocean_id, flag_id, yy, lat_short, lon_short, sch_id", max = 0, stringsAsFactors = FALSE)
+  
+  write.csv(dat, file = paste0(dat.pth, "Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv"), row.names = FALSE)
+  
+  
+#____________________________________________________________________________________________________________
+  # Can switch back to 64bit R for this bit
+  
+  library(tidyverse)
+  library(magrittr)
+  library(sf)
+  library(maps)
+  library(scatterpie)
+  library(rnaturalearth)
+  library(ggthemes)
+  
+  last_yr <- 2022
+  
+  theme_set(theme_bw())
+  
+  # Define characteristics of fishing gear
+  gearspecs <- list(code=c("L","P","S","Z","SA","SU"), code2=c("ll","pl","ps","ot","sa","su"),
+                    gearEN=c("Longline","Pole-and-line","Purse seine","Other","PS-associated","PS-free school"),
+                    cls=c("forestgreen","firebrick3","dodgerblue2","yellow2","dodgerblue2","lightblue"))
+  
+  
+  #####
+  # Need to change these paths from absolute to relative
+  #####
+  
+  dat.pth <- "C:/GitRep/CntTFAR/2023/Report_template/Data/"
+  
+  dir.pth <- "C:/GitRep/CntTFAR/2023/Report_template/Figures/Regional/"
+  
+  dat <- read.csv(file = paste0(dat.pth, "Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv"))
+  
+  #eez <- st_read(paste0(dat.pth, "EEZ_Shape_Files/World_EEZ_v10_2018_0_360.shp"))
+  eez <- st_read("C:/EEZs/Data/World_EEZ_v11/eez_v11_0_360.shp")
+  
+  world_shp_180 <- sf::st_as_sf(maps::map("world", wrap = c(0,360),  plot = FALSE, fill = TRUE))
+  
+  world <- ne_countries(scale = "medium", returnclass = "sf")
+  
+  wcpfc.sf <- c("POLYGON((141 -30,141 -55,150 -55,150 -60,230 -60,230 -4,210 -4,210 50,100 50,100 -10,130 -10,130 -30,141 -30))") %>% 
+    st_as_sfc(crs=st_crs(eez)) %>% 
+    st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  
+  r1.sf <- c("POLYGON((120 50, 170 50, 170 10, 140 10, 140 20, 120 20, 120 50))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r2.sf <- c("POLYGON((170 50, 210 50, 210 10, 170 10, 170 50))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r3.sf <- c("POLYGON((140 10, 170 10, 170 -10, 160 -10, 160 -5, 155 -5, 155 0, 140 0, 140 10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r4.sf <- c("POLYGON((170 10, 210 10, 210 -10, 170 -10, 170 10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r5.sf <- c("POLYGON((140 -10, 170 -10, 170 -40, 140 -40, 140 -20, 150 -20, 150 -15, 140 -15, 140 -10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r6.sf <- c("POLYGON((170 -10, 210 -10, 210 -40, 170 -40, 170 -10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r7.sf <- c("POLYGON((110 20, 140 20, 140 -10, 110 -10, 110 20))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r8.sf <- c("POLYGON((140 0, 155 0, 155 -5, 160 -5, 160 -10, 140 -10, 140 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r9.sf <- c("POLYGON((140 -15, 150 -15, 150 -20, 140 -20, 140 -15))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  
+  
+  windows(2800,2000)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) +
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r5.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r6.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r7.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r8.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r9.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    coord_sf(xlim = c(105,230), ylim = c(-50,55)) +
+    xlab("Longitude") + ylab("Latitude") +
+    annotate("text", x = c(155,190,160,190,160,190,125,150,145), y = c(35,35,0,0,-30,-30,5,-5,-18), label = c("1","2","3","4","5","6","7","8","9"), size = 12, fontface = "bold") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal")
+  #geom_scatterpie_legend(sqrt(dat.pl.w.S$Total/2000/pi), x = 220, y = 35, labeller = function(x) round(pi*2000*x^2, -3)) # Rounding labels to nearest 100...
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/YFT-BET_Region_Map.png"), type = "png")
+  dev.off()
+  
+  
+  r1.sf.5 <- c("POLYGON((120 50, 210 50, 210 10, 140 10, 140 20, 120 20, 120 50))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r2.sf.5 <- c("POLYGON((110 20, 140 20, 140 -10, 110 -10, 110 20))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r3.sf.5 <- c("POLYGON((140 0, 155 0, 155 -5, 160 -5, 160 -10, 140 -10, 140 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r4.sf.5 <- c("POLYGON((140 10, 210 10, 210 -10, 160 -10, 160 -5, 155 -5, 155 0, 140 0, 140 10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r5.sf.5 <- c("POLYGON((140 -10, 210 -10, 210 -40, 140 -40, 140 -10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  
+  
+  windows(2800,2000)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) + #geom_sf(data = pac.eez, aes(fill=Territory1))
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r5.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    coord_sf(xlim = c(105,230), ylim = c(-50,55)) +
+    xlab("Longitude") + ylab("Latitude") +
+    annotate("text", x = c(170,133,150,190,190), y = c(35,15,-5,5,-30), label = c("1","2","3","4","5"), size = 12, fontface = "bold") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal")
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/YFT_5_Region_Map.png"), type = "png")
+  dev.off()
+  
+  
+  dat %<>% mutate(Lat = as.numeric(str_extract(lat_short, "[0-9]+")), Lon = as.numeric(str_extract(lon_short, "[0-9]+")),
+                  hem.lat = str_extract(lat_short, "[aA-zZ]+"), hem.lon = str_extract(lon_short, "[aA-zZ]+"),
+                  Lat = ifelse(hem.lat == "S", -Lat + 2.5, Lat + 2.5), Lon = ifelse(hem.lon == "W", 360 - Lon + 2.5, Lon + 2.5))
+  
+  dat.pl <- dat %>% mutate(gr_id = ifelse(gr_id %in% c("L","P","S"), gr_id, "Oth"), Gear = recode(gr_id, L = "Longline", P = "Pole and line", S = "Purse seine", Oth = "Other"))
+  
+#____________________________  
+  # Bigeye map
+  # Recent period
+  dat.pl.trunc <- dat.pl %>% filter(yy >= last_yr - 9, yy <= last_yr) %>% group_by(Lat, Lon, Gear) %>% summarise(Catch = sum(sum_bet_c)/length((last_yr - 9):last_yr))
+  
+  dat.pl.w <- dat.pl.trunc %>% pivot_wider(names_from = Gear, values_from = Catch)
+  dat.pl.w[is.na(dat.pl.w)] <- 0
+  dat.pl.w$Total <- apply(dat.pl.w[,-c(1:2)], 1, sum)
+  
+  dat.pl.w.S <- filter(dat.pl.w, Total > 0)
+  max.circ <- max(dat.pl.w.S)/5
+  
+  
+  windows(2800,2000)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) + #geom_sf(data = pac.eez, aes(fill=Territory1))
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r5.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r6.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r7.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r8.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r9.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_scatterpie(data=dat.pl.w.S, aes(x = Lon, y = Lat, r = sqrt(Total/100/pi)), cols = c("Pole and line","Purse seine","Longline","Other"), alpha = 0.8) +
+    scale_fill_manual(values = c("firebrick","dodgerblue","forestgreen","yellow3")) +
+    coord_sf(xlim = c(105,280), ylim = c(-50,55)) +
+    xlab("Longitude") + ylab("Latitude") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal") +
+    geom_scatterpie_legend(sqrt(dat.pl.w.S$Total/100/pi), x = 260, y = 40, labeller = function(x) round(pi*100*x^2, -3), n = 3) # Rounding labels to nearest 100...
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/BET_Regional_Recent_Catch_Map.png"), type = "png")
+  dev.off()
+  
+#____________________________  
+  # Yellowfin map
+  # Recent period
+  
+  dat.pl.trunc <- dat.pl %>% filter(yy >= last_yr - 9, yy <= last_yr) %>% group_by(Lat, Lon, Gear) %>%
+    summarise(Catch = sum(sum_yft_c)/length((last_yr - 9):last_yr))
+  
+  dat.pl.w <- dat.pl.trunc %>% pivot_wider(names_from = Gear, values_from = Catch)
+  dat.pl.w[is.na(dat.pl.w)] <- 0
+  dat.pl.w$Total <- apply(dat.pl.w[,-c(1:2)], 1, sum)
+  
+  dat.pl.w.S <- filter(dat.pl.w, Total > 0)
+  max.circ <- max(dat.pl.w.S)/5
+  
+  
+  windows(2800,2000)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) + #geom_sf(data = pac.eez, aes(fill=Territory1))
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r5.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r6.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r7.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r8.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r9.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_scatterpie(data=dat.pl.w.S, aes(x = Lon, y = Lat, r = sqrt(Total/1400/pi)), cols = c("Pole and line","Purse seine","Longline","Other"), alpha = 0.8) +
+    scale_fill_manual(values = c("firebrick","dodgerblue","forestgreen","yellow3")) +
+    coord_sf(xlim = c(105,280), ylim = c(-50,55)) +
+    xlab("Longitude") + ylab("Latitude") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal") +
+    geom_scatterpie_legend(sqrt(dat.pl.w.S$Total/1400/pi), x = 260, y = 40, labeller = function(x) round(pi*1400*x^2, -3), n = 3) # Rounding labels to nearest 100...
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/YFT_Regional_Recent_Catch_Map.png"), type = "png")
+  dev.off()
+  
+  
+  # 5 region version
+  windows(2800,2000)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) + #geom_sf(data = pac.eez, aes(fill=Territory1))
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r5.sf.5, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_scatterpie(data=dat.pl.w.S, aes(x = Lon, y = Lat, r = sqrt(Total/1400/pi)), cols = c("Pole and line","Purse seine","Longline","Other"), alpha = 0.8) +
+    scale_fill_manual(values = c("firebrick","dodgerblue","forestgreen","yellow3")) +
+    coord_sf(xlim = c(105,280), ylim = c(-50,55)) +
+    xlab("Longitude") + ylab("Latitude") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal") +
+    geom_scatterpie_legend(sqrt(dat.pl.w.S$Total/1400/pi), x = 260, y = 40, labeller = function(x) round(pi*1400*x^2, -3), n = 3) # Rounding labels to nearest 100...
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/YFT_Regional_Recent_Catch_Map_5Reg.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________ 
+  # Skipjack map
+  # Recent period  
+  
+  r1.sf <- c("POLYGON((120 50, 140 50, 140 35, 145 35, 145 30, 120 30, 120 50))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r2.sf <- c("POLYGON((140 50, 210 50, 210 30, 145 30, 145 35, 140 35, 140 50))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r3.sf <- c("POLYGON((120 30, 145 30, 145 10, 130 10, 130 20, 120 20, 120 30))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r4.sf <- c("POLYGON((145 30, 210 30, 210 10, 145 10, 145 30))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r5.sf <- c("POLYGON((110 20, 130 20, 130 10, 140 10, 140 -20, 110 -20, 110 20))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r6.sf <- c("POLYGON((140 0, 155 0, 155 -5, 160 -5, 160 -20, 140 -20, 140 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r7.sf <- c("POLYGON((140 10, 170 10, 170 -20, 160 -20, 160 -5, 155 -5, 155 0, 140 0, 140 10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r8.sf <- c("POLYGON((170 10, 210 10, 210 -20, 170 -20, 170 10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  
+  
+  dat.pl <- dat %>% mutate(gr_id = ifelse(gr_id %in% c("L","P","S"), gr_id, "Oth"), Gear = recode(gr_id, L = "Longline", P = "Pole and line", S = "Purse seine", Oth = "Other"))
+  
+  dat.pl.trunc <- dat.pl %>% filter(yy >= last_yr - 9, yy <= last_yr) %>% group_by(Lat, Lon, Gear) %>% summarise(Catch = sum(sum_skj_c)/length((last_yr - 9):last_yr))
+  
+  dat.pl.w <- dat.pl.trunc %>% pivot_wider(names_from = Gear, values_from = Catch)
+  dat.pl.w[is.na(dat.pl.w)] <- 0
+  dat.pl.w$Total <- apply(dat.pl.w[,-c(1:2)], 1, sum)
+  
+  dat.pl.w.S <- filter(dat.pl.w, Total > 0)
+  max.circ <- max(dat.pl.w.S)/5
+  
+  
+  windows(2800,2000)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) + #geom_sf(data = pac.eez, aes(fill=Territory1))
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r5.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r6.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r7.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r8.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_scatterpie(data=dat.pl.w.S, aes(x = Lon, y = Lat, r = sqrt(Total/1300/pi)), cols = c("Pole and line","Purse seine","Longline","Other"), alpha = 0.8) +
+    scale_fill_manual(values = c("firebrick","dodgerblue","forestgreen","yellow3")) +
+    coord_sf(xlim = c(105,280), ylim = c(-50,55)) +
+    xlab("Longitude") + ylab("Latitude") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal") +
+    geom_scatterpie_legend(sqrt(dat.pl.w.S$Total/1300/pi), x = 260, y = 40, labeller = function(x) round(pi*100*x^2, -3), n = 3) # Rounding labels to nearest 100...
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/SKJ_Regional_Recent_Catch_Map.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________ 
+  # Albacore map
+  # Recent period  
+  
+  r1.sf <- c("POLYGON((140 0, 210 0, 210 -5, 230 -5, 230 -10, 140 -10, 140 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r2.sf <- c("POLYGON((140 -10, 230 -10, 230 -25, 140 -25, 140 -10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r3.sf <- c("POLYGON((140 -25, 230 -25, 230 -50, 140 -50, 140 -25))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r4.sf <- c("POLYGON((210 0, 290 0, 290 -50, 230 -50, 230 -5, 210 -5, 210 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  
+  dat.pl <- dat %>% mutate(gr_id = ifelse(gr_id %in% c("L","T"), gr_id, "Oth"), Gear = recode(gr_id, L = "Longline", T = "Troll", Oth = "Other"))
+  
+  dat.pl.trunc <- dat.pl %>% filter(yy >= last_yr - 9, yy <= last_yr) %>% group_by(Lat, Lon, Gear) %>% summarise(Catch = sum(sum_alb_c)/length((last_yr - 9):last_yr))
+  
+  dat.pl.w <- dat.pl.trunc %>% pivot_wider(names_from = Gear, values_from = Catch)
+  dat.pl.w[is.na(dat.pl.w)] <- 0
+  dat.pl.w$Total <- apply(dat.pl.w[,-c(1:2)], 1, sum)
+  
+  dat.pl.w.S <- filter(dat.pl.w, Total > 0)
+  max.circ <- max(dat.pl.w.S)/5
+  
+  
+  windows(2800,1500)
+  pl <- ggplot() +
+    geom_sf(data = eez, color = "black", size = 0.1) + #geom_sf(data = pac.eez, aes(fill=Territory1))
+    geom_sf(data = world_shp_180, fill = alpha("wheat", 0.7), color = "black", size = 0.1) +
+    geom_sf(data = r1.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r2.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r3.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_sf(data = r4.sf, colour = alpha("black", 0.9), fill = alpha("dodgerblue", 0.05), size = 0.8) +
+    geom_scatterpie(data=dat.pl.w.S, aes(x = Lon, y = Lat, r = sqrt(Total/100/pi)), cols = c("Longline", "Other", "Troll"), alpha = 0.8) +
+    scale_fill_manual(values = c("forestgreen","orange","yellow3")) +
+    coord_sf(xlim = c(135,295), ylim = c(-55,5)) +
+    xlab("Longitude") + ylab("Latitude") +
+    theme(axis.title = element_blank(), axis.text = element_text(size = 16), plot.title = element_text(size = 25),
+          legend.position = "bottom", legend.title = element_blank(), legend.text = element_text(size = 16), legend.direction="horizontal") +
+    geom_scatterpie_legend(sqrt(dat.pl.w.S$Total/100/pi), x = 260, y = -45, labeller = function(x) round(pi*100*x^2, -3), n = 3) # Rounding labels to nearest 100...
+  print(pl)
+  savePlot(filename = paste0(dir.pth, "/ALB_Regional_Recent_Catch_Map.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________________________________________________________________________________________  
+  # Catch bar plots - bigeye and yellowfin
+  
+  dat <- read.csv(file = paste0(dat.pth, "Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv"))
+  
+  dat %<>% mutate(Lat = as.numeric(str_extract(lat_short, "[0-9]+")), Lon = as.numeric(str_extract(lon_short, "[0-9]+")),
+                  hem.lat = str_extract(lat_short, "[aA-zZ]+"), hem.lon = str_extract(lon_short, "[aA-zZ]+"),
+                  Lat = ifelse(hem.lat == "S", -Lat + 2.5, Lat + 2.5), Lon = ifelse(hem.lon == "W", 360 - Lon + 2.5, Lon + 2.5),
+                  gr_id = ifelse(gr_id %in% c("L","P","S"), gr_id, "Oth"))
+  
+  dat.pl <- dat %>% mutate(Gear = recode(gr_id, L = "Longline", P = "Pole-and-line", S = "PS-associated", Oth = "Other"),
+                           Gear = ifelse(Gear == "PS-associated" & sch_id < 0, "PS-unclassified", Gear),
+                           Gear = ifelse(Gear == "PS-associated" & sch_id %in% 1:2, "PS-free-school", Gear)) %>%
+    filter(yy >= 1952, yy <= last_yr)
+  
+  dat.pl %<>% mutate(reg = NA,
+                     reg = ifelse(Lat > 20 & Lat < 50 & Lon > 120 & Lon < 170, "Region 1", reg),
+                     reg = ifelse(Lat > 10 & Lat < 20 & Lon > 140 & Lon < 170, "Region 1", reg),
+                     reg = ifelse(Lat > 10 & Lat < 50 & Lon > 170 & Lon < 210, "Region 2", reg),
+                     reg = ifelse(Lat > 0 & Lat < 10 & Lon > 140 & Lon < 170, "Region 3", reg),
+                     reg = ifelse(Lat > -5 & Lat < 0 & Lon > 155 & Lon < 170, "Region 3", reg),
+                     reg = ifelse(Lat > -10 & Lat < -5 & Lon > 160 & Lon < 170, "Region 3", reg),
+                     reg = ifelse(Lat > -10 & Lat < 10 & Lon > 170 & Lon < 210, "Region 4", reg),
+                     reg = ifelse(Lat > -40 & Lat < -10 & Lon > 140 & Lon < 170, "Region 5", reg), # This includes 9 but gets overwritten
+                     reg = ifelse(Lat > -40 & Lat < -10 & Lon > 170 & Lon < 210, "Region 6", reg),
+                     reg = ifelse(Lat > -10 & Lat < 20 & Lon > 110 & Lon < 140, "Region 7", reg),
+                     reg = ifelse(Lat > -10 & Lat < 0 & Lon > 140 & Lon < 155, "Region 8", reg),
+                     reg = ifelse(Lat > -10 & Lat < -5 & Lon > 155 & Lon < 160, "Region 8", reg),
+                     reg = ifelse(Lat > -20 & Lat < -15 & Lon > 140 & Lon < 150, "Region 9", reg))
+  
+  
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")) %>% group_by(Year = yy, Gear) %>%
+    summarise(BETc = sum(sum_bet_c), YFTc = sum(sum_yft_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")))
+  
+#____________________________ 
+  # Bigeye total assessment region catch by gear
+  windows(3500,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = BETc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    xlab("Year") + ylab("Bigeye catch (mt)") +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 5)) +
+    scale_y_continuous(breaks = seq(0, 200000, 20000), limits = c(0,200000), labels = scales::comma) + theme_clean() +
+    theme(legend.position = c(0.3,0.91), legend.direction = "horizontal", axis.title = element_text(size = 14), axis.text = element_text(size = 12),
+          legend.background = element_rect(colour = 'white', fill = 'white', linetype='solid'))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/BET_Catch_ByGear_WholeArea_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+#____________________________   
+  # Yellowfin total assessment region catch by gear
+  windows(3500,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = YFTc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    xlab("Year") + ylab("Yellowfin catch (mt)") +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 5)) +
+    scale_y_continuous(breaks = seq(0, 900000, 50000), limits = c(0,900000), labels = scales::comma) + theme_clean() +
+    theme(legend.position = c(0.3,0.91), legend.direction = "horizontal", axis.title = element_text(size = 14), axis.text = element_text(size = 12),
+          legend.background = element_rect(colour = 'white', fill = 'white', linetype='solid'))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/YFT_Catch_ByGear_WholeArea_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")) %>% group_by(Year = yy, Gear, Region = reg) %>%
+    summarise(BETc = sum(sum_bet_c), YFTc = sum(sum_yft_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")))
+  
+  
+#____________________________   
+  # Bigeye individual region catch by gear  
+  windows(3000,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = BETc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    facet_wrap(~ Region, ncol = 3, scales = "free_x") +
+    xlab("Year") + ylab("Bigeye catch (mt)") +
+    guides(fill = guide_legend(reverse = TRUE)) +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 15)) + theme_clean() +
+    scale_y_continuous(labels = scales::comma) +
+    theme(legend.position = "top", legend.direction = "horizontal", axis.title = element_text(size = 14),
+          axis.text = element_text(size = 11), legend.background = element_rect(color = NA))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/BET_Catch_ByGear_ByRegion_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________   
+  # Yellowfin individual region catch by gear - 9 regions   
+  windows(3000,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = YFTc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    facet_wrap(~ Region, ncol = 3, scales = "free_x") +
+    xlab("Year") + ylab("Yellowfin catch (mt)") +
+    guides(fill = guide_legend(reverse = TRUE)) +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 15)) + theme_clean() +
+    scale_y_continuous(labels = scales::comma) +
+    theme(legend.position = "top", legend.direction = "horizontal", axis.title = element_text(size = 14),
+          axis.text = element_text(size = 11), legend.background = element_rect(color = NA))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/YFT_Catch_ByGear_ByRegion_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+  dat.pl <- dat %>% mutate(Gear = recode(gr_id, L = "Longline", P = "Pole-and-line", S = "PS-associated", Oth = "Other"),
+                           Gear = ifelse(Gear == "PS-associated" & sch_id < 0, "PS-unclassified", Gear),
+                           Gear = ifelse(Gear == "PS-associated" & sch_id %in% 1:2, "PS-free-school", Gear)) %>%
+    filter(yy >= 1952, yy <= last_yr)
+  
+  dat.pl %<>% mutate(reg = NA,
+                     reg = ifelse(Lat > 20 & Lat < 50 & Lon > 120 & Lon < 210, "Region 1", reg),
+                     reg = ifelse(Lat > 10 & Lat < 20 & Lon > 140 & Lon < 210, "Region 1", reg),
+                     reg = ifelse(Lat > -10 & Lat < 20 & Lon > 110 & Lon < 140, "Region 2", reg),
+                     reg = ifelse(Lat > -10 & Lat < 0 & Lon > 140 & Lon < 155, "Region 3", reg),
+                     reg = ifelse(Lat > -10 & Lat < -5 & Lon > 155 & Lon < 160, "Region 3", reg),
+                     reg = ifelse(Lat > 0 & Lat < 10 & Lon > 140 & Lon < 210, "Region 4", reg),
+                     reg = ifelse(Lat > -5 & Lat < 0 & Lon > 155 & Lon < 210, "Region 4", reg),
+                     reg = ifelse(Lat > -10 & Lat < -5 & Lon > 160 & Lon < 210, "Region 4", reg),
+                     reg = ifelse(Lat > -40 & Lat < -10 & Lon > 140 & Lon < 210, "Region 5", reg))
+  
+  
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")) %>% group_by(Year = yy, Gear, Region = reg) %>%
+    summarise(BETc = sum(sum_bet_c), YFTc = sum(sum_yft_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")))
+  
+#____________________________   
+  # Yellowfin individual region catch by gear - 5 regions     
+  windows(3000,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = YFTc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    facet_wrap(~ Region, ncol = 3, scales = "free_x") +
+    xlab("Year") + ylab("Yellowfin catch (mt)") +
+    guides(fill = guide_legend(reverse = TRUE)) +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 15)) + theme_clean() +
+    scale_y_continuous(labels = scales::comma) +
+    theme(legend.position = "top", legend.direction = "horizontal", axis.title = element_text(size = 14),
+          axis.text = element_text(size = 11), legend.background = element_rect(color = NA))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/YFT_Catch_ByGear_ByRegion_Within_Assessment_5Reg.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________________________________________________________________________________________  
+  # Catch bar plots - skipjack
+  
+  dat <- read.csv(file = paste0(dat.pth, "Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv"))
+  
+  dat %<>% mutate(Lat = as.numeric(str_extract(lat_short, "[0-9]+")), Lon = as.numeric(str_extract(lon_short, "[0-9]+")),
+                  hem.lat = str_extract(lat_short, "[aA-zZ]+"), hem.lon = str_extract(lon_short, "[aA-zZ]+"),
+                  Lat = ifelse(hem.lat == "S", -Lat + 2.5, Lat + 2.5), Lon = ifelse(hem.lon == "W", 360 - Lon + 2.5, Lon + 2.5),
+                  gr_id = ifelse(gr_id %in% c("L","P","S"), gr_id, "Oth"))
+  
+  dat.pl <- dat %>% mutate(Gear = recode(gr_id, L = "Longline", P = "Pole-and-line", S = "PS-associated", Oth = "Other"),
+                           Gear = ifelse(Gear == "PS-associated" & sch_id < 0, "PS-unclassified", Gear),
+                           Gear = ifelse(Gear == "PS-associated" & sch_id %in% 1:2, "PS-free-school", Gear)) %>%
+    filter(yy >= 1960, yy <= last_yr)
+  
+  dat.pl %<>% mutate(reg = NA,
+                     reg = ifelse(Lat > 30 & Lat < 50 & Lon > 120 & Lon < 140, "Region 1", reg),
+                     reg = ifelse(Lat > 30 & Lat < 35 & Lon > 140 & Lon < 145, "Region 1", reg),
+                     reg = ifelse(Lat > 35 & Lat < 50 & Lon > 140 & Lon < 210, "Region 2", reg),
+                     reg = ifelse(Lat > 30 & Lat < 35 & Lon > 145 & Lon < 210, "Region 2", reg),
+                     reg = ifelse(Lat > 20 & Lat < 30 & Lon > 120 & Lon < 145, "Region 3", reg),
+                     reg = ifelse(Lat > 10 & Lat < 20 & Lon > 130 & Lon < 145, "Region 3", reg),
+                     reg = ifelse(Lat > 10 & Lat < 30 & Lon > 145 & Lon < 210, "Region 4", reg),
+                     reg = ifelse(Lat > -20 & Lat < 20 & Lon > 110 & Lon < 130, "Region 5", reg),
+                     reg = ifelse(Lat > -20 & Lat < 10 & Lon > 130 & Lon < 140, "Region 5", reg),
+                     reg = ifelse(Lat > -20 & Lat < 0 & Lon > 140 & Lon < 155, "Region 6", reg),
+                     reg = ifelse(Lat > -20 & Lat < -5 & Lon > 155 & Lon < 160, "Region 6", reg),
+                     reg = ifelse(Lat > 0 & Lat < 10 & Lon > 140 & Lon < 170, "Region 7", reg),
+                     reg = ifelse(Lat > -5 & Lat < 0 & Lon > 155 & Lon < 170, "Region 7", reg),
+                     reg = ifelse(Lat > -20 & Lat < -5 & Lon > 160 & Lon < 170, "Region 7", reg),
+                     reg = ifelse(Lat > -20 & Lat < 10 & Lon > 170 & Lon < 210, "Region 8", reg))
+  
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")) %>% group_by(Year = yy, Gear) %>%
+    summarise(SKJc = sum(sum_skj_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")))
+  
+  
+#____________________________ 
+  # Skipjack total assessment region catch by gear
+  windows(3500,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = SKJc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    xlab("Year") + ylab("Skipjack catch (mt)") +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 5)) +
+    scale_y_continuous(breaks = seq(0, 2500000, 500000), limits = c(0,2500000), labels = scales::comma) + theme_clean() +
+    theme(legend.position = c(0.3,0.91), legend.direction = "horizontal", axis.title = element_text(size = 14), axis.text = element_text(size = 12),
+          legend.background = element_rect(colour = 'white', fill = 'white', linetype='solid'))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/SKJ_Catch_ByGear_WholeArea_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________   
+  # Skipjack individual region catch by gear - 5 regions   
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")) %>% group_by(Year = yy, Gear, Region = reg) %>%
+    summarise(SKJc = sum(sum_skj_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Pole-and-line","PS-associated","PS-free-school","Other")))
+  
+  
+  windows(3000,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = SKJc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    facet_wrap(~ Region, ncol = 3, scales = "free_x") +
+    xlab("Year") + ylab("Skipjack catch (mt)") +
+    guides(fill = guide_legend(nrow = 3, byrow = TRUE, reverse = TRUE)) +
+    scale_fill_manual(values = alpha(c("yellow2","lightblue","dodgerblue2","firebrick3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 15)) + theme_clean() +
+    scale_y_continuous(labels = scales::comma) +
+    theme(legend.position = c(0.83,0.15), legend.direction = "horizontal", axis.title = element_text(size = 14),
+          axis.text = element_text(size = 11), legend.background = element_rect(color = NA))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/SKJ_Catch_ByGear_ByRegion_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+  
+#____________________________________________________________________________________________________________
+  # Catch bar plots - albacore
+  
+  dat <- read.csv(file = paste0(dat.pth, "Ann_All-Gear_Cat_Effort_Flg_5x5_AllOceans.csv"))
+  
+  dat %<>% mutate(Lat = as.numeric(str_extract(lat_short, "[0-9]+")), Lon = as.numeric(str_extract(lon_short, "[0-9]+")),
+                  hem.lat = str_extract(lat_short, "[aA-zZ]+"), hem.lon = str_extract(lon_short, "[aA-zZ]+"),
+                  Lat = ifelse(hem.lat == "S", -Lat + 2.5, Lat + 2.5), Lon = ifelse(hem.lon == "W", 360 - Lon + 2.5, Lon + 2.5),
+                  gr_id = ifelse(gr_id %in% c("L","T"), gr_id, "Oth"))
+  
+  dat.pl <- dat %>% mutate(Gear = recode(gr_id, L = "Longline", T = "Troll", Oth = "Other")) %>%
+    filter(yy >= 1960, yy <= last_yr)
+  
+  
+  r1.sf <- c("POLYGON((140 0, 210 0, 210 -5, 230 -5, 230 -10, 140 -10, 140 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r2.sf <- c("POLYGON((140 -10, 230 -10, 230 -25, 140 -25, 140 -10))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r3.sf <- c("POLYGON((140 -25, 230 -25, 230 -50, 140 -50, 140 -25))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  r4.sf <- c("POLYGON((210 0, 290 0, 290 -50, 230 -50, 230 -5, 210 -5, 210 0))") %>% st_as_sfc(crs=st_crs(eez)) %>% st_sf(field=c('x','y'), geoms = ., stringsAsFactors=FALSE)
+  
+  
+  dat.pl %<>% mutate(reg = NA,
+                     reg = ifelse(Lat > -10 & Lat < 0 & Lon > 140 & Lon < 210, "Region 1", reg),
+                     reg = ifelse(Lat > -10 & Lat < -5 & Lon > 210 & Lon < 230, "Region 1", reg),
+                     reg = ifelse(Lat > -25 & Lat < -10 & Lon > 140 & Lon < 230, "Region 2", reg),
+                     reg = ifelse(Lat > -50 & Lat < -25 & Lon > 140 & Lon < 230, "Region 3", reg),
+                     reg = ifelse(Lat > -5 & Lat < 0 & Lon > 210 & Lon < 230, "Region 4", reg),
+                     reg = ifelse(Lat > -50 & Lat < 0 & Lon > 230 & Lon < 290, "Region 4", reg))
+  
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Troll","Other")) %>% group_by(Year = yy, Gear) %>%
+    summarise(ALBc = sum(sum_alb_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Troll","Other")))
+  
+#____________________________ 
+  # Albacore total assessment region catch by gear
+  windows(3500,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = ALBc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    xlab("Year") + ylab("Albacore catch (mt)") +
+    scale_fill_manual(values = alpha(c("orange","yellow3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 5)) +
+    scale_y_continuous(breaks = seq(0, 100000, 10000), limits = c(0,100000), labels = scales::comma) + theme_clean() +
+    theme(legend.position = c(0.3,0.91), legend.direction = "horizontal", axis.title = element_text(size = 14), axis.text = element_text(size = 12),
+          legend.background = element_rect(colour = 'white', fill = 'white', linetype='solid'))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/ALB_Catch_ByGear_WholeArea_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________   
+  # Albacore individual region catch by gear - 5 regions   
+  dat.tb <- dat.pl %>% filter(!is.na(reg), Gear %in% c("Longline","Troll","Other")) %>% group_by(Year = yy, Gear, Region = reg) %>%
+    summarise(ALBc = sum(sum_alb_c))
+  
+  dat.tb$Gear = factor(dat.tb$Gear, levels = rev(c("Longline","Troll","Other")))
+  
+  
+  windows(3000,2000)
+  pl <- ggplot(dat.tb, aes(x = Year, y = ALBc, fill = Gear)) + geom_bar(stat = "identity", colour = "black", width = 1) +
+    facet_wrap(~ Region, ncol = 2, scales = "free_x") +
+    xlab("Year") + ylab("Albacore catch (mt)") +
+    guides(fill = guide_legend(nrow = 1, reverse = TRUE)) +
+    scale_fill_manual(values = alpha(c("orange","yellow3","forestgreen"),0.8)) +
+    scale_x_continuous(breaks = seq(min(dat.tb$Year), max(dat.tb$Year), 15)) + theme_clean() +
+    scale_y_continuous(labels = scales::comma) +
+    theme(legend.position = "top", legend.direction = "horizontal", axis.title = element_text(size = 14),
+          axis.text = element_text(size = 11), legend.background = element_rect(color = NA))
+  print(pl)
+  savePlot(file = paste0(dir.pth, "/ALB_Catch_ByGear_ByRegion_Within_Assessment.png"), type = "png")
+  dev.off()
+  
+  
+#____________________________________________________________________________________________________________  
+  
+  
